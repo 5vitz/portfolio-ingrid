@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<!-- Version: 1.0.4 - Forced Sync -->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingrid Sinkovitz | Marketing Experiencial</title>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- v1.0.2 - Image Path Fix -->
+    <style>
+        :root {
+            --cor1: #465D53; /* Dark Green - Primary Accent */
+            --cor1-rgb: 70, 93, 83;
+            --cor2: #203F44; /* Deep Teal - Dark Text/Headers */
+            --cor3: #BE735E; /* Terra Cotta - Secondary Accent */
+            --cor4: #6B3028; /* Dark Brown/Red - Tertiary Dark */
+            --cor5: #B35227; /* Burnt Orange - Vivid Accent */
+            --cor6: #C1908A; /* Muted Rose - Soft Accent */
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --text-dark: #1a1a1a;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--cor6);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--cor4);
+            letter-spacing: 1px;
+        }
+
+        .logo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--cor1);
+            font-family: Arial, Helvetica, sans-serif;
+            letter-spacing: 1px;
+            margin-top: -2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--cor1);
+        }
+
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 2rem;
+            background: #fff;
+            position: relative;
+            z-index: 10;
+        }
+
+        .about-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: fadeInUp 1s ease;
+        }
+
+        .about-image {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-card {
+            width: 100%;
+            max-width: 350px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-label {
+            padding: 1rem;
+            text-align: center;
+            background: #fff;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--cor1);
+            font-family: Arial, Helvetica, sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .about-content {
+            flex: 1.2;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--cor6);
+        }
+
+        .about-content p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                padding: 2rem 1.5rem;
+            }
+            .about-card {
+                flex-direction: column;
+            }
+            .about-image {
+                height: 350px;
+                min-height: auto;
+            }
+            .about-content {
+                padding: 2.5rem 2rem;
+            }
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            margin-top: 80px;
+            isolation: isolate;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./assets/images/inicio/Inicio.jpg');
+            background-size: cover;
+            background-position: right center;
+            -webkit-filter: brightness(0.85) contrast(1.1);
+            filter: brightness(0.85) contrast(1.1);
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: -webkit-linear-gradient(top, 
+                rgba(0,0,0,0.4) 0%, 
+                rgba(0,0,0,0) 25%, 
+                rgba(255,255,255,0) 50%, 
+                rgba(255,255,255,1) 100%);
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,0.4) 0%, 
+                rgba(0,0,0,0) 25%, 
+                rgba(255,255,255,0) 50%, 
+                rgba(255,255,255,1) 100%);
+            z-index: -1;
+        }
+
+        @media (min-width: 769px) {
+            /* Orientação padrão mantida para imagens realistas */
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.8); /* Transparência maior no parágrafo */
+        }
+
+        .btn-cta {
+            background-color: var(--cor2);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--cor1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 1.2rem;
+            color: var(--cor4);
+            margin-bottom: 1rem;
+            letter-spacing: 1.5px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .section-title .underline {
+            width: 80px;
+            height: 4px;
+            background: var(--cor1);
+            margin: 0 auto;
+        }
+
+        .accordion-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--cor1-rgb), 0.1);
+        }
+
+        .accordion-header {
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(var(--cor1-rgb), 0.05);
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            color: var(--cor2);
+            font-size: 1rem;
+            font-weight: 300;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .accordion-icon {
+            font-size: 1.2rem;
+            color: var(--cor4);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background-color: #fff;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px; /* Ajuste conforme necessário */
+            padding-top: 1.2rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .accordion-content ul {
+            list-style: none;
+            padding: 0 2rem 1rem 2rem;
+        }
+
+        .accordion-content ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .accordion-content ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--cor1);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--gray-light);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .testimonial-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .testimonial-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            border: 3px solid var(--cor1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--cor6);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 2rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 769px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            border: 1px solid rgba(var(--cor1-rgb), 0.1);
+            transition: opacity 0.3s ease;
+            background: #fff;
+            padding: 0;
+            position: relative; /* Added for overlay positioning */
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Slightly dark for text contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            pointer-events: none;
+            transition: background 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item-title {
+            color: white; /* Preenchimento branco solicitado */
+            font-size: 0.8rem;
+            font-weight: 900; /* Um pouco mais grosso para destacar o contorno */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+            text-shadow: 
+                -1px -1px 0 var(--cor4),  
+                 1px -1px 0 var(--cor4),
+                -1px  1px 0 var(--cor4),
+                 1px  1px 0 var(--cor4);
+        }
+
+        @media (min-width: 769px) {
+            .gallery-item-title {
+                font-size: 1rem;
+            }
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            opacity: 0.9;
+        }
+
+        .gallery-item:hover img {
+            transform: none;
+        }
+
+        /* Project Detail Enhancements */
+        .project-detail {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .btn-saiba-mais {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background-color: var(--cor1);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-saiba-mais:hover {
+            background-color: var(--cor2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--cor2);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 3rem;
+                text-align: center;
+            }
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h5 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--cor6);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--cor6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--cor6);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--cor2);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-detail {
+            display: none;
+            padding: 8rem 2rem 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+            position: relative;
+            z-index: 10;
+            background: var(--white);
+        }
+
+        .project-detail.active {
+            display: block;
+        }
+
+        .main-content.hidden {
+            display: none;
+        }
+
+        .project-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .project-header h2 {
+            font-size: 3rem;
+            color: var(--cor6);
+            margin-bottom: 1rem;
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .project-video, .project-iframe {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border: none;
+        }
+
+        .project-info h4 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 1rem;
+            border-left: 1px solid var(--cor1);
+            padding-left: 10px;
+            margin-left: -2px;
+        }
+
+        .project-info p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cor2);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .btn-back:hover {
+            color: var(--cor1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+            .project-header h2 {
+                font-size: 2rem;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 2rem;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                gap: 1.5rem;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .nav-container {
+                padding: 1rem;
+            }
+            .hero-container {
+                text-align: center;
+                padding: 6rem 1rem 0 1rem;
+            }
+            .btn-whatsapp {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+        /* Reels Carousel Style */
+        .reels-wrapper {
+            max-width: 350px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .reels-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #000;
+            border: 1px solid #ddd;
+        }
+
+        .reels-slide {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .reels-text-card {
+            width: 100%;
+            height: 100%;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--cor1), var(--cor2));
+            color: white;
+        }
+
+        .reels-text-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            color: var(--cor6); /* Rosa para destaque no título do card */
+        }
+
+        .reels-text-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .reels-video, .reels-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reels-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: center;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--cor1);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .mode-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .swipe-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.7rem;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: bounce 2s infinite;
+            z-index: 5;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        @media (max-width: 768px) {
+            .reels-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-name">Ingrid Sinkovitz</span>
+                <span class="logo-subtitle">Marketing Experiencial</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre Mim</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">☰</div>
+        </nav>
+    </header>
+
+    <div id="mainContent" class="main-content">
+        <section class="hero" id="inicio">
+            <!-- Conteúdo do Hero removido para o header -->
+        </section>
+
+        <section class="about-section" id="sobre">
+            <div class="about-card">
+                <div class="about-content" style="padding-bottom: 0; text-align: center;">
+                    <h2 style="margin-bottom: 0; color: var(--cor4); font-size: 1.2rem; letter-spacing: 1.5px; font-weight: 300; text-transform: uppercase;">Sobre Mim</h2>
+                </div>
+                <div class="about-image" style="padding-top: 2rem; padding-bottom: 1rem;">
+                    <div class="photo-card">
+                        <img src="./assets/images/sobre/Ingrid.jpeg" alt="Ingrid Sinkovitz" referrerPolicy="no-referrer">
+                        <div class="photo-label">Social Media Manager</div>
+                    </div>
+                </div>
+                <div class="about-content" style="padding-top: 1rem; text-align: center;">
+                    <p>Sou <span style="color: var(--cor6); font-weight: 700;">Ingrid Sinkovitz</span>, especialista em Marketing Experiencial. Minha paixão é criar conexões reais entre marcas e pessoas através de estratégias que vão além do convencional.</p>
+                    <p>Acredito que cada marca tem uma história única para contar, e meu papel é encontrar a melhor forma de narrá-la, gerando impacto e resultados duradouros.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="services" id="servicos">
+            <div class="section-title">
+                <h2>Serviços</h2>
+            </div>
+            <div class="accordion-container">
+                <!-- Item 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Estratégia & Posicionamento</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Planejamento estratégico de conteúdo para redes sociais</li>
+                            <li>Construção de narrativa, tom de voz e storytelling da marca</li>
+                            <li>Desenvolvimento de linha editorial alinhada ao posicionamento</li>
+                            <li>Pesquisa, benchmarking e análise de mercado</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Planejamento & Execução</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Planejamento e gestão de calendário editorial</li>
+                            <li>Criação de pautas, roteiros e briefings para produção</li>
+                            <li>Desenvolvimento e coordenação de campanhas digitais</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Gestão & Coordenação</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Coordenação, direcionamento e apoio a times de criação</li>
+                            <li>Organização de fluxos de trabalho e processos de produção</li>
+                            <li>Monitoramento da qualidade das entregas</li>
+                            <li>Gestão de múltiplos projetos e prazos simultaneamente</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Acompanhamento & Otimização</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Acompanhamento de métricas e performance de conteúdo</li>
+                            <li>Análise de resultados e otimização estratégica contínua</li>
+                            <li>Identificação de oportunidades de melhoria na comunicação</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Relacionamento & Gestão de Projetos</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Condução de reuniões, alinhamentos e apresentações</li>
+                            <li>Interface entre cliente e equipe criativa</li>
+                            <li>Gestão de feedbacks e acompanhamento de demandas</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Consultoria & Treinamento</h3>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Capacitação de equipes internas em marketing digital</li>
+                            <li>Workshops personalizados para times de vendas</li>
+                            <li>Mentoria estratégica para novos negócios</li>
+                            <li>Auditoria completa de presença digital</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery" id="projetos">
+            <div class="section-title">
+                <h2>Projetos</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="showProject(1)" style="cursor: pointer;">
+                    <img src="https://lh3.googleusercontent.com/d/1XlWC6UgX74YBBGranv9ea-wGGJOvoF51" alt="Projeto 1">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">Expedição BAHIA</div>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="showProject(2)" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&h=600" alt="Projeto 2">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">Restaurante Paladar</div>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="showProject(3)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&h=600" alt="Projeto 3"></div>
+                <div class="gallery-item" onclick="showProject(4)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&h=600" alt="Projeto 4"></div>
+                <div class="gallery-item" onclick="showProject(5)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&h=600" alt="Projeto 5"></div>
+                <div class="gallery-item" onclick="showProject(6)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&h=600" alt="Projeto 6"></div>
+            </div>
+        </section>
+    <!-- mainContent ends here after testimonials and footer -->
+    <section class="testimonials" id="depoimentos">
+        <div class="section-title">
+            <h2>Depoimentos</h2>
+        </div>
+        <div class="testimonials-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-item">
+                <img src="https://picsum.photos/seed/person1/100/100" alt="Cliente 1" class="testimonial-photo" referrerPolicy="no-referrer">
+                <p class="testimonial-text">"Trabalhar com a Ingrid transformou nossa presença digital. Sua visão estratégica trouxe resultados que nunca imaginamos."</p>
+                <span class="testimonial-author">Ana Paula - CEO TechFlow</span>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-item">
+                <img src="https://picsum.photos/seed/person2/100/100" alt="Cliente 2" class="testimonial-photo" referrerPolicy="no-referrer">
+                <p class="testimonial-text">"O profissionalismo e a criatividade da Ingrid são diferenciais raros no mercado. Recomendo de olhos fechados!"</p>
+                <span class="testimonial-author">Marcos Silva - Diretor de Marketing</span>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-item">
+                <img src="https://picsum.photos/seed/person3/100/100" alt="Cliente 3" class="testimonial-photo" referrerPolicy="no-referrer">
+                <p class="testimonial-text">"Nossas campanhas ganharam uma nova vida. A Ingrid entende profundamente o comportamento do consumidor digital."</p>
+                <span class="testimonial-author">Juliana Costa - Fundadora da EcoModa</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-links">
+                <h5 style="color: var(--cor4); font-size: 1.2rem; letter-spacing: 1.5px; font-weight: 300; text-transform: uppercase;">Contato</h5>
+                <ul>
+                    <li><a href="mailto:contato@ingridsinkovitz.com.br">contato@ingridsinkovitz.com.br</a></li>
+                    <li><a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a></li>
+                    <li><a href="#">São Paulo, SP</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Menu</h5>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre Mim</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 <span style="color: var(--cor6); font-weight: 700;">Ingrid Sinkovitz</span>. Todos os direitos reservados.
+        </div>
+    </footer>
+    </div>
+
+    <!-- Project Details Sections -->
+    <section id="project-1" class="project-detail">
+        <a class="btn-back" onclick="hideProject()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Voltar para Projetos
+        </a>
+        <div class="project-header">
+            <h2>Expedição BAHIA</h2>
+        </div>
+        <div class="project-content">
+            <div class="project-image">
+                <iframe id="video-1" class="project-iframe" src="https://drive.google.com/file/d/1FznByPJf4W0r8TFft3uG4GkDTK4d1-a0/preview" allow="autoplay"></iframe>
+            </div>
+            <div class="project-info">
+                <h4>A ideia</h4>
+                <p>Introduzir uma nova solução de software no mercado B2B com foco em automação de processos industriais.</p>
+                <h4>O objetivo</h4>
+                <p>Desenvolvemos uma narrativa baseada em eficiência e redução de custos, utilizando storytelling para humanizar a tecnologia.</p>
+                <h4>Meu papel</h4>
+                <p>Desenvolvemos uma narrativa baseada em eficiência e redução de custos, utilizando storytelling para humanizar a tecnologia.</p>
+                <h4>Resultados</h4>
+                <p>Aumento de 45% no tráfego qualificado e conversão de leads 3x superior à média do setor nos primeiros 3 meses.</p>
+                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Voltar para Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-2" class="project-detail">
+        <a class="btn-back" onclick="hideProject()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Voltar para Projetos
+        </a>
+        <div class="project-content">
+            <div class="project-image">
+                <div class="reels-wrapper">
+                    <div class="swiper reels-container">
+                        <div class="swiper-wrapper">
+                            <!-- 1. A ideia -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 3rem;">
+                                    <h2 style="font-size: 1.4rem; margin-bottom: 6rem; color: var(--cor4); font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px; line-height: 1.1;">Restaurante Paladar</h2>
+                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">A ideia</h3>
+                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Transformar o jantar em um espetáculo teatral, onde cada prato conta um capítulo da história da gastronomia local, unindo sabor e narrativa visual.</p>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-bottom: 2rem; opacity: 0.7;">Arraste para cima ↕</div>
+                                </div>
+                            </div>
+                            <!-- 2, 3, 4. Gastronomia (3 cards) -->
+                            <div class="swiper-slide reels-slide">
+                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&h=700">
+                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-chef-preparing-a-delicious-plate-of-food-40540-large.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 1" class="reels-image">
+                            </div>
+                            <div class="swiper-slide reels-slide">
+                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&h=700">
+                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-wine-into-a-glass-in-a-restaurant-40541-large.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <!-- 5. O objetivo -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 8rem;">
+                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">O objetivo</h3>
+                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Posicionar o Restaurante Paladar como o destino número 1 para jantares sensoriais, aumentando o ticket médio em 40% e a fidelização de clientes premium.</p>
+                                </div>
+                            </div>
+                            <!-- 6, 7. Gastronomia (2 cards) -->
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 2" class="reels-image">
+                            </div>
+                            <div class="swiper-slide reels-slide">
+                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=400&h=700">
+                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-waiter-bringing-a-plate-of-food-to-a-table-40542-large.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <!-- 8. Meu papel -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 8rem;">
+                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">Meu papel</h3>
+                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Direção criativa da campanha "Sinta a História", coordenação de produção audiovisual e gestão de parcerias estratégicas com influenciadores gourmet.</p>
+                                </div>
+                            </div>
+                            <!-- 9, 10, 11. Gastronomia (3 cards) -->
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 3" class="reels-image">
+                            </div>
+                            <div class="swiper-slide reels-slide">
+                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=400&h=700">
+                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-delicious-dessert-40543-large.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 4" class="reels-image">
+                            </div>
+                            <!-- 12. Resultados -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 8rem;">
+                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">Resultados</h3>
+                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Aumento de 300% nas reservas via Instagram, ROI de 5.5x sobre mídia paga e 15 mil novos seguidores qualificados em 6 meses.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reels-controls">
+                        <span class="mode-label">Manual</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="autoPlayToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="mode-label">Automático</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-info" style="display: flex; align-items: center; justify-content: center;">
+                <a class="btn-back" onclick="hideProject()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Voltar para Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-3" class="project-detail">
+        <a class="btn-back" onclick="hideProject()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Voltar para Projetos
+        </a>
+        <div class="project-header">
+            <h2>Social Media Engagement</h2>
+        </div>
+        <div class="project-content">
+            <div class="project-image">
+                <video class="project-video" controls playsinline poster="https://picsum.photos/seed/marketing3/800/600">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
+            </div>
+            <div class="project-info">
+                <h4>O Desafio</h4>
+                <p>Revitalizar a presença digital de uma rede de gastronomia com baixo engajamento orgânico.</p>
+                <h4>A Estratégia</h4>
+                <p>Implementação de uma linha editorial focada em bastidores, vídeos dinâmicos e interação direta com a comunidade.</p>
+                <h4>Resultados</h4>
+                <p>Crescimento de 200% no engajamento médio e aumento direto nas reservas via canais digitais.</p>
+                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Voltar para Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-4" class="project-detail">
+        <a class="btn-back" onclick="hideProject()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Voltar para Projetos
+        </a>
+        <div class="project-header">
+            <h2>Estratégia de Conteúdo B2C</h2>
+        </div>
+        <div class="project-content">
+            <div class="project-image">
+                <video class="project-video" controls playsinline poster="https://picsum.photos/seed/marketing4/800/600">
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
+            </div>
+            <div class="project-info">
+                <h4>O Desafio</h4>
+                <p>Educar o mercado sobre um novo serviço financeiro digital para jovens investidores.</p>
+                <h4>A Estratégia</h4>
+                <p>Produção de conteúdo educativo simplificado, quebrando a barreira da complexidade financeira.</p>
+                <h4>Resultados</h4>
+                <p>Mais de 50 mil downloads do aplicativo em 4 meses e taxa de retenção de usuários acima de 70%.</p>
+                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Voltar para Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-5" class="project-detail">
+        <a class="btn-back" onclick="hideProject()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Voltar para Projetos
+        </a>
+        <div class="project-header">
+            <h2>Campanha Verão 2024</h2>
+        </div>
+        <div class="project-content">
+            <div class="project-image">
+                <img src="https://picsum.photos/seed/summer/800/600" alt="Projeto 5" style="width: 100%; border-radius: 12px;">
+            </div>
+            <div class="project-info">
+                <h4>O Desafio</h4>
+                <p>Lançamento de uma nova linha de produtos sazonais com foco em engajamento imediato.</p>
+                <h4>A Estratégia</h4>
+                <p>Uso de influenciadores locais e conteúdo visual vibrante para gerar desejo de compra.</p>
+                <h4>Resultados</h4>
+                <p>Esgotamento do estoque inicial em apenas 15 dias e aumento de 80% nas menções da marca.</p>
+                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Voltar para Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-6" class="project-detail">
+        <a class="btn-back" onclick="hideProject()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Voltar para Projetos
+        </a>
+        <div class="project-header">
+            <h2>E-commerce Performance</h2>
+        </div>
+        <div class="project-content">
+            <div class="project-image">
+                <img src="https://picsum.photos/seed/ecommerce/800/600" alt="Projeto 6" style="width: 100%; border-radius: 12px;">
+            </div>
+            <div class="project-info">
+                <h4>O Desafio</h4>
+                <p>Otimizar a taxa de conversão de um e-commerce de decoração que apresentava alto abandono de carrinho.</p>
+                <h4>A Estratégia</h4>
+                <p>Reestruturação do funil de vendas e implementação de campanhas de remarketing dinâmico.</p>
+                <h4>Resultados</h4>
+                <p>Redução de 30% no abandono de carrinho e aumento de 25% no faturamento mensal.</p>
+                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Voltar para Projetos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Reels Carousel Initialization
+        let reelsSwiper;
+        let autoPlayInterval;
+        const REEL_DURATION = 10000; // 10 seconds
+
+        function initReels() {
+            reelsSwiper = new Swiper('.reels-container', {
+                direction: 'vertical',
+                loop: true,
+                mousewheel: true,
+                grabCursor: true,
+                on: {
+                    init: function() {
+                        playCurrentVideo(this);
+                    },
+                    slideChange: function() {
+                        playCurrentVideo(this);
+                        resetAutoPlay();
+                    }
+                }
+            });
+
+            const toggle = document.getElementById('autoPlayToggle');
+            toggle.addEventListener('change', function() {
+                resetAutoPlay();
+            });
+        }
+
+        function playCurrentVideo(swiper) {
+            // Pause all videos
+            document.querySelectorAll('.reels-video').forEach(v => {
+                v.pause();
+            });
+
+            // Small delay to ensure Swiper has updated classes
+            setTimeout(() => {
+                const activeSlide = swiper.el.querySelector('.swiper-slide-active');
+                if (activeSlide) {
+                    const video = activeSlide.querySelector('video');
+                    if (video) {
+                        video.currentTime = 0;
+                        video.play().catch(e => console.log("Autoplay blocked"));
+                    }
+                }
+            }, 50);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            const isAuto = document.getElementById('autoPlayToggle').checked;
+            
+            if (isAuto) {
+                autoPlayInterval = setInterval(() => {
+                    reelsSwiper.slideNext();
+                }, REEL_DURATION);
+            }
+        }
+
+        // Project navigation
+        function showProject(id) {
+            console.log("Showing project:", id);
+            const mainContent = document.getElementById('mainContent');
+            const projectSection = document.getElementById('project-' + id);
+            
+            if (!projectSection) {
+                console.error("Project section not found:", id);
+                return;
+            }
+
+            mainContent.classList.add('hidden');
+            document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
+            
+            projectSection.classList.add('active');
+            
+            // Special init for Reels if it's project 2
+            if (id === 2) {
+                if (!reelsSwiper) {
+                    initReels();
+                } else {
+                    reelsSwiper.slideTo(1, 0); // Reset to first slide
+                    playCurrentVideo(reelsSwiper);
+                    resetAutoPlay();
+                }
+            } else {
+                // Autoplay do vídeo após a interação do usuário (o clique no projeto)
+                const video = projectSection.querySelector('video');
+                if (video) {
+                    video.muted = true; // Ensure muted for autoplay
+                    video.play().catch(error => {
+                        console.log("Autoplay bloqueado pelo navegador ou erro:", error);
+                    });
+                }
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function hideProject(shouldScroll = true) {
+            // Stop Reels auto play
+            clearInterval(autoPlayInterval);
+            
+            // Pausa todos os vídeos ao sair da página de detalhes
+            document.querySelectorAll('.project-video, .reels-video').forEach(video => {
+                video.pause();
+                video.currentTime = 0;
+            });
+            
+            // "Reseta" o iframe para parar o som
+            document.querySelectorAll('.project-iframe').forEach(iframe => {
+                const src = iframe.src;
+                iframe.src = '';
+                iframe.src = src;
+            });
+
+            document.getElementById('mainContent').classList.remove('hidden');
+            document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
+            
+            if (shouldScroll) {
+                // Scroll back to projects section
+                const projectsSection = document.getElementById('projetos');
+                projectsSection.scrollIntoView();
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                
+                // Se estivermos em um detalhe de projeto, volta para o conteúdo principal primeiro e para a mídia
+                if (document.getElementById('mainContent').classList.contains('hidden')) {
+                    hideProject(false);
+                }
+
+                if (href === "#" || href === "#inicio") {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Close menu on click outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
