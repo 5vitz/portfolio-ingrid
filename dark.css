@@ -1,0 +1,166 @@
+/* 
+   Ingrid Sinkovitz - Dark Theme
+   Baseado na paleta dourada fornecida
+*/
+
+body.dark-mode {
+    --white: #0a0a0a;
+    --gray-light: #151515;
+    --text-dark: #e2d270; /* .color3 */
+    --cor1: #c4a440;      /* .color1 */
+    --cor2: #ffffa0;      /* .color5 - para títulos brilharem */
+    --cor4: #d3bb58;      /* .color2 */
+    --cor6: #f0e888;      /* .color4 */
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    background-color: var(--white);
+    color: var(--text-dark);
+}
+
+body.dark-mode header {
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid rgba(196, 164, 64, 0.2);
+}
+
+body.dark-mode .nav-menu a {
+    color: var(--text-dark);
+}
+
+body.dark-mode .nav-menu a:hover {
+    color: var(--cor2);
+}
+
+body.dark-mode .about-section,
+body.dark-mode .services,
+body.dark-mode .gallery,
+body.dark-mode .testimonials,
+body.dark-mode .project-detail {
+    background-color: var(--white); /* #0a0a0a */
+}
+
+body.dark-mode .about-card, 
+body.dark-mode .testimonial-item,
+body.dark-mode .accordion-item,
+body.dark-mode .photo-card {
+    background: #151515;
+    border: 1px solid rgba(196, 164, 64, 0.1);
+    box-shadow: var(--shadow);
+}
+
+body.dark-mode .accordion-header h3 {
+    color: var(--cor6);
+}
+
+body.dark-mode .accordion-content {
+    background-color: #151515;
+}
+
+body.dark-mode .accordion-content ul li {
+    color: var(--text-dark);
+}
+
+body.dark-mode .photo-label {
+    background: #151515;
+    color: var(--cor1);
+}
+
+body.dark-mode .section-title h2 {
+    color: var(--cor2);
+}
+
+body.dark-mode .project-detail {
+    background: var(--white);
+}
+
+body.dark-mode .project-info h4 {
+    color: var(--cor2);
+    border-left-color: var(--cor1);
+}
+
+body.dark-mode .project-info p {
+    color: var(--cor6);
+}
+
+body.dark-mode footer {
+    background-color: #050505;
+    border-top: 1px solid rgba(196, 164, 64, 0.2);
+}
+
+body.dark-mode .copyright {
+    border-top-color: rgba(196, 164, 64, 0.1);
+}
+
+/* Cor de seleção de texto "Top" */
+body.dark-mode *::selection {
+    background-color: rgba(196, 164, 64, 0.3);
+    color: #ffffa0;
+}
+
+/* Ajuste do Hero para fusão perfeita no Modo Escuro */
+body.dark-mode .hero::before {
+    filter: brightness(0.6) contrast(1.2); /* Escurece um pouco mais a foto para o dourado saltar */
+}
+
+body.dark-mode .hero::after {
+    background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.6) 0%, 
+        rgba(0,0,0,0) 25%, 
+        rgba(10,10,10,0) 50%, 
+        rgba(10,10,10,1) 100%); /* Transição suave para o preto #0a0a0a */
+}
+
+/* Ajuste para o botão de toggle */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 45px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider-round {
+    background-color: #333; /* Cinza bem escuro em vez de cinza claro */
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid rgba(196, 164, 64, 0.3); /* Borda sutil em color1 */
+}
+
+.slider-round:before {
+    background-color: #e2d270; /* Dot na color3 */
+    bottom: 3px;
+    content: "";
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 16px;
+    border-radius: 50%;
+}
+
+input:checked + .slider-round {
+    background-color: #c4a440; /* Fundo em color1 quando ativo */
+}
+
+input:checked + .slider-round:before {
+    background-color: #0a0a0a; /* Bolinha preta para contraste elegante com o fundo dourado */
+    transform: translateX(21px);
+}
+
+.theme-icon {
+    margin-left: 8px;
+    font-size: 14px;
+}

@@ -8,6 +8,7 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- v1.0.2 - Image Path Fix -->
+    <link rel="stylesheet" href="dark.css">
     <style>
         :root {
             --cor1: #465D53; /* Dark Green - Primary Accent */
@@ -941,6 +942,13 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">☰</div>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider-round"></div>
+                </label>
+                <span class="theme-icon" id="themeIcon">🌙</span>
+            </div>
         </nav>
     </header>
 
@@ -1570,6 +1578,33 @@
                 navMenu.classList.remove('active');
             }
         });
+
+        // Dark Mode Logic
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+        const themeIcon = document.getElementById('themeIcon');
+
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+                themeIcon.textContent = '☀️';
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+                themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+                themeIcon.textContent = '🌙';
+            }    
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
     </script>
 </body>
 </html>
