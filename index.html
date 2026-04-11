@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingrid Sinkovitz | Marketing Experiencial</title>
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- v1.0.2 - Image Path Fix -->
     <link rel="stylesheet" href="dark.css">
@@ -35,7 +38,8 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--white);
@@ -43,7 +47,8 @@
         }
 
         h1, h2, h3 {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
             color: var(--cor6);
         }
 
@@ -86,7 +91,7 @@
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--cor1);
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Poppins', sans-serif;
             letter-spacing: 1px;
             margin-top: -2px;
         }
@@ -127,194 +132,107 @@
 
         /* About Section */
         .about-section {
-            padding: 4rem 2rem;
-            background: #fff;
+            padding: 3rem 2rem 2rem;
+            background: var(--white);
+            margin-top: 80px;
             position: relative;
-            z-index: 10;
         }
 
-        .about-card {
-            max-width: 1000px;
+        .about-container {
+            max-width: 1100px;
             margin: 0 auto;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            animation: fadeInUp 1s ease;
+            overflow: hidden; /* Limpa o float */
         }
 
-        .about-image {
-            flex: 1;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .photo-card {
-            width: 100%;
-            max-width: 350px;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+        .about-photo-card {
+            float: left;
+            width: 30%;
+            max-width: 340px;
+            margin-right: 3rem;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            background: transparent;
+            padding: 0;
+            border-radius: 25px;
+            box-shadow: none;
+            border: none;
             transition: transform 0.3s ease;
         }
 
-        .photo-card:hover {
+        .about-photo-card:hover {
             transform: translateY(-5px);
         }
 
-        .photo-card img {
+        .about-photo-card img {
             width: 100%;
-            aspect-ratio: 3/4;
-            object-fit: cover;
+            border-radius: 25px;
             display: block;
+            border: 1px solid #000000;
         }
 
-        .photo-label {
-            padding: 1rem;
-            text-align: center;
-            background: #fff;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--cor1);
-            font-family: Arial, Helvetica, sans-serif;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .about-text-content h2 {
+            font-size: 2.5rem;
+            color: var(--cor4);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
         }
 
-        .about-content {
-            flex: 1.2;
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .about-text-content h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--cor1);
         }
 
-        .about-content h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--cor6);
-        }
-
-        .about-content p {
-            font-size: 0.95rem;
+        .about-text-content p {
+            font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 1.2rem;
+            color: var(--cor1);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .about-text-content .highlight {
             color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        @media (max-width: 992px) {
+            .about-photo-card {
+                float: none;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto 3rem;
+            }
+            .about-text-content {
+                text-align: center;
+            }
+            .about-text-content h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .about-text-content p {
+                text-align: center;
+            }
         }
 
         @media (max-width: 768px) {
             .about-section {
-                padding: 2rem 1.5rem;
+                padding: 4rem 1.5rem;
             }
-            .about-card {
-                flex-direction: column;
+            .about-text-content h2 {
+                font-size: 2rem;
             }
-            .about-image {
-                height: 350px;
-                min-height: auto;
-            }
-            .about-content {
-                padding: 2.5rem 2rem;
-            }
-            .about-content h2 {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 85vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            color: white;
-            text-align: center;
-            margin-top: 80px;
-            isolation: isolate;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://lh3.googleusercontent.com/d/1JD6M4-RWAsa3jBWmSUx2iWdiEJlqRxGO');
-            background-size: cover;
-            background-position: right center;
-            -webkit-filter: brightness(0.85) contrast(1.1);
-            filter: brightness(0.85) contrast(1.1);
-            z-index: -1;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: -webkit-linear-gradient(top, 
-                rgba(0,0,0,0.4) 0%, 
-                rgba(0,0,0,0) 25%, 
-                rgba(255,255,255,0) 50%, 
-                rgba(255,255,255,1) 100%);
-            background: linear-gradient(to bottom, 
-                rgba(0,0,0,0.4) 0%, 
-                rgba(0,0,0,0) 25%, 
-                rgba(255,255,255,0) 50%, 
-                rgba(255,255,255,1) 100%);
-            z-index: -1;
-        }
-
-        @media (min-width: 769px) {
-            /* Orientação padrão mantida para imagens realistas */
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            color: rgba(255, 255, 255, 0.8); /* Transparência maior no parágrafo */
-        }
-
-        .btn-cta {
-            background-color: var(--cor2);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-
-        .btn-cta:hover {
-            background-color: var(--cor1);
         }
 
         /* Services Section */
         .services {
-            padding: 5rem 2rem 2rem;
-            max-width: 1200px;
+            padding: 2rem 2rem 2rem;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -340,7 +258,7 @@
         }
 
         .accordion-container {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -370,10 +288,10 @@
 
         .accordion-header h3 {
             margin: 0;
-            color: var(--cor2);
+            color: var(--cor1);
             font-size: 1rem;
-            font-weight: 300;
-            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            font-family: 'Poppins', sans-serif;
         }
 
         .accordion-icon {
@@ -445,6 +363,24 @@
             text-align: center;
         }
 
+        .testimonial-item.full-width {
+            grid-column: span 2;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-item.full-width .testimonial-photo {
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial-item.full-width .testimonial-content {
+            display: flex;
+            flex-direction: column;
+        }
+
         .testimonial-photo {
             width: 80px;
             height: 80px;
@@ -470,6 +406,15 @@
         @media (max-width: 768px) {
             .testimonials-grid {
                 grid-template-columns: 1fr;
+            }
+            .testimonial-item.full-width {
+                grid-column: span 1;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            .testimonial-item.full-width .testimonial-photo {
+                margin-bottom: 1.5rem;
             }
         }
 
@@ -752,6 +697,16 @@
 
         .footer-links ul li {
             margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--cor6);
+            flex-shrink: 0;
         }
 
         .footer-links a {
@@ -1067,7 +1022,6 @@
                 <span class="logo-subtitle">Marketing Experiencial</span>
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#inicio">Início</a></li>
                 <li><a href="#sobre">Sobre Mim</a></li>
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#projetos">Projetos</a></li>
@@ -1087,24 +1041,18 @@
     </header>
 
     <div id="mainContent" class="main-content">
-        <section class="hero" id="inicio">
-            <!-- Conteúdo do Hero removido para o header -->
-        </section>
-
-        <section class="about-section" id="sobre">
-            <div class="about-card">
-                <div class="about-content" style="padding-bottom: 0; text-align: center;">
-                    <h2 style="margin-bottom: 0; color: var(--cor4); font-size: 1.2rem; letter-spacing: 1.5px; font-weight: 300; text-transform: uppercase;">Sobre Mim</h2>
+        <section class="about-section" id="inicio">
+            <div class="about-container">
+                <div class="about-photo-card">
+                    <img src="https://lh3.googleusercontent.com/d/1B968AqmCSK2z74l8wYAnT1QZwxvqhMjE" alt="Ingrid Sinkovitz" referrerPolicy="no-referrer">
                 </div>
-                <div class="about-image" style="padding-top: 2rem; padding-bottom: 1rem;">
-                    <div class="photo-card">
-                        <img src="https://lh3.googleusercontent.com/d/10GQIYT12kcCUR6en9291C_VztZ3AeSGg" alt="Ingrid Sinkovitz" referrerPolicy="no-referrer">
-                        <div class="photo-label">Social Media Manager</div>
-                    </div>
-                </div>
-                <div class="about-content" style="padding-top: 1rem; text-align: center;">
-                    <p>Sou <span style="color: var(--cor6); font-weight: 700;">Ingrid Sinkovitz</span>, especialista em Marketing Experiencial. Minha paixão é criar conexões reais entre marcas e pessoas através de estratégias que vão além do convencional.</p>
-                    <p>Acredito que cada marca tem uma história única para contar, e meu papel é encontrar a melhor forma de narrá-la, gerando impacto e resultados duradouros.</p>
+                <div class="about-text-content">
+                    <p>Eu sou a <span class="highlight">Ingrid</span>, e minha trajetória na comunicação nunca foi linear. Comecei na rádio, passei pela televisão, mergulhei na produção audiovisual, vivi projetos que chegaram à TV Globo e até uma turnê internacional. Mais tarde, empreendi no setor gastronômico, onde, além de gerir um negócio, também fui responsável por construir e posicionar a marca.</p>
+                    <p>Cada uma dessas experiências me colocou em lugares diferentes da comunicação: na frente das câmeras, nos bastidores, na operação, na estratégia. E foi exatamente isso que moldou a forma como eu enxergo o que faço hoje.</p>
+                    <p>Eu não vejo conteúdo como uma peça isolada. Nem estratégia como algo que existe só no planejamento. Pra mim, comunicação é um <span class="highlight">sistema</span>. É entender contexto, intenção, público, narrativa e fazer tudo isso se conectar de forma coerente, consistente e sustentável ao longo do tempo.</p>
+                    <p>Por isso, o meu trabalho não se limita à criação. Eu entro nos projetos para organizar, estruturar e dar direção. Trago clareza para marcas que muitas vezes já têm presença, mas não têm consistência. Transformo ideias soltas em uma narrativa sólida. E acompanho de perto a execução para garantir que aquilo que foi pensado realmente aconteça com qualidade e alinhamento.</p>
+                    <p>Hoje, atuo como <span class="highlight">gestora e estrategista de conteúdo</span>, com uma visão ampla de todo o processo. Minha forma de trabalhar é atravessada por tudo o que eu já vivi: diferentes formatos, diferentes mercados, diferentes perspectivas. E é justamente isso que me permite enxergar além do óbvio e construir algo que não seja só bonito ou bem planejado, mas que faça sentido.</p>
+                    <p style="font-style: italic; font-weight: 500; color: var(--cor1);">Não é só produzir conteúdo, é construir percepção.</p>
                 </div>
             </div>
         </section>
@@ -1186,21 +1134,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Item 6 -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Consultoria & Treinamento</h3>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <ul>
-                            <li>Capacitação de equipes internas em marketing digital</li>
-                            <li>Workshops personalizados para times de vendas</li>
-                            <li>Mentoria estratégica para novos negócios</li>
-                            <li>Auditoria completa de presença digital</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -1261,21 +1194,23 @@
         <div class="testimonials-grid">
             <!-- Testimonial 1 -->
             <div class="testimonial-item">
-                <img src="https://picsum.photos/seed/person1/100/100" alt="Cliente 1" class="testimonial-photo" referrerPolicy="no-referrer">
-                <p class="testimonial-text">"Trabalhar com a Ingrid transformou nossa presença digital. Sua visão estratégica trouxe resultados que nunca imaginamos."</p>
-                <span class="testimonial-author">Ana Paula - CEO TechFlow</span>
+                <img src="assets/images/depoimentos/Dep01.jpeg" alt="Paulo Buzzo" class="testimonial-photo" referrerPolicy="no-referrer">
+                <p class="testimonial-text">"Tive a honra de ter a Ingrid na equipe comercial da Audaar. Ela muito além do esperado, cuidando da comunicação interna, eventos e transformando as redes sociais, criando um planejamento estratégico de brilhar os olhos. Sempre proativa e cheia de ideias, destaco sua energia e dedicação inspiraram a todos ao redor. Ela é contagiante! Foi um privilégio ter Ingrid no time, e sei que onde ela estiver, trará sempre excelentes resultados e boas vibrações!"</p>
+                <span class="testimonial-author">Paulo Buzzo - Gestor Comercial | Vendedor | Growth | Inteligência Artificial</span>
             </div>
             <!-- Testimonial 2 -->
             <div class="testimonial-item">
-                <img src="https://picsum.photos/seed/person2/100/100" alt="Cliente 2" class="testimonial-photo" referrerPolicy="no-referrer">
-                <p class="testimonial-text">"O profissionalismo e a criatividade da Ingrid são diferenciais raros no mercado. Recomendo de olhos fechados!"</p>
-                <span class="testimonial-author">Marcos Silva - Diretor de Marketing</span>
+                <img src="assets/images/depoimentos/Dep02.jpeg" alt="Karina Redivo" class="testimonial-photo" referrerPolicy="no-referrer">
+                <p class="testimonial-text">"A Ingrid é uma profissional multifuncional, muito dedicada, organizada e com senso de resolução incrível. Durante o tempo em que atuou como Social Media em nosso time de marketing, ela trouxe ideias fantásticas, ajudou a aprimorar processos de rotina conforme as necessidades do setor e estava sempre disposta a realizar tudo com responsabilidade e empenho. Linda, alegre, cativante, serena, cuidadosa com as entregas e resultados! Foi um prazer ter a Ingrid em nosso time. Simplesmente maravilhosa! Merece todo sucesso e realizações."</p>
+                <span class="testimonial-author">Karina Redivo - Coordenadora de Marketing</span>
             </div>
             <!-- Testimonial 3 -->
-            <div class="testimonial-item">
-                <img src="https://picsum.photos/seed/person3/100/100" alt="Cliente 3" class="testimonial-photo" referrerPolicy="no-referrer">
-                <p class="testimonial-text">"Nossas campanhas ganharam uma nova vida. A Ingrid entende profundamente o comportamento do consumidor digital."</p>
-                <span class="testimonial-author">Juliana Costa - Fundadora da EcoModa</span>
+            <div class="testimonial-item full-width">
+                <img src="assets/images/depoimentos/Dep03.jpeg" alt="Guilherme Bressan" class="testimonial-photo" referrerPolicy="no-referrer">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Tive o prazer de trabalhar com a Guigui em minha Produtora de Narrativas em 2022 e 2023. Uma pessoa muito carismática e de excelente comunicação que se destacava sempre por sua versatilidade e habilidade multitask. Além de Produtora Executiva, atuou como Assistente de Direção, acompanhando todas as etapas de produção de conteúdo sempre com uma postura proativa, pontualidade e uma capacidade impressionante de coordenação de equipe. Durante o tempo em que trabalhamos juntos, teve um papel fundamental na produção integral de uma campanha publicitária com vídeos documentais sobre os principais usuários de uma grande rede de Self Storage em São Paulo. Ela foi essencial em todas as etapas do processo: desde a gestão de produção, atendimento, visita técnica, até a coordenação da equipe envolvida. A Ingrid é uma profissional que traz ótimas ideias com um olhar refinado, sempre com iniciativa e com uma abordagem que transmite confiança e comprometimento. Se você busca alguém com grande habilidade para lidar com múltiplas demandas e produção de comunicação transmidiática, ela é a pessoa certa. Recomendo muito a Ingrid para qualquer desafio na área de comunicação!"</p>
+                    <span class="testimonial-author">Guilherme Bressan - Founder and Creative Director at Estoriah | Storytelling Specialist</span>
+                </div>
             </div>
         </div>
     </section>
@@ -1285,16 +1220,23 @@
             <div class="footer-links">
                 <h5 style="color: var(--cor4); font-size: 1.2rem; letter-spacing: 1.5px; font-weight: 300; text-transform: uppercase;">Contato</h5>
                 <ul>
-                    <li><a href="mailto:contato@ingridsinkovitz.com.br">contato@ingridsinkovitz.com.br</a></li>
-                    <li><a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a></li>
-                    <li><a href="#">São Paulo, SP</a></li>
-                    <li><a href="#">Instagram</a></li>
+                    <li>
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <a href="mailto:ingridsinkovitz@gmail.com">ingridsinkovitz@gmail.com</a>
+                    </li>
+                    <li>
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        <a href="https://www.linkedin.com/in/ingridsinkovitz/" target="_blank">linkedin.com/in/ingridsinkovitz</a>
+                    </li>
+                    <li>
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.431 5.63 1.432h.006c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <a href="https://wa.me/5527999193525" target="_blank">+55 27 99919-3525</a>
+                    </li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h5>Menu</h5>
                 <ul>
-                    <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre Mim</a></li>
                     <li><a href="#servicos">Serviços</a></li>
                     <li><a href="#projetos">Projetos</a></li>
@@ -1775,6 +1717,12 @@
             if (data.youtubeId) {
                 qvYoutube.style.display = 'block';
                 qvYoutube.src = `https://www.youtube.com/embed/${data.youtubeId}?autoplay=1&mute=1`;
+            } else if (data.vimeoId) {
+                qvYoutube.style.display = 'block';
+                qvYoutube.src = `https://player.vimeo.com/video/${data.vimeoId}?autoplay=1&muted=1`;
+            } else if (data.instagramId) {
+                qvYoutube.style.display = 'block';
+                qvYoutube.src = `https://www.instagram.com/reel/${data.instagramId}/embed/`;
             } else if (data.video) {
                 qvVideo.style.display = 'block';
                 qvVideo.querySelector('source').src = data.video;

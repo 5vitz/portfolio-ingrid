@@ -29,12 +29,29 @@ body.dark-mode .nav-menu a:hover {
     color: var(--cor2);
 }
 
-body.dark-mode .about-section,
 body.dark-mode .services,
 body.dark-mode .gallery,
 body.dark-mode .testimonials,
 body.dark-mode .project-detail {
     background-color: var(--white); /* #0a0a0a */
+}
+
+body.dark-mode .about-photo-card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+body.dark-mode .about-photo-card img {
+    border: 1px solid #333333;
+}
+
+body.dark-mode .about-text-content h2 {
+    color: var(--cor2);
+}
+
+body.dark-mode .about-text-content p {
+    color: var(--text-dark);
 }
 
 body.dark-mode .about-card, 
@@ -47,7 +64,7 @@ body.dark-mode .photo-card {
 }
 
 body.dark-mode .accordion-header h3 {
-    color: var(--cor6);
+    color: var(--text-dark);
 }
 
 body.dark-mode .accordion-content {
@@ -196,16 +213,8 @@ body.dark-mode *::selection {
 }
 
 /* Ajuste do Hero para fusão perfeita no Modo Escuro */
-body.dark-mode .hero::before {
-    filter: brightness(0.6) contrast(1.2); /* Escurece um pouco mais a foto para o dourado saltar */
-}
-
-body.dark-mode .hero::after {
-    background: linear-gradient(to bottom, 
-        rgba(0,0,0,0.6) 0%, 
-        rgba(0,0,0,0) 25%, 
-        rgba(10,10,10,0) 50%, 
-        rgba(10,10,10,1) 100%); /* Transição suave para o preto #0a0a0a */
+body.dark-mode .hero {
+    background: var(--white);
 }
 
 /* Ajuste para o botão de toggle */
