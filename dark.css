@@ -6,11 +6,11 @@
 body.dark-mode {
     --white: #0a0a0a;
     --gray-light: #151515;
-    --text-dark: #C5A028; /* Dourado Médio para texto */
-    --cor1: #B8860B;      /* Dourado Escuro / Bronze */
-    --cor2: #D4AF37;      /* Dourado Metálico Clássico para títulos */
-    --cor4: #A67C00;      /* Dourado Profundo */
-    --cor6: #DAA520;      /* Goldenrod para detalhes */
+    --text-dark: #808080; /* Cinza um pouco mais escuro para textos */
+    --cor1: #FFFFFF;      /* Branco para destaques e botões */
+    --cor2: #FFFFFF;      /* Branco para títulos */
+    --cor4: #FFFFFF;      /* Branco para outros elementos */
+    --cor6: #FFFFFF;      /* Branco para detalhes */
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     background-color: var(--white);
     color: var(--text-dark);
@@ -18,11 +18,11 @@ body.dark-mode {
 
 body.dark-mode header {
     background: rgba(10, 10, 10, 0.95);
-    border-bottom: 1px solid rgba(196, 164, 64, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .nav-menu a {
-    color: var(--text-dark);
+    color: #C0C0C0; /* Tom intermediário entre Branco e o Cinza do texto */
 }
 
 body.dark-mode .nav-menu a:hover {
@@ -59,7 +59,7 @@ body.dark-mode .testimonial-item,
 body.dark-mode .accordion-item,
 body.dark-mode .photo-card {
     background: #151515;
-    border: 1px solid rgba(196, 164, 64, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--shadow);
 }
 
@@ -167,16 +167,16 @@ body.dark-mode .reels-text-card .swipe-hint {
 
 body.dark-mode footer {
     background-color: #050505;
-    border-top: 1px solid rgba(196, 164, 64, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .copyright {
-    border-top-color: rgba(196, 164, 64, 0.1);
+    border-top-color: rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode .qv-card {
     background: #151515;
-    border: 1px solid rgba(196, 164, 64, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .qv-title {
@@ -208,8 +208,8 @@ body.dark-mode .btn-qv-main:hover {
 
 /* Cor de seleção de texto "Top" */
 body.dark-mode *::selection {
-    background-color: rgba(196, 164, 64, 0.3);
-    color: #ffffa0;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
 }
 
 /* Ajuste do Hero para fusão perfeita no Modo Escuro */
@@ -244,11 +244,11 @@ body.dark-mode .hero {
     top: 0;
     transition: .4s;
     border-radius: 34px;
-    border: 1px solid rgba(196, 164, 64, 0.3); /* Borda sutil em color1 */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda prata sutil */
 }
 
 .slider-round:before {
-    background-color: #C5A028; /* Dourado no ponto do switch */
+    background-color: #FFFFFF; /* Branco no ponto do switch */
     bottom: 2px;
     content: "";
     height: 12px;
@@ -260,7 +260,7 @@ body.dark-mode .hero {
 }
 
 input:checked + .slider-round {
-    background-color: #B8860B; /* Fundo do switch quando ativo */
+    background-color: #FFFFFF; /* Fundo do switch branco quando ativo */
 }
 
 input:checked + .slider-round:before {
