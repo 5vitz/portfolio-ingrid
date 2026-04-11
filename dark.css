@@ -42,7 +42,7 @@ body.dark-mode .testimonial-item,
 body.dark-mode .accordion-item,
 body.dark-mode .photo-card {
     background: #151515;
-    border: 1px solid rgba(196, 164, 64, 0.3);
+    border: 2px solid rgba(196, 164, 64, 0.5);
     box-shadow: var(--shadow);
 }
 
