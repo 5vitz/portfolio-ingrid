@@ -21,6 +21,11 @@ body.dark-mode header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+body.dark-mode .logo,
+body.dark-mode .logo-subtitle {
+    color: #E0E0E0 !important; /* Cinza bem clarinho para o logo e subtítulo */
+}
+
 body.dark-mode .nav-menu a {
     color: #C0C0C0; /* Tom intermediário entre Branco e o Cinza do texto */
 }
