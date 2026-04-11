@@ -377,7 +377,7 @@
         }
 
         .accordion-icon {
-            font-size: 1.2rem;
+            font-size: 0.8rem;
             color: var(--cor4);
             transition: transform 0.3s ease;
         }
@@ -866,7 +866,16 @@
             to { opacity: 1; }
         }
 
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
         @media (max-width: 768px) {
+            .nav-actions {
+                gap: 1rem;
+            }
             .project-content {
                 grid-template-columns: 1fr;
             }
@@ -1065,13 +1074,14 @@
                 <li><a href="#depoimentos">Depoimentos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
-            <div class="menu-toggle" id="menuToggle">☰</div>
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider-round"></div>
-                </label>
-                <span class="theme-icon" id="themeIcon">🌙</span>
+            <div class="nav-actions">
+                <div class="menu-toggle" id="menuToggle">☰</div>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider-round"></div>
+                    </label>
+                </div>
             </div>
         </nav>
     </header>
@@ -1860,13 +1870,11 @@
         // Dark Mode Logic
         const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
         const currentTheme = localStorage.getItem('theme');
-        const themeIcon = document.getElementById('themeIcon');
 
         if (currentTheme) {
             document.body.classList.add(currentTheme);
             if (currentTheme === 'dark-mode') {
                 toggleSwitch.checked = true;
-                themeIcon.textContent = '☀️';
             }
         }
 
@@ -1874,11 +1882,9 @@
             if (e.target.checked) {
                 document.body.classList.add('dark-mode');
                 localStorage.setItem('theme', 'dark-mode');
-                themeIcon.textContent = '☀️';
             } else {
                 document.body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light-mode');
-                themeIcon.textContent = '🌙';
             }    
         }
 

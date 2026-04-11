@@ -212,7 +212,6 @@ body.dark-mode .hero::after {
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
-    margin-left: 1.5rem;
 }
 
 .theme-switch {
@@ -260,7 +259,4 @@ input:checked + .slider-round:before {
     transform: translateX(16px);
 }
 
-.theme-icon {
-    margin-left: 8px;
-    font-size: 14px;
-}
+
