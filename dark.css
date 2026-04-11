@@ -6,11 +6,11 @@
 body.dark-mode {
     --white: #0a0a0a;
     --gray-light: #151515;
-    --text-dark: #e2d270; /* .color3 */
-    --cor1: #c4a440;      /* .color1 */
-    --cor2: #ffffa0;      /* .color5 - para títulos brilharem */
-    --cor4: #d3bb58;      /* .color2 */
-    --cor6: #f0e888;      /* .color4 */
+    --text-dark: #C5A028; /* Dourado Médio para texto */
+    --cor1: #B8860B;      /* Dourado Escuro / Bronze */
+    --cor2: #D4AF37;      /* Dourado Metálico Clássico para títulos */
+    --cor4: #A67C00;      /* Dourado Profundo */
+    --cor6: #DAA520;      /* Goldenrod para detalhes */
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     background-color: var(--white);
     color: var(--text-dark);
@@ -248,7 +248,7 @@ body.dark-mode .hero {
 }
 
 .slider-round:before {
-    background-color: #e2d270; /* Dot na color3 */
+    background-color: #C5A028; /* Dourado no ponto do switch */
     bottom: 2px;
     content: "";
     height: 12px;
@@ -260,7 +260,7 @@ body.dark-mode .hero {
 }
 
 input:checked + .slider-round {
-    background-color: #c4a440; /* Voltando para Color1 conforme solicitado */
+    background-color: #B8860B; /* Fundo do switch quando ativo */
 }
 
 input:checked + .slider-round:before {
