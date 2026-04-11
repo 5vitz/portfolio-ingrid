@@ -72,12 +72,80 @@ body.dark-mode .project-detail {
 }
 
 body.dark-mode .project-info h4 {
-    color: var(--cor2);
-    border-left-color: var(--cor1);
+    background: var(--cor1);
+    color: #000000;
+    padding: 1.2rem 1.5rem 0.4rem;
+    margin-top: 1.5rem;
+    border-radius: 12px 12px 0 0;
+    border-left: none;
+    text-align: center;
 }
 
 body.dark-mode .project-info p {
-    color: var(--cor6);
+    background: var(--cor1);
+    color: #000000;
+    padding: 0.4rem 1.5rem 1.2rem;
+    margin-bottom: 0;
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+}
+
+body.dark-mode .project-info {
+    background: transparent;
+    padding: 0;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.dark-mode .project-info h4,
+body.dark-mode .project-info p {
+    width: 100%;
+}
+
+body.dark-mode .project-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+body.dark-mode .project-image {
+    width: 100%;
+    max-width: 800px;
+}
+
+body.dark-mode .reels-wrapper {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+body.dark-mode .reels-controls {
+    width: 100%;
+    justify-content: center;
+}
+
+body.dark-mode .btn-back {
+    color: var(--cor1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+}
+
+.project-detail > div[style*="text-align: center"] .btn-back {
+    margin-top: 2rem;
+}
+
+body.dark-mode .reels-text-card h3,
+body.dark-mode .reels-text-card p,
+body.dark-mode .reels-text-card .swipe-hint {
+    color: #000000 !important;
 }
 
 body.dark-mode footer {
@@ -87,6 +155,38 @@ body.dark-mode footer {
 
 body.dark-mode .copyright {
     border-top-color: rgba(196, 164, 64, 0.1);
+}
+
+body.dark-mode .qv-card {
+    background: #151515;
+    border: 1px solid rgba(196, 164, 64, 0.2);
+}
+
+body.dark-mode .qv-title {
+    color: var(--cor2);
+}
+
+body.dark-mode .qv-desc {
+    color: var(--text-dark);
+}
+
+body.dark-mode .qv-close {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--cor1);
+}
+
+body.dark-mode .qv-close:hover {
+    background: var(--cor1);
+    color: #000;
+}
+
+body.dark-mode .btn-qv-main {
+    background: var(--cor1);
+    color: #000;
+}
+
+body.dark-mode .btn-qv-main:hover {
+    background: var(--cor2);
 }
 
 /* Cor de seleção de texto "Top" */
@@ -117,9 +217,9 @@ body.dark-mode .hero::after {
 
 .theme-switch {
     display: inline-block;
-    height: 24px;
+    height: 18px;
     position: relative;
-    width: 45px;
+    width: 34px;
 }
 
 .theme-switch input {
@@ -141,23 +241,23 @@ body.dark-mode .hero::after {
 
 .slider-round:before {
     background-color: #e2d270; /* Dot na color3 */
-    bottom: 3px;
+    bottom: 2px;
     content: "";
-    height: 16px;
-    left: 4px;
+    height: 12px;
+    left: 3px;
     position: absolute;
     transition: .4s;
-    width: 16px;
+    width: 12px;
     border-radius: 50%;
 }
 
 input:checked + .slider-round {
-    background-color: #c4a440; /* Fundo em color1 quando ativo */
+    background-color: #c4a440; /* Voltando para Color1 conforme solicitado */
 }
 
 input:checked + .slider-round:before {
     background-color: #0a0a0a; /* Bolinha preta para contraste elegante com o fundo dourado */
-    transform: translateX(21px);
+    transform: translateX(16px);
 }
 
 .theme-icon {

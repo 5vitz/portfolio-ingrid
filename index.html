@@ -501,7 +501,131 @@
             transition: opacity 0.3s ease;
             background: #fff;
             padding: 0;
-            position: relative; /* Added for overlay positioning */
+            position: relative;
+        }
+
+        /* Quick View Modal */
+        .qv-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .qv-modal.active {
+            display: flex;
+        }
+
+        .qv-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .qv-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .qv-close:hover {
+            background: var(--cor1);
+            color: white;
+        }
+
+        .qv-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .qv-content {
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .qv-title {
+            font-size: 2rem;
+            color: var(--cor6);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .qv-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .qv-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-qv-main {
+            padding: 1rem 2.5rem;
+            background: var(--cor1);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-qv-main:hover {
+            transform: scale(1.05);
+            background: var(--cor2);
+        }
+
+        @media (max-width: 768px) {
+            .qv-card {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .qv-image {
+                height: 200px;
+            }
+            .qv-content {
+                padding: 1.5rem;
+            }
+            .qv-title {
+                font-size: 1.5rem;
+            }
         }
 
         .gallery-item-overlay {
@@ -1075,22 +1199,48 @@
                 <h2>Projetos</h2>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="showProject(1)" style="cursor: pointer;">
+                <!-- Item 1 -->
+                <div class="gallery-item" onclick="openQuickView(1)">
                     <img src="https://lh3.googleusercontent.com/d/1XlWC6UgX74YBBGranv9ea-wGGJOvoF51" alt="Projeto 1">
                     <div class="gallery-item-overlay">
                         <div class="gallery-item-title">Expedição BAHIA</div>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="showProject(2)" style="cursor: pointer;">
+                <!-- Item 2 -->
+                <div class="gallery-item" onclick="openQuickView(2)">
                     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&h=600" alt="Projeto 2">
                     <div class="gallery-item-overlay">
                         <div class="gallery-item-title">Restaurante Paladar</div>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="showProject(3)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&h=600" alt="Projeto 3"></div>
-                <div class="gallery-item" onclick="showProject(4)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&h=600" alt="Projeto 4"></div>
-                <div class="gallery-item" onclick="showProject(5)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&h=600" alt="Projeto 5"></div>
-                <div class="gallery-item" onclick="showProject(6)" style="cursor: pointer;"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&h=600" alt="Projeto 6"></div>
+                <!-- Item 3 -->
+                <div class="gallery-item" onclick="openQuickView(3)">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&h=600" alt="Projeto 3">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">Social Media Engagement</div>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="gallery-item" onclick="openQuickView(4)">
+                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&h=600" alt="Projeto 4">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">Estratégia B2C</div>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="gallery-item" onclick="openQuickView(5)">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&h=600" alt="Projeto 5">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">Campanha Verão</div>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="gallery-item" onclick="openQuickView(6)">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&h=600" alt="Projeto 6">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title">E-commerce Performance</div>
+                    </div>
+                </div>
             </div>
         </section>
     <!-- mainContent ends here after testimonials and footer -->
@@ -1150,10 +1300,12 @@
 
     <!-- Project Details Sections -->
     <section id="project-1" class="project-detail">
-        <a class="btn-back" onclick="hideProject()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Voltar para Projetos
-        </a>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
+        </div>
         <div class="project-header">
             <h2>Expedição BAHIA</h2>
         </div>
@@ -1170,19 +1322,23 @@
                 <p>Desenvolvemos uma narrativa baseada em eficiência e redução de custos, utilizando storytelling para humanizar a tecnologia.</p>
                 <h4>Resultados</h4>
                 <p>Aumento de 45% no tráfego qualificado e conversão de leads 3x superior à média do setor nos primeiros 3 meses.</p>
-                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    Voltar para Projetos
-                </a>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
         </div>
     </section>
 
     <section id="project-2" class="project-detail">
-        <a class="btn-back" onclick="hideProject()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Voltar para Projetos
-        </a>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
+        </div>
         <div class="project-content">
             <div class="project-image">
                 <div class="reels-wrapper">
@@ -1266,20 +1422,22 @@
                     </div>
                 </div>
             </div>
-            <div class="project-info" style="display: flex; align-items: center; justify-content: center;">
-                <a class="btn-back" onclick="hideProject()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    Voltar para Projetos
-                </a>
-            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
         </div>
     </section>
 
     <section id="project-3" class="project-detail">
-        <a class="btn-back" onclick="hideProject()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Voltar para Projetos
-        </a>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
+        </div>
         <div class="project-header">
             <h2>Social Media Engagement</h2>
         </div>
@@ -1297,19 +1455,23 @@
                 <p>Implementação de uma linha editorial focada em bastidores, vídeos dinâmicos e interação direta com a comunidade.</p>
                 <h4>Resultados</h4>
                 <p>Crescimento de 200% no engajamento médio e aumento direto nas reservas via canais digitais.</p>
-                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    Voltar para Projetos
-                </a>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
         </div>
     </section>
 
     <section id="project-4" class="project-detail">
-        <a class="btn-back" onclick="hideProject()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Voltar para Projetos
-        </a>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
+        </div>
         <div class="project-header">
             <h2>Estratégia de Conteúdo B2C</h2>
         </div>
@@ -1327,19 +1489,23 @@
                 <p>Produção de conteúdo educativo simplificado, quebrando a barreira da complexidade financeira.</p>
                 <h4>Resultados</h4>
                 <p>Mais de 50 mil downloads do aplicativo em 4 meses e taxa de retenção de usuários acima de 70%.</p>
-                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    Voltar para Projetos
-                </a>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
         </div>
     </section>
 
     <section id="project-5" class="project-detail">
-        <a class="btn-back" onclick="hideProject()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Voltar para Projetos
-        </a>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
+        </div>
         <div class="project-header">
             <h2>Campanha Verão 2024</h2>
         </div>
@@ -1354,19 +1520,23 @@
                 <p>Uso de influenciadores locais e conteúdo visual vibrante para gerar desejo de compra.</p>
                 <h4>Resultados</h4>
                 <p>Esgotamento do estoque inicial em apenas 15 dias e aumento de 80% nas menções da marca.</p>
-                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    Voltar para Projetos
-                </a>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
         </div>
     </section>
 
     <section id="project-6" class="project-detail">
-        <a class="btn-back" onclick="hideProject()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Voltar para Projetos
-        </a>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
+        </div>
         <div class="project-header">
             <h2>E-commerce Performance</h2>
         </div>
@@ -1381,13 +1551,37 @@
                 <p>Reestruturação do funil de vendas e implementação de campanhas de remarketing dinâmico.</p>
                 <h4>Resultados</h4>
                 <p>Redução de 30% no abandono de carrinho e aumento de 25% no faturamento mensal.</p>
-                <a class="btn-back" onclick="hideProject()" style="margin-top: 2rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    Voltar para Projetos
-                </a>
             </div>
         </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a class="btn-back" onclick="hideProject()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Voltar para Projetos
+            </a>
+        </div>
     </section>
+
+    <!-- Quick View Modal -->
+    <div id="quickViewModal" class="qv-modal" onclick="closeQuickView(event)">
+        <div class="qv-card" onclick="event.stopPropagation()">
+            <div class="qv-close" onclick="closeQuickView()">×</div>
+            <div id="qvMediaContainer" style="width: 100%; height: 220px; overflow: hidden; position: relative;">
+                <img id="qvImage" src="" alt="Projeto" class="qv-image" style="display: block;">
+                <video id="qvVideo" class="qv-image" style="display: none;" loop muted playsinline controls>
+                    <source src="" type="video/mp4">
+                </video>
+                <iframe id="qvYoutube" class="qv-image" style="display: none; border: none;" 
+                    src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="qv-content">
+                <h3 id="qvTitle" class="qv-title"></h3>
+                <p id="qvDesc" class="qv-desc"></p>
+                <div class="qv-actions">
+                    <a id="qvMoreBtn" class="btn-qv-main">Saiba Mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -1513,6 +1707,90 @@
                 const projectsSection = document.getElementById('projetos');
                 projectsSection.scrollIntoView();
             }
+        }
+
+        // Mobile Quick View Handling
+        const projectsData = {
+            1: {
+                title: "Expedição BAHIA",
+                desc: "Um projeto robusto de automação de processos industriais aliado a uma narrativa de storytelling poderosa para o mercado B2B, humanizando a tecnologia e gerando leads qualificados.",
+                image: "https://lh3.googleusercontent.com/d/1XlWC6UgX74YBBGranv9ea-wGGJOvoF51"
+            },
+            2: {
+                title: "Restaurante Paladar",
+                desc: "Desenvolvimento de branding premium e estratégia de conteúdo sensorial para um restaurante de alta gastronomia, focando na experiência do cliente e reservas digitais.",
+                image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&h=400",
+                youtubeId: "dQw4w9WgXcQ" // Exemplo de ID do YouTube
+            },
+            3: {
+                title: "Social Media Engagement",
+                desc: "Revitalização completa da presença digital de uma marca de lifestyle, com foco em engajamento real, comunidade e crescimento orgânico acelerado.",
+                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&h=400"
+            },
+            4: {
+                title: "Estratégia B2C",
+                desc: "Criação de funis de venda e conteúdo educativo para o setor financeiro, simplificando conceitos complexos e aumentando a conversão de usuários finais.",
+                image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&h=400"
+            },
+            5: {
+                title: "Campanha Verão 2024",
+                desc: "Lançamento de coleção de moda com estratégia multicanal, utilizando influenciadores e conteúdo visual de alto impacto para gerar desejo e esgotar estoques.",
+                image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&h=400"
+            },
+            6: {
+                title: "E-commerce Performance",
+                desc: "Otimização técnica e estratégica de uma loja virtual, focando em redução de abandono de carrinho e aumento do ticket médio via remarketing inteligente.",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&h=400"
+            }
+        };
+
+        function openQuickView(id) {
+            const data = projectsData[id];
+            if (!data) return;
+
+            const qvImage = document.getElementById('qvImage');
+            const qvVideo = document.getElementById('qvVideo');
+            const qvYoutube = document.getElementById('qvYoutube');
+
+            document.getElementById('qvTitle').textContent = data.title;
+            document.getElementById('qvDesc').textContent = data.desc;
+            
+            // Reset all media
+            qvImage.style.display = 'none';
+            qvVideo.style.display = 'none';
+            qvYoutube.style.display = 'none';
+            qvVideo.pause();
+            qvYoutube.src = "";
+
+            if (data.youtubeId) {
+                qvYoutube.style.display = 'block';
+                qvYoutube.src = `https://www.youtube.com/embed/${data.youtubeId}?autoplay=1&mute=1`;
+            } else if (data.video) {
+                qvVideo.style.display = 'block';
+                qvVideo.querySelector('source').src = data.video;
+                qvVideo.load();
+                qvVideo.play().catch(e => console.log("Autoplay blocked"));
+            } else {
+                qvImage.style.display = 'block';
+                qvImage.src = data.image;
+            }
+
+            document.getElementById('qvMoreBtn').onclick = () => {
+                closeQuickView();
+                showProject(id);
+            };
+
+            document.getElementById('quickViewModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        }
+
+        function closeQuickView(e) {
+            const qvVideo = document.getElementById('qvVideo');
+            const qvYoutube = document.getElementById('qvYoutube');
+            qvVideo.pause();
+            qvYoutube.src = ""; // Stop YouTube video
+            document.getElementById('quickViewModal').classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
         }
 
         // Smooth scroll
