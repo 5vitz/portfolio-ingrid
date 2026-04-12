@@ -1460,10 +1460,13 @@
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: var(--white);">
                                     <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--cor6); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Resultados</h3>
-                                    <div style="font-size: 0.9rem; line-height: 1.5; color: #555; text-align: left; width: 100%;">
-                                        <p style="margin-bottom: 0.8rem;">• Aumento significativo no engajamento das redes sociais através de narrativas autênticas.</p>
-                                        <p style="margin-bottom: 0.8rem;">• Entrega de material de alta qualidade técnica e estética, superando as expectativas da marca.</p>
-                                        <p style="margin-bottom: 0.8rem;">• Otimização de processos produtivos, garantindo eficiência e redução de custos operacionais.</p>
+                                    <div style="font-size: 0.6rem; line-height: 1.3; color: #555; text-align: left; width: 100%;">
+                                        <p style="margin-bottom: 0.3rem;">• Estruturação do projeto a partir do briefing, com planejamento de produção (cronograma, recursos e logística)</p>
+                                        <p style="margin-bottom: 0.3rem;">• Gestão de orçamento, cotações e contratação estratégica de equipe e fornecedores</p>
+                                        <p style="margin-bottom: 0.3rem;">• Organização e controle das etapas de produção, incluindo ordens de produção e documentação do projeto</p>
+                                        <p style="margin-bottom: 0.3rem;">• Acompanhamento de gravações e suporte à direção, garantindo fluidez e eficiência no set</p>
+                                        <p style="margin-bottom: 0.3rem;">• Interface entre cliente, equipe criativa e produção, assegurando alinhamento ao longo de todo o processo</p>
+                                        <p style="margin-bottom: 0.3rem;">• Supervisão da pós-produção até a entrega final, com foco em prazo, qualidade e consistência do material</p>
                                     </div>
                                     <div class="swipe-hint" style="margin-top: auto; padding-top: 1rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
                                 </div>
@@ -1615,6 +1618,28 @@
         // Reels Carousel Initialization
         let reelsSwiper;
 
+        // Global function to stop all videos/iframes
+        function stopAllMedia() {
+            document.querySelectorAll('.project-video, .reels-video, .project-iframe').forEach(el => {
+                if (el.tagName === 'VIDEO') {
+                    el.pause();
+                    el.currentTime = 0;
+                } else if (el.tagName === 'IFRAME') {
+                    el.src = '';
+                }
+            });
+        }
+
+        // Add event listeners to nav links to stop media when navigating
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                stopAllMedia();
+                // If we are in a project detail, hide it
+                document.getElementById('mainContent').classList.remove('hidden');
+                document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
+            });
+        });
+
         function initReels() {
             reelsSwiper = new Swiper('.reels-container', {
                 direction: 'vertical',
@@ -1714,15 +1739,7 @@
 
         function hideProject(shouldScroll = true) {
             // Pausa todos os vídeos ao sair da página de detalhes
-            document.querySelectorAll('.project-video, .reels-video, .project-iframe').forEach(el => {
-                if (el.tagName === 'VIDEO') {
-                    el.pause();
-                    el.currentTime = 0;
-                } else if (el.tagName === 'IFRAME') {
-                    // Stop iframe video by clearing src
-                    el.src = '';
-                }
-            });
+            stopAllMedia();
 
             document.getElementById('mainContent').classList.remove('hidden');
             document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
