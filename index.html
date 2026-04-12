@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- v1.0.2 - Image Path Fix -->
-    <link rel="stylesheet" href="dark.css">
     <style>
         :root {
             --cor1: #465D53; /* Dark Green - Primary Accent */
@@ -191,9 +190,10 @@
         .about-text-content p {
             font-size: 0.95rem;
             line-height: 1.8;
-            color: var(--cor1);
+            color: var(--text-dark);
             margin-bottom: 1.5rem;
             text-align: justify;
+            text-justify: inter-word;
         }
 
         .about-text-content .highlight {
@@ -391,10 +391,12 @@
         }
 
         .testimonial-text {
-            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.8;
             color: var(--text-dark);
-            line-height: 1.6;
             margin-bottom: 1rem;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         .testimonial-author {
@@ -803,22 +805,6 @@
             color: #555;
         }
 
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--cor2);
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .btn-back:hover {
-            color: var(--cor1);
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -875,14 +861,14 @@
         }
         /* Reels Carousel Style */
         .reels-wrapper {
-            max-width: 600px;
+            max-width: 400px;
             margin: 0 auto;
             position: relative;
         }
 
         .reels-container {
             width: 100%;
-            height: 500px;
+            height: 600px;
             border-radius: 30px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -934,64 +920,213 @@
             object-fit: cover;
         }
 
-        .reels-controls {
+        /* Dark Mode Toggle Switch */
+        .theme-switch-wrapper {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
             align-items: center;
         }
 
-        .toggle-switch {
-            position: relative;
+        .theme-switch {
             display: inline-block;
-            width: 50px;
-            height: 24px;
+            height: 18px;
+            position: relative;
+            width: 34px;
         }
 
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+        .theme-switch input {
+            display: none;
         }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+        .slider-round {
             background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
             transition: .4s;
-            border-radius: 24px;
+            border-radius: 34px;
         }
 
-        .slider:before {
-            position: absolute;
+        .slider-round:before {
+            background-color: #fff;
+            bottom: 2px;
             content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
+            height: 12px;
+            left: 3px;
+            position: absolute;
             transition: .4s;
+            width: 12px;
             border-radius: 50%;
         }
 
-        input:checked + .slider {
+        input:checked + .slider-round {
             background-color: var(--cor1);
         }
 
-        input:checked + .slider:before {
-            transform: translateX(26px);
+        input:checked + .slider-round:before {
+            transform: translateX(16px);
         }
 
-        .mode-label {
-            font-size: 0.85rem;
-            font-weight: 600;
+        /* Dark Mode Styles */
+        body.dark-mode {
+            --white: #0a0a0a;
+            --gray-light: #151515;
+            --text-dark: #808080;
+            --cor1: #FFFFFF;
+            --cor2: #FFFFFF;
+            --cor4: #FFFFFF;
+            --cor6: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background-color: var(--white);
             color: var(--text-dark);
         }
+
+        body.dark-mode header {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .logo,
+        body.dark-mode .logo-subtitle {
+            color: #E0E0E0 !important;
+        }
+
+        body.dark-mode .nav-menu a {
+            color: #C0C0C0;
+        }
+
+        body.dark-mode .nav-menu a:hover {
+            color: var(--cor2);
+        }
+
+        body.dark-mode .services,
+        body.dark-mode .gallery,
+        body.dark-mode .testimonials,
+        body.dark-mode .project-detail {
+            background-color: var(--white);
+        }
+
+        body.dark-mode .about-photo-card {
+            background: transparent;
+            box-shadow: none;
+            border: none;
+        }
+
+        body.dark-mode .about-photo-card img {
+            border: 1px solid #333333;
+        }
+
+        body.dark-mode .about-text-content h2 {
+            color: var(--cor2);
+        }
+
+        body.dark-mode .about-text-content p,
+        body.dark-mode .testimonial-text {
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .about-card, 
+        body.dark-mode .testimonial-item,
+        body.dark-mode .accordion-item,
+        body.dark-mode .photo-card {
+            background: #151515;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow);
+        }
+
+        body.dark-mode .accordion-header h3 {
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .accordion-content {
+            background-color: #151515;
+        }
+
+        body.dark-mode .accordion-content ul li {
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .photo-label {
+            background: #151515;
+            color: var(--cor1);
+        }
+
+        body.dark-mode .section-title h2 {
+            color: var(--cor2);
+        }
+
+        body.dark-mode .project-info h4,
+        body.dark-mode .project-info p {
+            background: var(--cor1);
+            color: #000000;
+        }
+
+        body.dark-mode .reels-text-card {
+            background-color: #1a1a1a !important;
+        }
+
+        body.dark-mode .reels-text-card h3,
+        body.dark-mode .reels-text-card p,
+        body.dark-mode .reels-text-card .swipe-hint {
+            color: var(--text-dark) !important;
+        }
+
+        body.dark-mode footer {
+            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .copyright {
+            border-top-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .qv-card {
+            background: #151515;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .qv-title {
+            color: var(--cor2);
+        }
+
+        body.dark-mode .qv-desc {
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .qv-close {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--cor1);
+        }
+
+        body.dark-mode .btn-qv-main {
+            background: var(--cor1);
+            color: #000;
+        }
+
+        body.dark-mode .slider-round {
+            background-color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        body.dark-mode .slider-round:before {
+            background-color: #FFFFFF;
+        }
+
+        body.dark-mode input:checked + .slider-round {
+            background-color: #FFFFFF;
+        }
+
+        body.dark-mode input:checked + .slider-round:before {
+            background-color: #0a0a0a;
+        }
+
+        /* Reels Carousel Style */
+
+
+
+
 
         .swipe-hint {
             position: absolute;
@@ -1047,7 +1182,7 @@
     </header>
 
     <div id="mainContent" class="main-content">
-        <section class="about-section" id="inicio">
+        <section class="about-section" id="sobre">
             <div class="about-container">
                 <div class="about-photo-card">
                     <img src="https://lh3.googleusercontent.com/d/1B968AqmCSK2z74l8wYAnT1QZwxvqhMjE" alt="Ingrid Sinkovitz" referrerPolicy="no-referrer">
@@ -1275,16 +1410,10 @@
                 <p>Aumento de 45% no tráfego qualificado e conversão de leads 3x superior à média do setor nos primeiros 3 meses.</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
     </section>
 
-    <section id="project-2" class="project-detail">
-        <div class="project-content">
+    <section id="project-2" class="project-detail" style="padding-top: 120px;">
+        <div class="project-content" style="display: block;">
             <div class="project-image">
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
@@ -1332,23 +1461,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="reels-controls">
-                        <span class="mode-label">Manual</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="autoPlayToggle">
-                            <span class="slider"></span>
-                        </label>
-                        <span class="mode-label">Automático</span>
-                    </div>
                 </div>
             </div>
-        </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
         </div>
     </section>
 
@@ -1372,12 +1486,6 @@
                 <p>Crescimento de 200% no engajamento médio e aumento direto nas reservas via canais digitais.</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
     </section>
 
     <section id="project-4" class="project-detail">
@@ -1400,12 +1508,6 @@
                 <p>Mais de 50 mil downloads do aplicativo em 4 meses e taxa de retenção de usuários acima de 70%.</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
     </section>
 
     <section id="project-5" class="project-detail">
@@ -1425,12 +1527,6 @@
                 <p>Esgotamento do estoque inicial em apenas 15 dias e aumento de 80% nas menções da marca.</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
     </section>
 
     <section id="project-6" class="project-detail">
@@ -1449,12 +1545,6 @@
                 <h4>Resultados</h4>
                 <p>Redução de 30% no abandono de carrinho e aumento de 25% no faturamento mensal.</p>
             </div>
-        </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
         </div>
     </section>
 
@@ -1482,10 +1572,33 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // Dark Mode Logic
+        const toggleSwitch = document.getElementById('checkbox');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                if (toggleSwitch) toggleSwitch.checked = true;
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }    
+        }
+
+        if (toggleSwitch) {
+            toggleSwitch.addEventListener('change', switchTheme, false);
+        }
+
         // Reels Carousel Initialization
         let reelsSwiper;
-        let autoPlayInterval;
-        const REEL_DURATION = 10000; // 10 seconds
 
         function initReels() {
             reelsSwiper = new Swiper('.reels-container', {
@@ -1499,14 +1612,8 @@
                     },
                     slideChange: function() {
                         playCurrentVideo(this);
-                        resetAutoPlay();
                     }
                 }
-            });
-
-            const toggle = document.getElementById('autoPlayToggle');
-            toggle.addEventListener('change', function() {
-                resetAutoPlay();
             });
         }
 
@@ -1543,17 +1650,6 @@
             }, 100);
         }
 
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            const isAuto = document.getElementById('autoPlayToggle').checked;
-            
-            if (isAuto) {
-                autoPlayInterval = setInterval(() => {
-                    reelsSwiper.slideNext();
-                }, REEL_DURATION);
-            }
-        }
-
         // Project navigation
         function showProject(id) {
             console.log("Showing project:", id);
@@ -1577,7 +1673,6 @@
                 } else if (reelsSwiper && typeof reelsSwiper.slideTo === 'function') {
                     reelsSwiper.slideToLoop(0, 0); // Use slideToLoop for loop mode
                     playCurrentVideo(reelsSwiper);
-                    resetAutoPlay();
                 }
             } else {
                 // Autoplay do vídeo após a interação do usuário (o clique no projeto)
@@ -1594,9 +1689,6 @@
         }
 
         function hideProject(shouldScroll = true) {
-            // Stop Reels auto play
-            clearInterval(autoPlayInterval);
-            
             // Pausa todos os vídeos ao sair da página de detalhes
             document.querySelectorAll('.project-video, .reels-video').forEach(el => {
                 if (el.tagName === 'VIDEO') {
@@ -1728,7 +1820,7 @@
                     hideProject(false);
                 }
 
-                if (href === "#" || href === "#inicio") {
+                if (href === "#" || href === "#sobre") {
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
@@ -1780,29 +1872,6 @@
                 navMenu.classList.remove('active');
             }
         });
-
-        // Dark Mode Logic
-        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            document.body.classList.add(currentTheme);
-            if (currentTheme === 'dark-mode') {
-                toggleSwitch.checked = true;
-            }
-        }
-
-        function switchTheme(e) {
-            if (e.target.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light-mode');
-            }    
-        }
-
-        toggleSwitch.addEventListener('change', switchTheme, false);
     </script>
     <!-- Final do Conteúdo Principal -->
 </body>
