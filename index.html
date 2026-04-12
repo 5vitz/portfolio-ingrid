@@ -533,6 +533,9 @@
             line-height: 1.6;
             color: #555;
             margin-bottom: 2rem;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
         }
 
         .qv-actions {
@@ -741,7 +744,7 @@
 
         .project-detail {
             display: none;
-            padding: 8rem 2rem 5rem;
+            padding: 5rem 2rem 5rem;
             max-width: 1000px;
             margin: 0 auto;
             animation: fadeIn 0.5s ease;
@@ -872,14 +875,14 @@
         }
         /* Reels Carousel Style */
         .reels-wrapper {
-            max-width: 350px;
+            max-width: 600px;
             margin: 0 auto;
             position: relative;
         }
 
         .reels-container {
             width: 100%;
-            height: 600px;
+            height: 500px;
             border-radius: 30px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -920,6 +923,9 @@
             font-size: 1.1rem;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.9);
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
         }
 
         .reels-video, .reels-image {
@@ -1008,7 +1014,7 @@
 
         @media (max-width: 768px) {
             .reels-container {
-                height: 500px;
+                height: 450px;
             }
         }
     </style>
@@ -1150,9 +1156,9 @@
                 </div>
                 <!-- Item 2 -->
                 <div class="gallery-item" onclick="openQuickView(2)">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&h=600" alt="Projeto 2">
+                    <img src="https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR" alt="Projeto 2" referrerPolicy="no-referrer">
                     <div class="gallery-item-overlay">
-                        <div class="gallery-item-title">Restaurante Paladar</div>
+                        <!-- Título removido pois já está incorporado na imagem -->
                     </div>
                 </div>
                 <!-- Item 3 -->
@@ -1251,12 +1257,6 @@
 
     <!-- Project Details Sections -->
     <section id="project-1" class="project-detail">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
         <div class="project-header">
             <h2>Expedição BAHIA</h2>
         </div>
@@ -1284,81 +1284,54 @@
     </section>
 
     <section id="project-2" class="project-detail">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
         <div class="project-content">
             <div class="project-image">
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
                         <div class="swiper-wrapper">
-                            <!-- 1. A ideia -->
+                            <!-- 1. Vídeo Principal (Capa Real) -->
                             <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 3rem;">
-                                    <h2 style="font-size: 1.4rem; margin-bottom: 6rem; color: var(--cor4); font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px; line-height: 1.1;">Restaurante Paladar</h2>
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">A ideia</h3>
-                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Transformar o jantar em um espetáculo teatral, onde cada prato conta um capítulo da história da gastronomia local, unindo sabor e narrativa visual.</p>
-                                    <div class="swipe-hint" style="margin-top: auto; padding-bottom: 2rem; opacity: 0.7;">Arraste para cima ↕</div>
+                                <img src="https://lh3.googleusercontent.com/d/1u0A6t_GnnqI4OlhGPXQkuvuyYwj5Y2ti" class="reels-video" style="object-fit: contain; background: #000;" referrerPolicy="no-referrer">
+                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                            </div>
+                            <!-- 2. Meu Papel -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: flex-start; padding: 0; background: var(--white);">
+                                    <img src="https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR" style="width: 100%; height: 220px; object-fit: cover; display: block;" referrerPolicy="no-referrer">
+                                    <div style="padding: 2rem 1.5rem; text-align: center; width: 100%;">
+                                        <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--cor6); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Meu papel</h3>
+                                        <p style="font-size: 0.95rem; line-height: 1.6; color: #555; text-align: justify; text-justify: inter-word;">Atuei como produtora executiva, sendo responsável por fazer a interface entre agência e produtora, garantindo alinhamento estratégico e fluidez em todas as etapas do projeto. Acompanhei o processo de ponta a ponta, do planejamento à entrega final, assegurando cumprimento de prazos, qualidade do material e consistência com os objetivos do cliente.</p>
+                                    </div>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-bottom: 1.5rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
                                 </div>
                             </div>
-                            <!-- 2, 3, 4. Gastronomia (3 cards) -->
+                            <!-- 3. Vídeo Secundário (Capa Real) -->
                             <div class="swiper-slide reels-slide">
-                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&h=700">
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-chef-preparing-a-delicious-plate-of-food-40540-large.mp4" type="video/mp4">
-                                </video>
+                                <img src="https://lh3.googleusercontent.com/d/1G1XaItot0gbCm1rc0f6gzEzhX4UklQ-F" class="reels-video" style="object-fit: contain; background: #000;" referrerPolicy="no-referrer">
+                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
+                            <!-- 4. Principais Entregas -->
                             <div class="swiper-slide reels-slide">
-                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 1" class="reels-image">
-                            </div>
-                            <div class="swiper-slide reels-slide">
-                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&h=700">
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-wine-into-a-glass-in-a-restaurant-40541-large.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <!-- 5. O objetivo -->
-                            <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 8rem;">
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">O objetivo</h3>
-                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Posicionar o Restaurante Paladar como o destino número 1 para jantares sensoriais, aumentando o ticket médio em 40% e a fidelização de clientes premium.</p>
+                                <div class="reels-text-card" style="justify-content: flex-start; padding: 0; background: var(--white);">
+                                    <img src="https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR" style="width: 100%; height: 220px; object-fit: cover; display: block;" referrerPolicy="no-referrer">
+                                    <div style="padding: 2rem 1.5rem; text-align: center; width: 100%;">
+                                        <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--cor6); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Principais Entregas</h3>
+                                        <div style="font-size: 0.85rem; line-height: 1.5; color: #555; text-align: left; margin-top: 0.5rem;">
+                                            <p style="margin-bottom: 0.5rem;">• Estruturação do projeto a partir do briefing, com planejamento de produção (cronograma, recursos e logística)</p>
+                                            <p style="margin-bottom: 0.5rem;">• Gestão de orçamento, cotações e contratação estratégica de equipe e fornecedores</p>
+                                            <p style="margin-bottom: 0.5rem;">• Organização e controle das etapas de produção, incluindo ordens de produção e documentação do projeto</p>
+                                            <p style="margin-bottom: 0.5rem;">• Acompanhamento de gravações e suporte à direção, garantindo fluidez e eficiência no set</p>
+                                            <p style="margin-bottom: 0.5rem;">• Interface entre cliente, equipe criativa e produção, assegurando alinhamento ao longo de todo o processo</p>
+                                            <p style="margin-bottom: 0.5rem;">• Supervisão da pós-produção até a entrega final, com foco em prazo, qualidade e consistência do material</p>
+                                        </div>
+                                    </div>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-bottom: 1.5rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
                                 </div>
                             </div>
-                            <!-- 6, 7. Gastronomia (2 cards) -->
+                            <!-- 5. Vídeo Final (Capa Real) -->
                             <div class="swiper-slide reels-slide">
-                                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 2" class="reels-image">
-                            </div>
-                            <div class="swiper-slide reels-slide">
-                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=400&h=700">
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-waiter-bringing-a-plate-of-food-to-a-table-40542-large.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <!-- 8. Meu papel -->
-                            <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 8rem;">
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">Meu papel</h3>
-                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Direção criativa da campanha "Sinta a História", coordenação de produção audiovisual e gestão de parcerias estratégicas com influenciadores gourmet.</p>
-                                </div>
-                            </div>
-                            <!-- 9, 10, 11. Gastronomia (3 cards) -->
-                            <div class="swiper-slide reels-slide">
-                                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 3" class="reels-image">
-                            </div>
-                            <div class="swiper-slide reels-slide">
-                                <video class="reels-video" muted loop playsinline poster="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=400&h=700">
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-delicious-dessert-40543-large.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="swiper-slide reels-slide">
-                                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&h=700" alt="Gastronomia 4" class="reels-image">
-                            </div>
-                            <!-- 12. Resultados -->
-                            <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: flex-start; padding-top: 8rem;">
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--cor6); opacity: 0.9; font-weight: 400; text-transform: uppercase; letter-spacing: 1px;">Resultados</h3>
-                                    <p style="max-width: 280px; font-size: 1.1rem; line-height: 1.6;">Aumento de 300% nas reservas via Instagram, ROI de 5.5x sobre mídia paga e 15 mil novos seguidores qualificados em 6 meses.</p>
-                                </div>
+                                <img src="https://lh3.googleusercontent.com/d/1_tZzEWb_AEUfUOz2uuRWPmxzCD88Svk1" class="reels-video" style="object-fit: contain; background: #000;" referrerPolicy="no-referrer">
+                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                         </div>
                     </div>
@@ -1383,12 +1356,6 @@
     </section>
 
     <section id="project-3" class="project-detail">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
         <div class="project-header">
             <h2>Social Media Engagement</h2>
         </div>
@@ -1417,12 +1384,6 @@
     </section>
 
     <section id="project-4" class="project-detail">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
         <div class="project-header">
             <h2>Estratégia de Conteúdo B2C</h2>
         </div>
@@ -1451,12 +1412,6 @@
     </section>
 
     <section id="project-5" class="project-detail">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
         <div class="project-header">
             <h2>Campanha Verão 2024</h2>
         </div>
@@ -1482,12 +1437,6 @@
     </section>
 
     <section id="project-6" class="project-detail">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <a class="btn-back" onclick="hideProject()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                Voltar para Projetos
-            </a>
-        </div>
         <div class="project-header">
             <h2>E-commerce Performance</h2>
         </div>
@@ -1565,13 +1514,27 @@
         }
 
         function playCurrentVideo(swiper) {
+            if (!swiper || !swiper.el) return;
+            
             // Pause all videos
             document.querySelectorAll('.reels-video').forEach(v => {
-                v.pause();
+                if (v.tagName === 'VIDEO') {
+                    v.pause();
+                } else if (v.tagName === 'IFRAME') {
+                    // Reset iframe to stop video/audio
+                    try {
+                        const src = v.src;
+                        v.src = '';
+                        v.src = src;
+                    } catch (e) {
+                        console.log("Error resetting iframe:", e);
+                    }
+                }
             });
 
             // Small delay to ensure Swiper has updated classes
             setTimeout(() => {
+                if (!swiper.el) return;
                 const activeSlide = swiper.el.querySelector('.swiper-slide-active');
                 if (activeSlide) {
                     const video = activeSlide.querySelector('video');
@@ -1580,7 +1543,7 @@
                         video.play().catch(e => console.log("Autoplay blocked"));
                     }
                 }
-            }, 50);
+            }, 100);
         }
 
         function resetAutoPlay() {
@@ -1614,8 +1577,8 @@
             if (id === 2) {
                 if (!reelsSwiper) {
                     initReels();
-                } else {
-                    reelsSwiper.slideTo(1, 0); // Reset to first slide
+                } else if (reelsSwiper && typeof reelsSwiper.slideTo === 'function') {
+                    reelsSwiper.slideToLoop(0, 0); // Use slideToLoop for loop mode
                     playCurrentVideo(reelsSwiper);
                     resetAutoPlay();
                 }
@@ -1638,9 +1601,15 @@
             clearInterval(autoPlayInterval);
             
             // Pausa todos os vídeos ao sair da página de detalhes
-            document.querySelectorAll('.project-video, .reels-video').forEach(video => {
-                video.pause();
-                video.currentTime = 0;
+            document.querySelectorAll('.project-video, .reels-video').forEach(el => {
+                if (el.tagName === 'VIDEO') {
+                    el.pause();
+                    el.currentTime = 0;
+                } else if (el.tagName === 'IFRAME') {
+                    const src = el.src;
+                    el.src = '';
+                    el.src = src;
+                }
             });
             
             // "Reseta" o iframe para parar o som
@@ -1668,10 +1637,10 @@
                 image: "https://lh3.googleusercontent.com/d/1XlWC6UgX74YBBGranv9ea-wGGJOvoF51"
             },
             2: {
-                title: "Restaurante Paladar",
-                desc: "Desenvolvimento de branding premium e estratégia de conteúdo sensorial para um restaurante de alta gastronomia, focando na experiência do cliente e reservas digitais.",
-                image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&h=400",
-                youtubeId: "dQw4w9WgXcQ" // Exemplo de ID do YouTube
+                title: "", // Título removido pois já está na imagem
+                desc: "Produção de uma série de vídeos para a Good Storage, grande empresa de logística e armazenamento que oferece soluções flexíveis e inteligentes para diferentes perfis de pessoas físicas a empresas. O projeto teve como objetivo dar vida à marca por meio de histórias reais, trazendo clientes como protagonistas. A proposta foi mostrar, na prática, como os espaços se adaptam a diferentes necessidades, rotinas e momentos de vida, conectando funcionalidade à experiência.",
+                image: "https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR",
+                youtubeId: "" 
             },
             3: {
                 title: "Social Media Engagement",
@@ -1704,6 +1673,7 @@
             const qvYoutube = document.getElementById('qvYoutube');
 
             document.getElementById('qvTitle').textContent = data.title;
+            document.getElementById('qvTitle').style.display = data.title ? 'block' : 'none';
             document.getElementById('qvDesc').textContent = data.desc;
             
             // Reset all media
