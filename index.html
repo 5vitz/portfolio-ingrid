@@ -1625,7 +1625,8 @@
                     if (iframe) {
                         // Restore src from data-src to trigger autoplay
                         const originalSrc = iframe.getAttribute('data-src');
-                        if (originalSrc && (!iframe.src || iframe.src === 'about:blank' || iframe.src === '')) {
+                        if (originalSrc) {
+                            // Always refresh src to ensure it plays from start and triggers autoplay
                             iframe.src = originalSrc;
                         }
                     }
@@ -1653,9 +1654,12 @@
             if (id === 2) {
                 if (!reelsSwiper) {
                     initReels();
-                } else if (reelsSwiper && typeof reelsSwiper.slideTo === 'function') {
-                    reelsSwiper.slideToLoop(0, 0); // Use slideToLoop for loop mode
-                    playCurrentVideo(reelsSwiper);
+                } else {
+                    reelsSwiper.update(); // Ensure swiper recalculates dimensions
+                    if (typeof reelsSwiper.slideTo === 'function') {
+                        reelsSwiper.slideToLoop(0, 0); 
+                        playCurrentVideo(reelsSwiper);
+                    }
                 }
             } else {
                 // Autoplay do vídeo após a interação do usuário (o clique no projeto)
