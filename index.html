@@ -1439,13 +1439,36 @@
                                 <iframe class="reels-video" data-src="https://www.youtube.com/embed/ceUEf-j3ogo?autoplay=1&loop=1&playlist=ceUEf-j3ogo&controls=0&modestbranding=1&rel=0" src="https://www.youtube.com/embed/ceUEf-j3ogo?autoplay=1&loop=1&playlist=ceUEf-j3ogo&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
-                            <!-- 2. DJDre -->
+                            <!-- 2. Meu Papel -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: flex-start; padding: 0; background: var(--white); position: relative;">
+                                    <img src="https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR" style="width: 100%; height: 200px; object-fit: cover; display: block; opacity: 0.25; filter: grayscale(100%);" referrerPolicy="no-referrer">
+                                    <div style="padding: 2rem 1.5rem; text-align: center; width: 100%;">
+                                        <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--cor6); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Meu papel</h3>
+                                        <p style="font-size: 0.95rem; line-height: 1.6; color: #555; text-align: justify; text-justify: inter-word;">Atuei como produtora executiva, sendo responsável por fazer a interface entre agência e produtora, garantindo alinhamento estratégico e fluidez em todas as etapas do projeto. Acompanhei o processo de ponta a ponta, do planejamento à entrega final, assegurando cumprimento de prazos, qualidade do material e consistência com os objetivos do cliente.</p>
+                                    </div>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-bottom: 1.5rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                </div>
+                            </div>
+                            <!-- 3. DJDre -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
                                 <iframe class="reels-video" data-src="https://www.youtube.com/embed/QpbHNTFT3NU?autoplay=1&loop=1&playlist=QpbHNTFT3NU&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
-                            <!-- 3. Lennon_BanhodeGato -->
+                            <!-- 4. Resultados -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: var(--white);">
+                                    <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--cor6); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Resultados</h3>
+                                    <div style="font-size: 0.9rem; line-height: 1.5; color: #555; text-align: left; width: 100%;">
+                                        <p style="margin-bottom: 0.8rem;">• Aumento significativo no engajamento das redes sociais através de narrativas autênticas.</p>
+                                        <p style="margin-bottom: 0.8rem;">• Entrega de material de alta qualidade técnica e estética, superando as expectativas da marca.</p>
+                                        <p style="margin-bottom: 0.8rem;">• Otimização de processos produtivos, garantindo eficiência e redução de custos operacionais.</p>
+                                    </div>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 1rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                </div>
+                            </div>
+                            <!-- 5. Lennon_BanhodeGato -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
                                 <iframe class="reels-video" data-src="https://www.youtube.com/embed/67M252iKntk?autoplay=1&loop=1&playlist=67M252iKntk&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -1691,22 +1714,14 @@
 
         function hideProject(shouldScroll = true) {
             // Pausa todos os vídeos ao sair da página de detalhes
-            document.querySelectorAll('.project-video, .reels-video').forEach(el => {
+            document.querySelectorAll('.project-video, .reels-video, .project-iframe').forEach(el => {
                 if (el.tagName === 'VIDEO') {
                     el.pause();
                     el.currentTime = 0;
                 } else if (el.tagName === 'IFRAME') {
-                    const src = el.src;
+                    // Stop iframe video by clearing src
                     el.src = '';
-                    el.src = src;
                 }
-            });
-            
-            // "Reseta" o iframe para parar o som
-            document.querySelectorAll('.project-iframe').forEach(iframe => {
-                const src = iframe.src;
-                iframe.src = '';
-                iframe.src = src;
             });
 
             document.getElementById('mainContent').classList.remove('hidden');
