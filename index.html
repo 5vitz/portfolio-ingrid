@@ -922,6 +922,17 @@
             object-fit: cover;
             border-radius: 30px;
             border: none;
+            pointer-events: none; /* Prevent iframe from stealing touch/mouse events */
+        }
+
+        .reels-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
         }
 
         /* Dark Mode Toggle Switch */
@@ -1424,17 +1435,20 @@
                         <div class="swiper-wrapper">
                             <!-- 1. Aline_SoulSmile -->
                             <div class="swiper-slide reels-slide">
-                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/ceUEf-j3ogo?autoplay=1&mute=1&loop=1&playlist=ceUEf-j3ogo&controls=0&modestbranding=1&rel=0" src="https://www.youtube.com/embed/ceUEf-j3ogo?autoplay=1&mute=1&loop=1&playlist=ceUEf-j3ogo&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="reels-overlay"></div>
+                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/ceUEf-j3ogo?autoplay=1&loop=1&playlist=ceUEf-j3ogo&controls=0&modestbranding=1&rel=0" src="https://www.youtube.com/embed/ceUEf-j3ogo?autoplay=1&loop=1&playlist=ceUEf-j3ogo&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 2. DJDre -->
                             <div class="swiper-slide reels-slide">
-                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/QpbHNTFT3NU?autoplay=1&mute=1&loop=1&playlist=QpbHNTFT3NU&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="reels-overlay"></div>
+                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/QpbHNTFT3NU?autoplay=1&loop=1&playlist=QpbHNTFT3NU&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 3. Lennon_BanhodeGato -->
                             <div class="swiper-slide reels-slide">
-                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/67M252iKntk?autoplay=1&mute=1&loop=1&playlist=67M252iKntk&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="reels-overlay"></div>
+                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/67M252iKntk?autoplay=1&loop=1&playlist=67M252iKntk&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                         </div>
