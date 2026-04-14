@@ -1529,7 +1529,7 @@
                             <!-- 1. Aline_SoulSmile -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 2. Meu Papel -->
@@ -1546,7 +1546,7 @@
                             <!-- 3. DJDre -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&loop=1&playlist=Y-6504ItqsA&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&loop=1&playlist=Y-6504ItqsA&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 4. Resultados -->
@@ -1567,7 +1567,7 @@
                             <!-- 5. Lennon_BanhodeGato -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&loop=1&playlist=stTbzH8-9rM&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&loop=1&playlist=stTbzH8-9rM&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                         </div>
@@ -1814,6 +1814,8 @@
         const navMenu = document.getElementById('navMenu');
         let heroYTPlayer;
         const projectSwipers = {}; // Map to store swiper instances per project
+        const ytPlayers = {}; // Global players map for YouTube API
+        let audioUnlocked = false;
 
         // YouTube Hero Video Logic
         function onYouTubeIframeAPIReady() {
@@ -1910,16 +1912,19 @@
                     el.currentTime = 0;
                 } else if (el.tagName === 'IFRAME') {
                     el.src = '';
+                    // If it was a YT player, remove it from the map so it re-inits correctly later
+                    if (el.id && ytPlayers[el.id]) {
+                        delete ytPlayers[el.id];
+                    }
                 }
             });
+            if (heroYTPlayer && heroYTPlayer.pauseVideo) {
+                heroYTPlayer.pauseVideo();
+            }
         }
 
         // Add event listeners to nav links to stop media when navigating
         // This is now handled within the smooth scroll logic below to avoid duplicate listeners
-
-        // Global players map for YouTube API
-        const ytPlayers = {};
-        let audioUnlocked = false;
 
         // Function to unlock audio context on first interaction
         function unlockAudio() {
@@ -2039,18 +2044,25 @@
                     }
                 });
             } else {
-                if (iframe.src === '' || iframe.src === 'about:blank') {
+                // Restore src if it was cleared by stopAllMedia
+                if (!iframe.src || iframe.src === 'about:blank' || iframe.src === window.location.href) {
                     iframe.src = dataSrc;
                 }
                 
                 if (shouldPlay) {
                     setTimeout(() => {
                         if (ytPlayers[id] && ytPlayers[id].playVideo) {
-                            ytPlayers[id].playVideo();
-                            ytPlayers[id].seekTo(0);
-                            if (audioUnlocked) {
-                                ytPlayers[id].unMute();
-                                ytPlayers[id].setVolume(100);
+                            try {
+                                ytPlayers[id].playVideo();
+                                ytPlayers[id].seekTo(0);
+                                if (audioUnlocked) {
+                                    ytPlayers[id].unMute();
+                                    ytPlayers[id].setVolume(100);
+                                }
+                            } catch (e) {
+                                console.log("Error playing video, re-initializing player");
+                                delete ytPlayers[id];
+                                loadAndPlayIframe(iframe, true);
                             }
                         }
                     }, 150);
@@ -2097,6 +2109,14 @@
             if (id === 2 || id === 3) {
                 const swiperEl = projectSection.querySelector('.reels-container');
                 if (swiperEl) {
+                    // Force restore src for all iframes in this project to prevent "missing" videos
+                    swiperEl.querySelectorAll('iframe.reels-video').forEach(iframe => {
+                        const dataSrc = iframe.getAttribute('data-src');
+                        if (dataSrc && (!iframe.src || iframe.src === 'about:blank' || iframe.src === window.location.href)) {
+                            iframe.src = dataSrc;
+                        }
+                    });
+
                     // Initialize or update swiper for this specific project
                     if (!projectSwipers[id]) {
                         initReels(id, swiperEl);
