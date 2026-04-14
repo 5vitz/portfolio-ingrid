@@ -1885,14 +1885,7 @@
         }
 
         // Add event listeners to nav links to stop media when navigating
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                stopAllMedia();
-                // If we are in a project detail, hide it
-                document.getElementById('mainContent').classList.remove('hidden');
-                document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
-            });
-        });
+        // This is now handled within the smooth scroll logic below to avoid duplicate listeners
 
         // Global players map for YouTube API
         const ytPlayers = {};
@@ -2053,6 +2046,7 @@
             document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
             
             projectSection.classList.add('active');
+            projectSection.style.display = 'block';
             
             // Special init for Reels if it's project 2 or 3
             if (id === 2 || id === 3) {
@@ -2086,13 +2080,21 @@
             // Pausa todos os vídeos ao sair da página de detalhes
             stopAllMedia();
 
-            document.getElementById('mainContent').classList.remove('hidden');
-            document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
+            const mainContent = document.getElementById('mainContent');
+            if (mainContent) {
+                mainContent.classList.remove('hidden');
+                mainContent.style.display = 'block';
+            }
+            
+            document.querySelectorAll('.project-detail').forEach(el => {
+                el.classList.remove('active');
+                el.style.display = 'none';
+            });
             
             if (shouldScroll) {
                 // Scroll back to projects section
                 const projectsSection = document.getElementById('projetos');
-                projectsSection.scrollIntoView();
+                if (projectsSection) projectsSection.scrollIntoView();
             }
         }
 
@@ -2190,31 +2192,36 @@
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
                 const href = this.getAttribute('href');
+                if (!href || href === "#") return;
                 
-                // Se estivermos em um detalhe de projeto, volta para o conteúdo principal primeiro e para a mídia
-                if (document.getElementById('mainContent').classList.contains('hidden')) {
-                    hideProject(false);
+                e.preventDefault();
+                
+                // 1. Stop all media and restore main content
+                stopAllMedia();
+                const mainContent = document.getElementById('mainContent');
+                if (mainContent) {
+                    mainContent.classList.remove('hidden');
+                    mainContent.style.display = 'block';
                 }
+                document.querySelectorAll('.project-detail').forEach(el => {
+                    el.classList.remove('active');
+                    el.style.display = 'none';
+                });
 
-                if (href === "#" || href === "#inicio") {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                    // Replay hero video
+                // 2. Handle specific targets
+                if (href === "#inicio") {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     replayHeroVideo();
-                } else if (href === "#sobre") {
+                } else {
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
+                        target.scrollIntoView({ behavior: 'smooth' });
                     }
                 }
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
+
+                // 3. Close mobile menu if open
+                if (navMenu && navMenu.classList.contains('active')) {
                     navMenu.classList.remove('active');
                 }
             });
