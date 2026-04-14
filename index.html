@@ -816,13 +816,35 @@
 
         .project-detail {
             display: none;
-            padding: 5rem 2rem 5rem;
-            max-width: 1000px;
+            padding: 3rem 1.5rem;
+            max-width: 1200px;
             margin: 0 auto;
             animation: fadeIn 0.5s ease;
             position: relative;
             z-index: 10;
             background: var(--white);
+            min-height: 100vh;
+        }
+
+        .btn-back-project {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1.5rem;
+            background: var(--cor2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-back-project:hover {
+            transform: translateX(-5px);
+            background: var(--cor1);
         }
 
         .project-detail.active {
@@ -1154,10 +1176,50 @@
             color: var(--cor2);
         }
 
+        body.dark-mode .project-info h3,
         body.dark-mode .project-info h4,
         body.dark-mode .project-info p {
-            background: var(--cor1);
-            color: #000000;
+            background: transparent;
+            color: #e0e0e0;
+        }
+
+        /* Layout for projects with Reels */
+        .project-reel-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-reel-layout .project-image {
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .project-reel-layout .project-info {
+            width: 100%;
+            text-align: center;
+            background: rgba(var(--cor1-rgb), 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        body.dark-mode .project-reel-layout .project-info {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .project-reel-layout .project-info h3,
+        .project-reel-layout .project-info h4 {
+            display: flex;
+            justify-content: center;
+            border-left: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
         }
 
         body.dark-mode .reels-text-card {
@@ -1497,6 +1559,7 @@
 
     <!-- Project Details Sections -->
     <section id="project-1" class="project-detail">
+        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>Expedição BAHIA</h2>
         </div>
@@ -1518,10 +1581,8 @@
     </section>
 
     <section id="project-2" class="project-detail">
-        <div class="project-header">
-            <h2>Good Storage | Histórias Reais</h2>
-        </div>
-        <div class="project-content">
+        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
+        <div class="project-content project-reel-layout">
             <div class="project-image">
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
@@ -1588,10 +1649,8 @@
     </section>
 
     <section id="project-3" class="project-detail">
-        <div class="project-header">
-            <h2>ELO Bike & Trips | Presença Digital</h2>
-        </div>
-        <div class="project-content">
+        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
+        <div class="project-content project-reel-layout">
             <div class="project-image">
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
@@ -1725,6 +1784,7 @@
     </section>
 
     <section id="project-4" class="project-detail">
+        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>Estratégia de Conteúdo B2C</h2>
         </div>
@@ -1747,6 +1807,7 @@
     </section>
 
     <section id="project-5" class="project-detail">
+        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>Campanha Verão 2024</h2>
         </div>
@@ -1766,6 +1827,7 @@
     </section>
 
     <section id="project-6" class="project-detail">
+        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>E-commerce Performance</h2>
         </div>
