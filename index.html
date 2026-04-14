@@ -992,11 +992,12 @@
             pointer-events: none; /* Prevent iframe from stealing touch/mouse events */
         }
 
-        /* Ensure iframes in reels cover the area to avoid black bars */
-        .reels-container iframe.reels-media {
+        /* Fix for YouTube iframes to "cover" the container and remove black bars */
+        .reels-container iframe.reels-video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            transform: scale(1.3); /* Zoom to fill the 400px width */
+            transform-origin: center;
         }
 
         .reels-overlay {
