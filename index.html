@@ -133,37 +133,44 @@
 
         /* Hero Section */
         .hero-section {
-            height: 500px;
-            max-width: 1100px;
+            height: auto;
+            min-height: 500px;
+            max-width: 1036px;
             margin: 100px auto 2rem;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,1) 100%), url('https://lh3.googleusercontent.com/d/15dMDCCY5Yg05aVq3SSooGUqgDoakiKyZ') no-repeat center center;
-            background-size: cover;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0 5%;
+            justify-content: center;
             position: relative;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: var(--shadow);
+            background-color: #1a1a1a; /* Cinza bem escuro igual ao de Serviços */
+            padding: 4rem 0;
         }
 
         .hero-content {
-            max-width: 600px;
-            width: 100%;
-            text-align: left;
+            width: 900px;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 2;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(var(--cor1-rgb), 0.3);
         }
 
-        .hero-text-img {
-            max-width: 100%;
-            height: auto;
-            filter: brightness(0) invert(10.2%) drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+        .hero-video-full {
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+            border: none;
         }
 
         /* About Section */
         .about-section {
-            padding: 2rem 2rem;
+            padding: 2rem 0;
             background: var(--white);
             margin-top: 0;
             position: relative;
@@ -175,46 +182,24 @@
                 margin: 90px 1rem 2rem;
                 border-radius: 4px;
                 justify-content: center;
-                padding: 0 1.5rem;
+                padding: 0;
             }
             .hero-content {
                 text-align: center;
             }
             .about-section {
-                padding: 2rem 1.5rem;
+                padding: 2rem 1rem;
             }
         }
 
         .about-container {
-            max-width: 1100px;
+            max-width: 1036px;
             margin: 0 auto;
-            overflow: hidden; /* Limpa o float */
-        }
-
-        .about-photo-card {
-            float: left;
-            width: 30%;
-            max-width: 340px;
-            margin-right: 3rem;
-            margin-bottom: 1rem;
-            margin-top: 0.5rem;
-            background: transparent;
             padding: 0;
-            border-radius: 4px;
-            box-shadow: none;
-            border: none;
-            transition: transform 0.3s ease;
         }
 
-        .about-photo-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .about-photo-card img {
+        .about-text-content {
             width: 100%;
-            border-radius: 4px;
-            display: block;
-            border: 1px solid #000000;
         }
 
         .about-text-content h2 {
@@ -279,9 +264,20 @@
 
         /* Services Section */
         .services {
-            padding: 2rem 2rem 2rem;
-            max-width: 1100px;
+            padding: 2rem 0;
+            max-width: 1036px;
             margin: 0 auto;
+        }
+
+        .services-container-card {
+            background-color: #1a1a1a; /* Cinza bem escuro */
+            border-radius: 8px;
+            padding: 4rem 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--shadow);
         }
 
         .section-title {
@@ -306,7 +302,7 @@
         }
 
         .accordion-container {
-            max-width: 1100px;
+            width: 800px;
             margin: 0 auto;
         }
 
@@ -393,7 +389,7 @@
         }
 
         .testimonials-grid {
-            max-width: 1000px;
+            max-width: 1036px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -963,7 +959,7 @@
             hyphens: auto;
         }
 
-        .reels-video, .reels-image, .reels-container iframe {
+        .reels-video, .reels-image, .reels-media, .reels-container iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -1247,30 +1243,28 @@
     <div id="mainContent" class="main-content">
         <section id="inicio" class="hero-section">
             <div class="hero-content">
-                <img src="https://lh3.googleusercontent.com/d/1F1NJou5XSiBNoM6sTbUwk6U2l3GOeZ11" alt="Ingrid Sinkovitz" class="hero-text-img" referrerPolicy="no-referrer">
+                <div id="heroPlayer" class="hero-video-full"></div>
             </div>
         </section>
 
         <section class="about-section" id="sobre">
             <div class="about-container">
-                <div class="about-photo-card">
-                    <img src="https://lh3.googleusercontent.com/d/1B968AqmCSK2z74l8wYAnT1QZwxvqhMjE" alt="Ingrid Sinkovitz" referrerPolicy="no-referrer">
-                </div>
                 <div class="about-text-content">
                     <p>Eu sou a <span class="highlight">Ingrid</span>, e minha trajetória na comunicação nunca foi linear. Comecei na rádio, passei pela televisão, mergulhei na produção audiovisual, vivi projetos que chegaram à TV Globo e até uma turnê internacional. Mais tarde, empreendi no setor gastronômico, onde, além de gerir um negócio, também fui responsável por construir e posicionar a marca.</p>
                     <p>Cada uma dessas experiências me colocou em lugares diferentes da comunicação: na frente das câmeras, nos bastidores, na operação, na estratégia. E foi exatamente isso que moldou a forma como eu enxergo o que faço hoje.</p>
                     <p>Eu não vejo conteúdo como uma peça isolada. Nem estratégia como algo que existe só no planejamento. Pra mim, comunicação é um <span class="highlight">sistema</span>. É entender contexto, intenção, público, narrativa e fazer tudo isso se conectar de forma coerente, consistente e sustentável ao longo do tempo.</p>
                     <p>Por isso, o meu trabalho não se limita à criação. Eu entro nos projetos para organizar, estruturar e dar direção. Trago clareza para marcas que muitas vezes já têm presença, mas não têm consistência. Transformo ideias soltas em uma narrativa sólida. E acompanho de perto a execução para garantir que aquilo que foi pensado realmente aconteça com qualidade e alinhamento.</p>
-                    <p style="font-style: italic; font-weight: 500; color: var(--cor1);">Não é só produzir conteúdo, é construir percepção.</p>
+                    <p style="font-style: italic; font-weight: 500; color: var(--cor1); text-align: center;">Não é só produzir conteúdo, é construir percepção.</p>
                 </div>
             </div>
         </section>
 
         <section class="services" id="servicos">
-            <div class="section-title">
-                <h2>Serviços</h2>
-            </div>
-            <div class="accordion-container">
+            <div class="services-container-card">
+                <div class="section-title">
+                    <h2 style="color: #fff;">Serviços</h2>
+                </div>
+                <div class="accordion-container">
                 <!-- Item 1 -->
                 <div class="accordion-item">
                     <div class="accordion-header">
@@ -1343,6 +1337,7 @@
                         </ul>
                     </div>
                 </div>
+                </div>
             </div>
         </section>
 
@@ -1367,9 +1362,9 @@
                 </div>
                 <!-- Item 3 -->
                 <div class="gallery-item" onclick="openQuickView(3)">
-                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&h=600" alt="Projeto 3">
+                    <img src="https://lh3.googleusercontent.com/d/1IqC5-qk33WmeIjBfjKa-cD6-_pkkMloE" alt="Projeto 3" referrerPolicy="no-referrer">
                     <div class="gallery-item-overlay">
-                        <div class="gallery-item-title">Social Media Engagement</div>
+                        <!-- Título removido pois já está incorporado na imagem -->
                     </div>
                 </div>
                 <!-- Item 4 -->
@@ -1538,24 +1533,135 @@
         </div>
     </section>
 
-    <section id="project-3" class="project-detail">
-        <div class="project-header">
-            <h2>Social Media Engagement</h2>
-        </div>
-        <div class="project-content">
+    <section id="project-3" class="project-detail" style="padding-top: 100px;">
+        <div class="project-content" style="display: block;">
             <div class="project-image">
-                <video class="project-video" controls playsinline poster="https://picsum.photos/seed/marketing3/800/600">
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeos.
-                </video>
-            </div>
-            <div class="project-info">
-                <h4>O Desafio</h4>
-                <p>Revitalizar a presença digital de uma rede de gastronomia com baixo engajamento orgânico.</p>
-                <h4>A Estratégia</h4>
-                <p>Implementação de uma linha editorial focada em bastidores, vídeos dinâmicos e interação direta com a comunidade.</p>
-                <h4>Resultados</h4>
-                <p>Crescimento de 200% no engajamento médio e aumento direto nas reservas via canais digitais.</p>
+                <div class="reels-wrapper">
+                    <div class="swiper reels-container">
+                        <div class="swiper-wrapper">
+                            <!-- PENÍNSULA DE MARAÚ -->
+                            <!-- Capa -->
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://lh3.googleusercontent.com/d/1RQ0LnCiu8TQQdSG4uhynJXmMoTtkqRsb" alt="Capa Maraú" class="reels-media" referrerPolicy="no-referrer">
+                            </div>
+                            <!-- Video -->
+                            <div class="swiper-slide reels-slide">
+                                <iframe src="https://drive.google.com/file/d/1LNOXeomoLNFH6e3R1Yn5JNW1maSmj0o-/preview" class="reels-media" allow="autoplay"></iframe>
+                            </div>
+                            <!-- Images -->
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/15XgGRc6iiMCV8iDI1sQxJqv5Z4o6kCj3" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/19WqHe6xM5UTycXMd8g8meRMIKe5njhHg" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1JISObWDDXHAI9aR8g3TU1qDIu86QeYtN" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1MXAsadr7xRuaciMedaKO6HXxv0W2aESM" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1SAYF-QlNCG6447ains3pqBzJtarwu3R7" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1fCMlDEeNfu7OZi-Vv8-RhwiKqrMhk-DR" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1hZx7R_xDyj5gltNeSnjBrf3mULkYnesf" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1i54vLVPqn1ZOxynlx3zSE8-fvCev_psZ" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1jMXCsYQYl3zdnZOSnLPCc_5K00eW3fj1" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1jxnQeH3lBBPkFyu35bW2QkB7Pfe7uVfy" class="reels-media" referrerPolicy="no-referrer"></div>
+
+                            <!-- ROTA DO CACAU -->
+                            <!-- Capa -->
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://lh3.googleusercontent.com/d/1KfNLPY1xmkePqJqbF8pVmvay0YS0EMLk" alt="Capa Rota do Cacau" class="reels-media" referrerPolicy="no-referrer">
+                            </div>
+                            <!-- Video -->
+                            <div class="swiper-slide reels-slide">
+                                <iframe src="https://drive.google.com/file/d/1hbbTgcHtahXc8AOgoTwO_W7nSbPhunsy/preview" class="reels-media" allow="autoplay"></iframe>
+                            </div>
+                            <!-- Images -->
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1NEjbNlDfEkeKQgDkYJ7zrV_kVzA1d9jp" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1PK6hi4E1OIAHdt3L8DRfIA4k4xo23MFh" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1UH0vH67t3bSAhr8tBlpsDibyN5Hpu7xg" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1XSl8XNF6ZlgetmLvQirKCwSTAP2sSqEH" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1ZNVe77NOX5HDKvqZXRgg1tnkYDrEWZFU" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1ddiDTl-kHAQpqN0pOiwKvhFm_0-FiGwy" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1i1cUhau2eDoVMWCxIlve31-FevxZXclx" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1qBHnStfb2eNHd6teLGfMZY6_egstKtn3" class="reels-media" referrerPolicy="no-referrer"></div>
+
+                            <!-- MEDO DE VIAJAR SOZINHA -->
+                            <!-- Capa -->
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://lh3.googleusercontent.com/d/1mpQmDPuXexTzyiKHzWoNpoina3AhgMSW" alt="Capa Medo de Viajar Sozinha" class="reels-media" referrerPolicy="no-referrer">
+                            </div>
+                            <!-- Images -->
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1FINHItfy_2wCYfgTT_fb4EeP0amBoJ2w" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1Hnfm8Iz2UjlSlcdq9RoxXRkBdVAG6rPA" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1LThPVPkMxsYsmDKif8W5YGX7KGi1VOUy" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1rJfBRzG43EFBCZ9pYTBcf6newDYk8ase" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1scAcQ8A8etACfdi0TZqlTWDBpr5QujCV" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1tzeiRo2GqsjuS-f2i93R_6y0xc4iKEYB" class="reels-media" referrerPolicy="no-referrer"></div>
+
+                            <!-- ELO INDICA -->
+                            <!-- Capa -->
+                            <div class="swiper-slide reels-slide">
+                                <img src="https://lh3.googleusercontent.com/d/1nZ6w4CzMt665gBK5AUfa8hrSiwGfe2MJ" alt="Capa Elo Indica" class="reels-media" referrerPolicy="no-referrer">
+                            </div>
+                            <!-- Images -->
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1-GxdRB5T2HKaEYOlgu8dHUrc_5YmKmWl" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1Lhh4kq9oDwSL4CCWuuarXUw889u7P1k9" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1QinsFXMIzpEmtlBhdAl-9F78p45Zcga2" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1e2V7otEtbFPO9Ye_5Zd42u9HggMv8t6e" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1lbS5ADMyfB945ymHI1MeeWvzGQ4XkAgV" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1o6sykOw9aPhX9QcguhvPkyxw3T5nb6zR" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1oL316ycl9ujuDZdgfNSFdsfoq3zI6avC" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1oLVnv6IWuVn2FYFf0ZdlWaodgxgu-YnZ" class="reels-media" referrerPolicy="no-referrer"></div>
+                            <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1tFr9dCQ_9Vf2zzZmkhnnHsnLlVqnzizi" class="reels-media" referrerPolicy="no-referrer"></div>
+
+                            <!-- TEXT CARDS -->
+                            <!-- Card 1: Introdução -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: var(--white); text-align: center;">
+                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; line-height: 1.4;">Estratégia de Conteúdo e Presença Digital | ELO Bike & Trips</h3>
+                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #555; margin-bottom: 1rem;">Projeto de estruturação e gestão da presença digital da ELO Bike & Trips, agência de cicloturismo.</p>
+                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #555; font-weight: 600;">Objetivo de consolidar o Instagram como principal canal de comunicação e conversão, com crescimento orgânico e fortalecimento da marca.</p>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 2rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Escopo -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: flex-start; padding: 2.5rem 1.5rem; background: var(--white);">
+                                    <h3 style="font-size: 1rem; margin-bottom: 1.5rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--cor2); display: inline-block; padding-bottom: 5px;">Escopo de atuação</h3>
+                                    <ul style="font-size: 0.85rem; line-height: 1.5; color: #555; text-align: left; list-style: none; padding: 0;">
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Planejamento e condução da estratégia de conteúdo para redes sociais</li>
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Desenvolvimento de narrativa, tom de voz e linha editorial</li>
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Estruturação e gestão do calendário editorial</li>
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Criação de pautas, roteiros e briefings para produção de conteúdo</li>
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Organização de fluxos de trabalho e acompanhamento da produção</li>
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Interface direta com o cliente e alinhamento estratégico contínuo</li>
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Monitoramento de qualidade e consistência das entregas</li>
+                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Análise de performance e otimização de conteúdos</li>
+                                    </ul>
+                                    <div class="swipe-hint" style="margin-top: auto; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Entrega -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: #f9f9f9; border: 1px solid #eee;">
+                                    <h3 style="font-size: 1rem; margin-bottom: 1.5rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Entrega</h3>
+                                    <div style="font-size: 0.95rem; line-height: 1.8; color: #444; text-align: center;">
+                                        <p>• Estruturação da presença digital no Instagram</p>
+                                        <p>• Conteúdos alinhados ao posicionamento da marca</p>
+                                        <p>• Consistência na comunicação e frequência</p>
+                                        <p>• Base estratégica para crescimento orgânico</p>
+                                    </div>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 2rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: Foco Estratégico -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-text-card" style="justify-content: center; padding: 2.5rem 1.5rem; background: var(--text-dark); color: white; text-align: center;">
+                                    <h3 style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--cor2); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Foco estratégico</h3>
+                                    <p style="font-size: 1.1rem; line-height: 1.6; font-style: italic; font-family: serif;">"Construção de uma comunicação autêntica e consistente, conectando experiência, estilo de vida e turismo, com foco em gerar identificação, engajamento e conversão."</p>
+                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 2rem; opacity: 0.7; color: white;">Fim do Projeto ↕</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1644,8 +1750,72 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Dark Mode Logic
+        // Global Variables and Declarations
         const toggleSwitch = document.getElementById('checkbox');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        let heroPlayer;
+        let reelsSwiper;
+
+        // YouTube Hero Video Logic
+        function onYouTubeIframeAPIReady() {
+            heroPlayer = new YT.Player('heroPlayer', {
+                height: '100%',
+                width: '100%',
+                videoId: 'n7XttGodixg',
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'modestbranding': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'mute': 1,
+                    'playsinline': 1,
+                    'iv_load_policy': 3,
+                    'disablekb': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        let checkEndInterval;
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                // Monitorar o tempo para parar no último frame sem piscar
+                if (checkEndInterval) clearInterval(checkEndInterval);
+                checkEndInterval = setInterval(() => {
+                    if (!heroPlayer || typeof heroPlayer.getCurrentTime !== 'function') {
+                        clearInterval(checkEndInterval);
+                        return;
+                    }
+                    const currentTime = heroPlayer.getCurrentTime();
+                    const duration = heroPlayer.getDuration();
+                    // Para 0.3s antes do fim para evitar a tela preta/sugestões do YouTube
+                    if (duration > 0 && currentTime >= duration - 0.3) {
+                        heroPlayer.pauseVideo();
+                        clearInterval(checkEndInterval);
+                    }
+                }, 100);
+            } else if (event.data === YT.PlayerState.ENDED) {
+                if (checkEndInterval) clearInterval(checkEndInterval);
+            }
+        }
+
+        function replayHeroVideo() {
+            if (heroPlayer && typeof heroPlayer.seekTo === 'function') {
+                heroPlayer.seekTo(0);
+                heroPlayer.playVideo();
+            }
+        }
+
+        // Dark Mode Logic
         const currentTheme = localStorage.getItem('theme');
 
         if (currentTheme) {
@@ -1670,7 +1840,6 @@
         }
 
         // Reels Carousel Initialization
-        let reelsSwiper;
 
         // Global function to stop all videos/iframes
         function stopAllMedia() {
@@ -1766,15 +1935,18 @@
             
             projectSection.classList.add('active');
             
-            // Special init for Reels if it's project 2
-            if (id === 2) {
-                if (!reelsSwiper) {
-                    initReels();
-                } else {
-                    reelsSwiper.update(); // Ensure swiper recalculates dimensions
-                    if (typeof reelsSwiper.slideTo === 'function') {
-                        reelsSwiper.slideToLoop(0, 0); 
-                        playCurrentVideo(reelsSwiper);
+            // Special init for Reels if it's project 2 or 3
+            if (id === 2 || id === 3) {
+                const swiperEl = projectSection.querySelector('.reels-container');
+                if (swiperEl) {
+                    if (!reelsSwiper) {
+                        initReels();
+                    } else {
+                        reelsSwiper.update(); // Ensure swiper recalculates dimensions
+                        if (typeof reelsSwiper.slideTo === 'function') {
+                            reelsSwiper.slideToLoop(0, 0); 
+                            playCurrentVideo(reelsSwiper);
+                        }
                     }
                 }
             } else {
@@ -1819,9 +1991,9 @@
                 youtubeId: "EltZN3-Dmk4" 
             },
             3: {
-                title: "Social Media Engagement",
-                desc: "Revitalização completa da presença digital de uma marca de lifestyle, com foco em engajamento real, comunidade e crescimento orgânico acelerado.",
-                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&h=400"
+                title: "", // Título removido pois já está na imagem
+                desc: "Estratégia de Conteúdo e Presença Digital | ELO Bike & Trips. Projeto de estruturação e gestão da presença digital da ELO Bike & Trips, agência de cicloturismo. Objetivo de consolidar o Instagram como principal canal de comunicação e conversão, com crescimento orgânico e fortalecimento da marca.",
+                image: "https://lh3.googleusercontent.com/d/1IqC5-qk33WmeIjBfjKa-cD6-_pkkMloE"
             },
             4: {
                 title: "Estratégia B2C",
@@ -1907,12 +2079,14 @@
                     hideProject(false);
                 }
 
-                if (href === "#" || href === "#sobre") {
+                if (href === "#" || href === "#inicio") {
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
-                } else {
+                    // Replay hero video
+                    replayHeroVideo();
+                } else if (href === "#sobre") {
                     const target = document.querySelector(href);
                     if (target) {
                         target.scrollIntoView({
@@ -1928,12 +2102,11 @@
         });
 
         // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
 
         // Accordion functionality
         document.querySelectorAll('.accordion-header').forEach(header => {
@@ -1959,7 +2132,21 @@
                 navMenu.classList.remove('active');
             }
         });
+
+        // Intersection Observer for Hero Video Replay on manual scroll
+        const heroSection = document.getElementById('inicio');
+        if (heroSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        replayHeroVideo();
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(heroSection);
+        }
     </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <!-- Final do Conteúdo Principal -->
 </body>
 </html>
