@@ -1783,7 +1783,7 @@
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
         let heroYTPlayer;
-        let reelsSwiper;
+        const projectSwipers = {}; // Map to store swiper instances per project
 
         // YouTube Hero Video Logic
         function onYouTubeIframeAPIReady() {
@@ -1910,8 +1910,13 @@
         document.addEventListener('click', unlockAudio, { once: true });
         document.addEventListener('touchstart', unlockAudio, { once: true });
 
-        function initReels() {
-            reelsSwiper = new Swiper('.reels-container', {
+        function initReels(projectId, containerSelector) {
+            // Destroy existing swiper for this project if it exists
+            if (projectSwipers[projectId]) {
+                projectSwipers[projectId].destroy(true, true);
+            }
+            
+            projectSwipers[projectId] = new Swiper(containerSelector, {
                 direction: 'vertical',
                 loop: true,
                 mousewheel: true,
@@ -1925,6 +1930,7 @@
                     }
                 }
             });
+            return projectSwipers[projectId];
         }
 
         function playCurrentVideo(swiper) {
@@ -2044,8 +2050,8 @@
 
             // Hide main content and all other project details
             if (mainContent) {
+                mainContent.style.display = 'none';
                 mainContent.classList.add('hidden');
-                mainContent.style.display = 'none'; // Force hide to override inline block
             }
             
             document.querySelectorAll('.project-detail').forEach(el => {
@@ -2061,14 +2067,13 @@
             if (id === 2 || id === 3) {
                 const swiperEl = projectSection.querySelector('.reels-container');
                 if (swiperEl) {
-                    if (!reelsSwiper) {
-                        initReels();
+                    // Initialize or update swiper for this specific project
+                    if (!projectSwipers[id]) {
+                        initReels(id, swiperEl);
                     } else {
-                        reelsSwiper.update(); // Ensure swiper recalculates dimensions
-                        if (typeof reelsSwiper.slideTo === 'function') {
-                            reelsSwiper.slideToLoop(0, 0); 
-                            playCurrentVideo(reelsSwiper);
-                        }
+                        projectSwipers[id].update();
+                        projectSwipers[id].slideToLoop(0, 0); 
+                        playCurrentVideo(projectSwipers[id]);
                     }
                 }
             } else {
@@ -2082,13 +2087,15 @@
                 }
             }
             
-            window.scrollTo(0, 0);
+            // Small delay to ensure layout update before scroll
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10);
         }
 
-        function hideProject(shouldScroll = true) {
-            // Pausa todos os vídeos ao sair da página de detalhes
+        function closeAllProjects() {
             stopAllMedia();
-
+            
             const mainContent = document.getElementById('mainContent');
             if (mainContent) {
                 mainContent.classList.remove('hidden');
@@ -2099,11 +2106,15 @@
                 el.classList.remove('active');
                 el.style.display = 'none';
             });
+        }
+
+        function hideProject(shouldScroll = true) {
+            closeAllProjects();
             
             if (shouldScroll) {
                 // Scroll back to projects section
                 const projectsSection = document.getElementById('projetos');
-                if (projectsSection) projectsSection.scrollIntoView();
+                if (projectsSection) projectsSection.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
@@ -2206,17 +2217,8 @@
                 
                 e.preventDefault();
                 
-                // 1. Stop all media and restore main content
-                stopAllMedia();
-                const mainContent = document.getElementById('mainContent');
-                if (mainContent) {
-                    mainContent.classList.remove('hidden');
-                    mainContent.style.display = 'block';
-                }
-                document.querySelectorAll('.project-detail').forEach(el => {
-                    el.classList.remove('active');
-                    el.style.display = 'none';
-                });
+                // 1. Close all projects and restore main content
+                closeAllProjects();
 
                 // 2. Handle specific targets
                 if (href === "#inicio") {
