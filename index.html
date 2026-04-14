@@ -986,12 +986,16 @@
             hyphens: auto;
         }
 
-        .reels-video, .reels-image, .reels-media, .reels-container iframe {
+        .reels-video, .reels-media, .reels-container iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 4px;
             border: none;
+            display: block;
+        }
+        
+        .reels-container iframe {
             pointer-events: none; /* Prevent iframe from stealing touch/mouse events */
         }
 
@@ -1513,8 +1517,11 @@
         </div>
     </section>
 
-    <section id="project-2" class="project-detail" style="padding-top: 100px;">
-        <div class="project-content" style="display: block;">
+    <section id="project-2" class="project-detail">
+        <div class="project-header">
+            <h2>Good Storage | Histórias Reais</h2>
+        </div>
+        <div class="project-content">
             <div class="project-image">
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
@@ -1522,7 +1529,7 @@
                             <!-- 1. Aline_SoulSmile -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 2. Meu Papel -->
@@ -1539,7 +1546,7 @@
                             <!-- 3. DJDre -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&loop=1&playlist=Y-6504ItqsA&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&loop=1&playlist=Y-6504ItqsA&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 4. Resultados -->
@@ -1560,18 +1567,31 @@
                             <!-- 5. Lennon_BanhodeGato -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&loop=1&playlist=stTbzH8-9rM&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&loop=1&playlist=stTbzH8-9rM&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="project-info">
+                <h3>Sobre o Projeto</h3>
+                <p>Produção de uma série de vídeos para a Good Storage, focando em histórias reais de clientes para humanizar a marca e mostrar a versatilidade dos espaços.</p>
+                <h4>Desafio</h4>
+                <p>Dar vida à marca por meio de narrativas autênticas, conectando funcionalidade à experiência do usuário.</p>
+                <h4>Solução</h4>
+                <p>Série de vídeos curtos (estilo Reels) com depoimentos e demonstrações práticas de uso dos espaços.</p>
+                <h4>Resultados</h4>
+                <p>Aumento significativo no engajamento das redes sociais e fortalecimento do posicionamento de marca.</p>
+            </div>
         </div>
     </section>
 
-    <section id="project-3" class="project-detail" style="padding-top: 100px;">
-        <div class="project-content" style="display: block;">
+    <section id="project-3" class="project-detail">
+        <div class="project-header">
+            <h2>ELO Bike & Trips | Presença Digital</h2>
+        </div>
+        <div class="project-content">
             <div class="project-image">
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
@@ -1690,6 +1710,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="project-info">
+                <h3>Sobre o Projeto</h3>
+                <p>Estratégia de Conteúdo e Presença Digital para a ELO Bike & Trips, agência de cicloturismo, focando em consolidar o Instagram como canal de conversão.</p>
+                <h4>Desafio</h4>
+                <p>Consolidar a presença digital e transformar o Instagram em uma ferramenta de vendas orgânicas.</p>
+                <h4>Solução</h4>
+                <p>Planejamento de conteúdo estratégico, narrativa autêntica e gestão de calendário editorial.</p>
+                <h4>Resultados</h4>
+                <p>Crescimento orgânico, maior engajamento e fortalecimento da autoridade da marca no setor.</p>
             </div>
         </div>
     </section>
