@@ -992,6 +992,13 @@
             pointer-events: none; /* Prevent iframe from stealing touch/mouse events */
         }
 
+        /* Ensure iframes in reels cover the area to avoid black bars */
+        .reels-container iframe.reels-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .reels-overlay {
             position: absolute;
             top: 0;
@@ -1511,7 +1518,7 @@
                             <!-- 1. Aline_SoulSmile -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0" src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 2. Meu Papel -->
@@ -1572,7 +1579,7 @@
                             </div>
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/8MVfBdye-ug?autoplay=1&mute=1&loop=1&playlist=8MVfBdye-ug&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="https://www.youtube.com/embed/8MVfBdye-ug?autoplay=1&mute=1&loop=1&playlist=8MVfBdye-ug&controls=0&modestbranding=1&rel=0&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/8MVfBdye-ug?autoplay=1&mute=1&loop=1&playlist=8MVfBdye-ug&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1jxnQeH3lBBPkFyu35bW2QkB7Pfe7uVfy" class="reels-media" referrerPolicy="no-referrer"></div>
@@ -1592,7 +1599,7 @@
                             </div>
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/GvVJ_SIEaWg?autoplay=1&mute=1&loop=1&playlist=GvVJ_SIEaWg&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="https://www.youtube.com/embed/GvVJ_SIEaWg?autoplay=1&mute=1&loop=1&playlist=GvVJ_SIEaWg&controls=0&modestbranding=1&rel=0&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/GvVJ_SIEaWg?autoplay=1&mute=1&loop=1&playlist=GvVJ_SIEaWg&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1NEjbNlDfEkeKQgDkYJ7zrV_kVzA1d9jp" class="reels-media" referrerPolicy="no-referrer"></div>
@@ -1771,12 +1778,15 @@
         const toggleSwitch = document.getElementById('checkbox');
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
-        let heroPlayer;
+        let heroYTPlayer;
         let reelsSwiper;
 
         // YouTube Hero Video Logic
         function onYouTubeIframeAPIReady() {
-            heroPlayer = new YT.Player('heroPlayer', {
+            console.log("YouTube API Ready");
+            
+            // Initialize Hero Player
+            heroYTPlayer = new YT.Player('heroPlayer', {
                 height: '100%',
                 width: '100%',
                 videoId: 'n7XttGodixg',
@@ -1808,15 +1818,15 @@
                 // Monitorar o tempo para parar no último frame sem piscar
                 if (checkEndInterval) clearInterval(checkEndInterval);
                 checkEndInterval = setInterval(() => {
-                    if (!heroPlayer || typeof heroPlayer.getCurrentTime !== 'function') {
+                    if (!heroYTPlayer || typeof heroYTPlayer.getCurrentTime !== 'function') {
                         clearInterval(checkEndInterval);
                         return;
                     }
-                    const currentTime = heroPlayer.getCurrentTime();
-                    const duration = heroPlayer.getDuration();
+                    const currentTime = heroYTPlayer.getCurrentTime();
+                    const duration = heroYTPlayer.getDuration();
                     // Para 0.3s antes do fim para evitar a tela preta/sugestões do YouTube
                     if (duration > 0 && currentTime >= duration - 0.3) {
-                        heroPlayer.pauseVideo();
+                        heroYTPlayer.pauseVideo();
                         clearInterval(checkEndInterval);
                     }
                 }, 100);
@@ -1826,9 +1836,9 @@
         }
 
         function replayHeroVideo() {
-            if (heroPlayer && typeof heroPlayer.seekTo === 'function') {
-                heroPlayer.seekTo(0);
-                heroPlayer.playVideo();
+            if (heroYTPlayer && typeof heroYTPlayer.seekTo === 'function') {
+                heroYTPlayer.seekTo(0);
+                heroYTPlayer.playVideo();
             }
         }
 
@@ -1880,6 +1890,29 @@
             });
         });
 
+        // Global players map for YouTube API
+        const ytPlayers = {};
+        let audioUnlocked = false;
+
+        // Function to unlock audio context on first interaction
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            
+            // Try to play a silent sound to unlock audio
+            const silentAudio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=");
+            silentAudio.play().then(() => {
+                audioUnlocked = true;
+                console.log("Audio unlocked");
+                // Unmute any currently playing players
+                Object.values(ytPlayers).forEach(player => {
+                    if (player && player.unMute) player.unMute();
+                });
+            }).catch(e => console.log("Audio unlock failed:", e));
+        }
+
+        document.addEventListener('click', unlockAudio, { once: true });
+        document.addEventListener('touchstart', unlockAudio, { once: true });
+
         function initReels() {
             reelsSwiper = new Swiper('.reels-container', {
                 direction: 'vertical',
@@ -1900,15 +1933,18 @@
         function playCurrentVideo(swiper) {
             if (!swiper || !swiper.el) return;
             
-            // Pause all videos
+            // Pause all videos and stop all iframes
             document.querySelectorAll('.reels-video').forEach(v => {
                 if (v.tagName === 'VIDEO') {
                     v.pause();
                 } else if (v.tagName === 'IFRAME') {
-                    // Stop iframe video by resetting src
-                    const src = v.src;
-                    v.src = '';
-                    // We will re-enable it only for the active slide
+                    const id = v.id;
+                    if (id && ytPlayers[id] && ytPlayers[id].pauseVideo) {
+                        ytPlayers[id].pauseVideo();
+                    } else {
+                        // Fallback: reset src if player not ready
+                        v.src = '';
+                    }
                 }
             });
 
@@ -1925,20 +1961,63 @@
                         video.play().catch(e => console.log("Autoplay blocked"));
                     }
                     if (iframe) {
-                        // Restore src from data-src to trigger autoplay
-                        const originalSrc = iframe.getAttribute('data-src');
-                        if (originalSrc) {
-                            // Always refresh src to ensure it plays from start and triggers autoplay
-                            iframe.src = originalSrc;
+                        const dataSrc = iframe.getAttribute('data-src');
+                        if (!dataSrc) return;
+
+                        // Ensure iframe has an ID for the API
+                        if (!iframe.id) {
+                            iframe.id = 'yt-player-' + Math.random().toString(36).substr(2, 9);
+                        }
+                        const id = iframe.id;
+
+                        if (!ytPlayers[id]) {
+                            // Initialize player if not exists
+                            iframe.src = dataSrc; // Set src first
+                            ytPlayers[id] = new YT.Player(id, {
+                                events: {
+                                    'onReady': (event) => {
+                                        event.target.playVideo();
+                                        if (audioUnlocked) {
+                                            event.target.unMute();
+                                            event.target.setVolume(100);
+                                        }
+                                    }
+                                }
+                            });
+                        } else {
+                            // Player exists, just play
+                            if (iframe.src === '' || iframe.src === 'about:blank') {
+                                iframe.src = dataSrc;
+                            }
+                            // Small delay to let src load if it was empty
+                            setTimeout(() => {
+                                if (ytPlayers[id].playVideo) {
+                                    ytPlayers[id].playVideo();
+                                    ytPlayers[id].seekTo(0);
+                                    if (audioUnlocked) {
+                                        ytPlayers[id].unMute();
+                                        ytPlayers[id].setVolume(100);
+                                    }
+                                }
+                            }, 100);
                         }
                     }
                 }
-            }, 100);
+            }, 150);
         }
 
         // Project navigation
         function showProject(id) {
             console.log("Showing project:", id);
+            
+            // Pause hero video if playing
+            if (heroYTPlayer && heroYTPlayer.pauseVideo) {
+                heroYTPlayer.pauseVideo();
+            }
+
+            // Unlock audio on project click
+            unlockAudio();
+
             const mainContent = document.getElementById('mainContent');
             const projectSection = document.getElementById('project-' + id);
             
@@ -2164,7 +2243,6 @@
         }
     </script>
     <script src="https://www.youtube.com/iframe_api"></script>
-    <!-- Final do Conteúdo Principal -->
 </body>
 </html>
 
