@@ -2042,9 +2042,18 @@
                 return;
             }
 
-            mainContent.classList.add('hidden');
-            document.querySelectorAll('.project-detail').forEach(el => el.classList.remove('active'));
+            // Hide main content and all other project details
+            if (mainContent) {
+                mainContent.classList.add('hidden');
+                mainContent.style.display = 'none'; // Force hide to override inline block
+            }
             
+            document.querySelectorAll('.project-detail').forEach(el => {
+                el.classList.remove('active');
+                el.style.display = 'none';
+            });
+            
+            // Show the selected project
             projectSection.classList.add('active');
             projectSection.style.display = 'block';
             
