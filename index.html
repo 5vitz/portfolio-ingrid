@@ -8,6 +8,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://s.ytimg.com">
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- v1.0.2 - Image Path Fix -->
@@ -1943,9 +1945,6 @@
                     const id = v.id;
                     if (id && ytPlayers[id] && ytPlayers[id].pauseVideo) {
                         ytPlayers[id].pauseVideo();
-                    } else {
-                        // Fallback: reset src if player not ready
-                        v.src = '';
                     }
                 }
             });
@@ -1953,6 +1952,8 @@
             // Small delay to ensure Swiper has updated classes
             setTimeout(() => {
                 if (!swiper.el) return;
+                
+                // 1. Play Current
                 const activeSlide = swiper.el.querySelector('.swiper-slide-active');
                 if (activeSlide) {
                     const video = activeSlide.querySelector('video');
@@ -1963,49 +1964,69 @@
                         video.play().catch(e => console.log("Autoplay blocked"));
                     }
                     if (iframe) {
-                        const dataSrc = iframe.getAttribute('data-src');
-                        if (!dataSrc) return;
-
-                        // Ensure iframe has an ID for the API
-                        if (!iframe.id) {
-                            iframe.id = 'yt-player-' + Math.random().toString(36).substr(2, 9);
-                        }
-                        const id = iframe.id;
-
-                        if (!ytPlayers[id]) {
-                            // Initialize player if not exists
-                            iframe.src = dataSrc; // Set src first
-                            ytPlayers[id] = new YT.Player(id, {
-                                events: {
-                                    'onReady': (event) => {
-                                        event.target.playVideo();
-                                        if (audioUnlocked) {
-                                            event.target.unMute();
-                                            event.target.setVolume(100);
-                                        }
-                                    }
-                                }
-                            });
-                        } else {
-                            // Player exists, just play
-                            if (iframe.src === '' || iframe.src === 'about:blank') {
-                                iframe.src = dataSrc;
-                            }
-                            // Small delay to let src load if it was empty
-                            setTimeout(() => {
-                                if (ytPlayers[id].playVideo) {
-                                    ytPlayers[id].playVideo();
-                                    ytPlayers[id].seekTo(0);
-                                    if (audioUnlocked) {
-                                        ytPlayers[id].unMute();
-                                        ytPlayers[id].setVolume(100);
-                                    }
-                                }
-                            }, 100);
-                        }
+                        loadAndPlayIframe(iframe, true);
                     }
                 }
-            }, 150);
+
+                // 2. Preload Next and Previous for speed
+                const nextSlide = swiper.el.querySelector('.swiper-slide-next');
+                const prevSlide = swiper.el.querySelector('.swiper-slide-prev');
+                
+                if (nextSlide) {
+                    const nextIframe = nextSlide.querySelector('iframe');
+                    if (nextIframe) loadAndPlayIframe(nextIframe, false);
+                }
+                if (prevSlide) {
+                    const prevIframe = prevSlide.querySelector('iframe');
+                    if (prevIframe) loadAndPlayIframe(prevIframe, false);
+                }
+            }, 100);
+        }
+
+        function loadAndPlayIframe(iframe, shouldPlay) {
+            const dataSrc = iframe.getAttribute('data-src');
+            if (!dataSrc) return;
+
+            if (!iframe.id) {
+                iframe.id = 'yt-player-' + Math.random().toString(36).substr(2, 9);
+            }
+            const id = iframe.id;
+
+            if (!ytPlayers[id]) {
+                iframe.src = dataSrc;
+                ytPlayers[id] = new YT.Player(id, {
+                    events: {
+                        'onReady': (event) => {
+                            if (shouldPlay) {
+                                event.target.playVideo();
+                                if (audioUnlocked) {
+                                    event.target.unMute();
+                                    event.target.setVolume(100);
+                                }
+                            } else {
+                                event.target.pauseVideo(); // Just loaded
+                            }
+                        }
+                    }
+                });
+            } else {
+                if (iframe.src === '' || iframe.src === 'about:blank') {
+                    iframe.src = dataSrc;
+                }
+                
+                if (shouldPlay) {
+                    setTimeout(() => {
+                        if (ytPlayers[id] && ytPlayers[id].playVideo) {
+                            ytPlayers[id].playVideo();
+                            ytPlayers[id].seekTo(0);
+                            if (audioUnlocked) {
+                                ytPlayers[id].unMute();
+                                ytPlayers[id].setVolume(100);
+                            }
+                        }
+                    }, 150);
+                }
+            }
         }
 
         // Project navigation
