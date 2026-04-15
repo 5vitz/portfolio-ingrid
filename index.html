@@ -1048,12 +1048,10 @@
             top: 50%;
             left: 50%;
             width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 9;
-            transform: translate(-50%, -50%); /* Removed scale to restore definition */
+            height: 100%;
+            transform: translate(-50%, -50%) scale(2.2); /* 2.2x is the mathematical minimum to cover 4:5 with 16:9 */
             transform-origin: center;
-            object-fit: contain;
-            background: #000; /* Default background for the video area */
+            object-fit: cover;
         }
 
         /* Fix for YouTube iframes to fill the horizontal container correctly (Project 2) */
