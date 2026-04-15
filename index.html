@@ -816,7 +816,7 @@
 
         .project-detail {
             display: none;
-            padding: 3rem 1.5rem;
+            padding: 100px 1.5rem 3rem 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
             animation: fadeIn 0.5s ease;
@@ -960,14 +960,34 @@
 
         .reels-container {
             width: 100%;
-            aspect-ratio: 9 / 16;
-            max-height: 75vh;
+            aspect-ratio: 4 / 5;
+            height: 500px;
+            max-height: 80vh;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
             background: #000;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            -webkit-mask-image: -webkit-radial-gradient(white, black); /* Fix for overflow:hidden + border-radius in some browsers */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+        }
+
+        /* Specific layout for horizontal videos (Project 2) */
+        .reels-wrapper-horizontal {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .reels-container-horizontal {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            max-height: 90vh;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
         }
 
         .reels-slide {
@@ -1013,7 +1033,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 12px;
             border: none;
             display: block;
         }
@@ -1022,10 +1042,26 @@
             pointer-events: none; /* Prevent iframe from stealing touch/mouse events */
         }
 
-        /* Fix for YouTube iframes to fill the container correctly without cropping */
+        /* Fix for YouTube iframes to "cover" the container and remove black bars (Project 3) */
         .reels-container iframe.reels-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
+            transform: translate(-50%, -50%) scale(1.8); /* Stronger zoom to fill the vertical card width-wise */
+            transform-origin: center;
+            object-fit: cover;
+        }
+
+        /* Fix for YouTube iframes to fill the horizontal container correctly (Project 2) */
+        .reels-container-horizontal iframe.reels-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100.5%; /* Slightly larger to hide potential 1px borders */
+            height: 100.5%;
+            transform: translate(-50%, -50%) scale(1.02); /* Subtle zoom to ensure full bleed */
             display: block;
             border: none;
         }
@@ -1196,6 +1232,25 @@
             overflow: hidden;
         }
 
+        /* Specific layout for horizontal videos (Project 2) */
+        .project-reel-layout-horizontal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 5rem;
+        }
+
+        .project-reel-layout-horizontal .project-image {
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
         body.dark-mode .reels-text-card {
             background-color: #1a1a1a !important;
         }
@@ -1281,8 +1336,18 @@
         }
 
         @media (max-width: 768px) {
+            .reels-wrapper {
+                max-width: 100%;
+            }
             .reels-container {
-                max-height: 70vh;
+                height: 450px;
+            }
+            .reels-wrapper-horizontal {
+                max-width: 100%;
+                padding-top: 60px;
+            }
+            .reels-container-horizontal {
+                aspect-ratio: 16 / 9;
             }
         }
     </style>
@@ -1544,27 +1609,27 @@
     </section>
 
     <section id="project-2" class="project-detail">
-        <div class="project-content project-reel-layout">
+        <div class="project-content project-reel-layout-horizontal">
             <div class="project-image">
-                <div class="reels-wrapper">
-                    <div class="swiper reels-container">
+                <div class="reels-wrapper-horizontal">
+                    <div class="swiper reels-container-horizontal">
                         <div class="swiper-wrapper">
                             <!-- 1. Aline_SoulSmile -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&mute=1&loop=1&playlist=EltZN3-Dmk4&controls=1&modestbranding=1&rel=0&enablejsapi=1&origin=https://ais-dev-szwcx23kyn6f2kxa3ref5p-396813078922.us-west2.run.app" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 2. DJDre -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&loop=1&playlist=Y-6504ItqsA&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&mute=1&loop=1&playlist=Y-6504ItqsA&controls=1&modestbranding=1&rel=0&enablejsapi=1&origin=https://ais-dev-szwcx23kyn6f2kxa3ref5p-396813078922.us-west2.run.app" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 3. Lennon_BanhodeGato -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&loop=1&playlist=stTbzH8-9rM&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&mute=1&loop=1&playlist=stTbzH8-9rM&controls=1&modestbranding=1&rel=0&enablejsapi=1&origin=https://ais-dev-szwcx23kyn6f2kxa3ref5p-396813078922.us-west2.run.app" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                             <!-- 4. Meu Papel -->
@@ -1606,6 +1671,13 @@
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
                         <div class="swiper-wrapper">
+                            <!-- TEST RECTANGLE 4:5 -->
+                            <div class="swiper-slide reels-slide">
+                                <div style="width: 100%; height: 100%; background-color: var(--cor6); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 2rem;">
+                                    TESTE PADRÃO 4:5<br>(400x500px)
+                                </div>
+                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                            </div>
                             <!-- PENÍNSULA DE MARAÚ -->
                             <div class="swiper-slide reels-slide">
                                 <img src="https://lh3.googleusercontent.com/d/1RQ0LnCiu8TQQdSG4uhynJXmMoTtkqRsb" class="reels-media" referrerPolicy="no-referrer">
@@ -2074,7 +2146,7 @@
             
             // Special init for Reels if it's project 2 or 3
             if (id === 2 || id === 3) {
-                const swiperEl = projectSection.querySelector('.reels-container');
+                const swiperEl = projectSection.querySelector('.reels-container, .reels-container-horizontal');
                 if (swiperEl) {
                     // Force restore src for all iframes in this project to prevent "missing" videos
                     swiperEl.querySelectorAll('iframe.reels-video').forEach(iframe => {
