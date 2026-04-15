@@ -1554,7 +1554,19 @@
                                 <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&loop=1&playlist=EltZN3-Dmk4&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                 <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
-                            <!-- 2. Meu Papel -->
+                            <!-- 2. DJDre -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-overlay"></div>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&loop=1&playlist=Y-6504ItqsA&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                            </div>
+                            <!-- 3. Lennon_BanhodeGato -->
+                            <div class="swiper-slide reels-slide">
+                                <div class="reels-overlay"></div>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&loop=1&playlist=stTbzH8-9rM&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                            </div>
+                            <!-- 4. Meu Papel -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-text-card" style="justify-content: flex-start; padding: 0; background: var(--white); position: relative;">
                                     <img src="https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR" style="width: 100%; height: 200px; object-fit: cover; display: block; opacity: 0.25; filter: grayscale(100%);" referrerPolicy="no-referrer">
@@ -1565,13 +1577,7 @@
                                     <div class="swipe-hint" style="margin-top: auto; padding-bottom: 1.5rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
                                 </div>
                             </div>
-                            <!-- 3. DJDre -->
-                            <div class="swiper-slide reels-slide">
-                                <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&loop=1&playlist=Y-6504ItqsA&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
-                            </div>
-                            <!-- 4. Resultados -->
+                            <!-- 5. Resultados -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: var(--white);">
                                     <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Resultados</h3>
@@ -1585,12 +1591,6 @@
                                     </div>
                                     <div class="swipe-hint" style="margin-top: auto; padding-top: 1rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
                                 </div>
-                            </div>
-                            <!-- 5. Lennon_BanhodeGato -->
-                            <div class="swiper-slide reels-slide">
-                                <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&loop=1&playlist=stTbzH8-9rM&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
                             </div>
                         </div>
                     </div>
@@ -1946,17 +1946,8 @@
         function playCurrentVideo(swiper) {
             if (!swiper || !swiper.el) return;
             
-            // Pause all videos and stop all iframes
-            document.querySelectorAll('.reels-video').forEach(v => {
-                if (v.tagName === 'VIDEO') {
-                    v.pause();
-                } else if (v.tagName === 'IFRAME') {
-                    const id = v.id;
-                    if (id && ytPlayers[id] && ytPlayers[id].pauseVideo) {
-                        ytPlayers[id].pauseVideo();
-                    }
-                }
-            });
+            // Stop ALL media first to prevent overlapping audio
+            stopAllMedia();
 
             // Small delay to ensure Swiper has updated classes
             setTimeout(() => {
@@ -2153,8 +2144,7 @@
             2: {
                 title: "", // Título removido pois já está na imagem
                 desc: "Produção de uma série de vídeos para a Good Storage, grande empresa de logística e armazenamento que oferece soluções flexíveis e inteligentes para diferentes perfis de pessoas físicas a empresas. O projeto teve como objetivo dar vida à marca por meio de histórias reais, trazendo clientes como protagonistas. A proposta foi mostrar, na prática, como os espaços se adaptam a diferentes necessidades, rotinas e momentos de vida, conectando funcionalidade à experiência.",
-                image: "https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR",
-                youtubeId: "EltZN3-Dmk4" 
+                image: "https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR"
             },
             3: {
                 title: "", // Título removido pois já está na imagem
