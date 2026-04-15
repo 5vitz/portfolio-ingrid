@@ -1048,10 +1048,12 @@
             top: 50%;
             left: 50%;
             width: 100%;
-            height: 100%;
-            transform: translate(-50%, -50%) scale(1.8); /* Stronger zoom to fill the vertical card width-wise */
+            height: auto;
+            aspect-ratio: 16 / 9;
+            transform: translate(-50%, -50%); /* Removed scale to restore definition */
             transform-origin: center;
-            object-fit: cover;
+            object-fit: contain;
+            background: #000; /* Default background for the video area */
         }
 
         /* Fix for YouTube iframes to fill the horizontal container correctly (Project 2) */
@@ -1671,13 +1673,6 @@
                 <div class="reels-wrapper">
                     <div class="swiper reels-container">
                         <div class="swiper-wrapper">
-                            <!-- TEST RECTANGLE 4:5 -->
-                            <div class="swiper-slide reels-slide">
-                                <div style="width: 100%; height: 100%; background-color: var(--cor6); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 2rem;">
-                                    TESTE PADRÃO 4:5<br>(400x500px)
-                                </div>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
-                            </div>
                             <!-- PENÍNSULA DE MARAÚ -->
                             <div class="swiper-slide reels-slide">
                                 <img src="https://lh3.googleusercontent.com/d/1RQ0LnCiu8TQQdSG4uhynJXmMoTtkqRsb" class="reels-media" referrerPolicy="no-referrer">
