@@ -960,12 +960,13 @@
 
         .reels-container {
             width: 100%;
-            height: 580px;
-            border-radius: 4px;
+            aspect-ratio: 9 / 16;
+            max-height: 75vh;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
             background: #000;
-            border: 1px solid #888;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             -webkit-mask-image: -webkit-radial-gradient(white, black); /* Fix for overflow:hidden + border-radius in some browsers */
         }
 
@@ -1021,12 +1022,12 @@
             pointer-events: none; /* Prevent iframe from stealing touch/mouse events */
         }
 
-        /* Fix for YouTube iframes to "cover" the container and remove black bars */
+        /* Fix for YouTube iframes to fill the container correctly without cropping */
         .reels-container iframe.reels-video {
             width: 100%;
             height: 100%;
-            transform: scale(1.3); /* Zoom to fill the 400px width */
-            transform-origin: center;
+            display: block;
+            border: none;
         }
 
         .reels-overlay {
@@ -1281,7 +1282,7 @@
 
         @media (max-width: 768px) {
             .reels-container {
-                height: 450px;
+                max-height: 70vh;
             }
         }
     </style>
