@@ -1176,13 +1176,6 @@
             color: var(--cor2);
         }
 
-        body.dark-mode .project-info h3,
-        body.dark-mode .project-info h4,
-        body.dark-mode .project-info p {
-            background: transparent;
-            color: #e0e0e0;
-        }
-
         /* Layout for projects with Reels */
         .project-reel-layout {
             display: flex;
@@ -1191,6 +1184,7 @@
             gap: 3rem;
             max-width: 800px;
             margin: 0 auto;
+            padding-bottom: 5rem;
         }
 
         .project-reel-layout .project-image {
@@ -1199,27 +1193,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border-radius: 12px;
             overflow: hidden;
-        }
-
-        .project-reel-layout .project-info {
-            width: 100%;
-            text-align: center;
-            background: rgba(var(--cor1-rgb), 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-        }
-
-        body.dark-mode .project-reel-layout .project-info {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .project-reel-layout .project-info h3,
-        .project-reel-layout .project-info h4 {
-            display: flex;
-            justify-content: center;
-            border-left: none;
-            padding-left: 0;
-            margin-bottom: 1.5rem;
         }
 
         body.dark-mode .reels-text-card {
@@ -1559,7 +1532,6 @@
 
     <!-- Project Details Sections -->
     <section id="project-1" class="project-detail">
-        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>Expedição BAHIA</h2>
         </div>
@@ -1567,21 +1539,10 @@
             <div class="project-image">
                 <iframe id="video-1" class="project-iframe" src="https://drive.google.com/file/d/1FznByPJf4W0r8TFft3uG4GkDTK4d1-a0/preview" allow="autoplay"></iframe>
             </div>
-            <div class="project-info">
-                <h4>A ideia</h4>
-                <p>Introduzir uma nova solução de software no mercado B2B com foco em automação de processos industriais.</p>
-                <h4>O objetivo</h4>
-                <p>Desenvolvemos uma narrativa baseada em eficiência e redução de custos, utilizando storytelling para humanizar a tecnologia.</p>
-                <h4>Meu papel</h4>
-                <p>Desenvolvemos uma narrativa baseada em eficiência e redução de custos, utilizando storytelling para humanizar a tecnologia.</p>
-                <h4>Resultados</h4>
-                <p>Aumento de 45% no tráfego qualificado e conversão de leads 3x superior à média do setor nos primeiros 3 meses.</p>
-            </div>
         </div>
     </section>
 
     <section id="project-2" class="project-detail">
-        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-content project-reel-layout">
             <div class="project-image">
                 <div class="reels-wrapper">
@@ -1635,21 +1596,10 @@
                     </div>
                 </div>
             </div>
-            <div class="project-info">
-                <h3>Sobre o Projeto</h3>
-                <p>Produção de uma série de vídeos para a Good Storage, focando em histórias reais de clientes para humanizar a marca e mostrar a versatilidade dos espaços.</p>
-                <h4>Desafio</h4>
-                <p>Dar vida à marca por meio de narrativas autênticas, conectando funcionalidade à experiência do usuário.</p>
-                <h4>Solução</h4>
-                <p>Série de vídeos curtos (estilo Reels) com depoimentos e demonstrações práticas de uso dos espaços.</p>
-                <h4>Resultados</h4>
-                <p>Aumento significativo no engajamento das redes sociais e fortalecimento do posicionamento de marca.</p>
-            </div>
         </div>
     </section>
 
     <section id="project-3" class="project-detail">
-        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-content project-reel-layout">
             <div class="project-image">
                 <div class="reels-wrapper">
@@ -1770,21 +1720,10 @@
                     </div>
                 </div>
             </div>
-            <div class="project-info">
-                <h3>Sobre o Projeto</h3>
-                <p>Estratégia de Conteúdo e Presença Digital para a ELO Bike & Trips, agência de cicloturismo, focando em consolidar o Instagram como canal de conversão.</p>
-                <h4>Desafio</h4>
-                <p>Consolidar a presença digital e transformar o Instagram em uma ferramenta de vendas orgânicas.</p>
-                <h4>Solução</h4>
-                <p>Planejamento de conteúdo estratégico, narrativa autêntica e gestão de calendário editorial.</p>
-                <h4>Resultados</h4>
-                <p>Crescimento orgânico, maior engajamento e fortalecimento da autoridade da marca no setor.</p>
-            </div>
         </div>
     </section>
 
     <section id="project-4" class="project-detail">
-        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>Estratégia de Conteúdo B2C</h2>
         </div>
@@ -1795,19 +1734,10 @@
                     Seu navegador não suporta vídeos.
                 </video>
             </div>
-            <div class="project-info">
-                <h4>O Desafio</h4>
-                <p>Educar o mercado sobre um novo serviço financeiro digital para jovens investidores.</p>
-                <h4>A Estratégia</h4>
-                <p>Produção de conteúdo educativo simplificado, quebrando a barreira da complexidade financeira.</p>
-                <h4>Resultados</h4>
-                <p>Mais de 50 mil downloads do aplicativo em 4 meses e taxa de retenção de usuários acima de 70%.</p>
-            </div>
         </div>
     </section>
 
     <section id="project-5" class="project-detail">
-        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>Campanha Verão 2024</h2>
         </div>
@@ -1815,33 +1745,16 @@
             <div class="project-image">
                 <img src="https://picsum.photos/seed/summer/800/600" alt="Projeto 5" style="width: 100%; border-radius: 12px;">
             </div>
-            <div class="project-info">
-                <h4>O Desafio</h4>
-                <p>Lançamento de uma nova linha de produtos sazonais com foco em engajamento imediato.</p>
-                <h4>A Estratégia</h4>
-                <p>Uso de influenciadores locais e conteúdo visual vibrante para gerar desejo de compra.</p>
-                <h4>Resultados</h4>
-                <p>Esgotamento do estoque inicial em apenas 15 dias e aumento de 80% nas menções da marca.</p>
-            </div>
         </div>
     </section>
 
     <section id="project-6" class="project-detail">
-        <button class="btn-back-project" onclick="closeAllProjects()">← Voltar para Projetos</button>
         <div class="project-header">
             <h2>E-commerce Performance</h2>
         </div>
         <div class="project-content">
             <div class="project-image">
                 <img src="https://picsum.photos/seed/ecommerce/800/600" alt="Projeto 6" style="width: 100%; border-radius: 12px;">
-            </div>
-            <div class="project-info">
-                <h4>O Desafio</h4>
-                <p>Otimizar a taxa de conversão de um e-commerce de decoração que apresentava alto abandono de carrinho.</p>
-                <h4>A Estratégia</h4>
-                <p>Reestruturação do funil de vendas e implementação de campanhas de remarketing dinâmico.</p>
-                <h4>Resultados</h4>
-                <p>Redução de 30% no abandono de carrinho e aumento de 25% no faturamento mensal.</p>
             </div>
         </div>
     </section>
