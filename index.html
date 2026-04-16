@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://s.ytimg.com">
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="manifest" href="/manifest.json">
     <!-- v1.0.2 - Image Path Fix -->
     <style>
         :root {
@@ -817,7 +818,7 @@
         .project-detail {
             display: none;
             padding: 100px 1.5rem 3rem 1.5rem;
-            max-width: 1200px;
+            max-width: 1800px; /* Increased to allow larger Reels */
             margin: 0 auto;
             animation: fadeIn 0.5s ease;
             position: relative;
@@ -912,11 +913,20 @@
             .nav-actions {
                 gap: 1rem;
             }
+            .project-detail.active {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                padding: 80px 1.5rem 40px 1.5rem;
+            }
             .project-content {
                 grid-template-columns: 1fr;
             }
             .project-header h2 {
                 font-size: 2rem;
+            }
+            .project-header {
+                margin-bottom: 1.5rem;
             }
             .nav-menu {
                 display: none;
@@ -951,43 +961,29 @@
                 font-size: 0.8rem;
             }
         }
-        /* Reels Carousel Style */
+        /* ===============================================================
+           REELS COMPONENT (Horizontal Orientation)
+           =============================================================== */
         .reels-wrapper {
-            max-width: 400px;
+            width: 100%;
+            max-width: 889px; /* (1920 * 500) / 1080 = 888.88... for a 500px height */
             margin: 0 auto;
             position: relative;
+            background: #000;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+            box-shadow: 0 35px 70px rgba(0,0,0,0.5);
+            overflow: hidden;
         }
 
         .reels-container {
             width: 100%;
-            aspect-ratio: 4 / 5;
-            height: 500px;
-            max-height: 80vh;
-            border-radius: 12px;
+            aspect-ratio: 16 / 9; /* Guarantees horizontal aspect ratio on all screens */
             overflow: hidden;
-            box-shadow: var(--shadow);
             background: #000;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Fix for rounded corners */
             -webkit-mask-image: -webkit-radial-gradient(white, black);
-        }
-
-        /* Specific layout for horizontal videos (Project 2) */
-        .reels-wrapper-horizontal {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .reels-container-horizontal {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            max-height: 90vh;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            background: #000;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            mask-image: -webkit-radial-gradient(white, black);
         }
 
         .reels-slide {
@@ -996,74 +992,89 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden; /* Prevent zoomed video from leaking */
+            overflow: hidden;
+            background: #000;
         }
 
+        .reels-media {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* YouTube Iframe Scaling - Native 1:1 fit */
+        .reels-container iframe.reels-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: none;
+            border: none;
+            pointer-events: none;
+        }
+
+        /* Project 2: No specific scale needed anymore */
+        #project-2 .reels-video {
+            width: 100%;
+            height: 100%;
+            transform: none;
+        }
+
+        /* Text Cards (Instagram Info Style) */
         .reels-text-card {
             width: 100%;
             height: 100%;
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.5rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--cor1), var(--cor2));
-            color: white;
+            background: #fff;
+            color: #333;
+            overflow-y: auto;
+        }
+
+        body.dark-mode .reels-text-card {
+            background: #121212;
+            color: #eee;
         }
 
         .reels-text-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            font-family: var(--font-sans);
-            font-weight: 700;
-            color: var(--cor6); /* Rosa para destaque no título do card */
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--cor1);
+            border-bottom: 2px solid var(--cor2);
+            display: inline-block;
+            padding-bottom: 4px;
+            align-self: flex-start;
         }
 
         .reels-text-card p {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            text-align: justify;
-            text-justify: inter-word;
-            hyphens: auto;
+            margin-bottom: 1rem;
         }
 
-        .reels-video, .reels-media, .reels-container iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-            border: none;
-            display: block;
-        }
-        
-        .reels-container iframe {
-            pointer-events: none; /* Prevent iframe from stealing touch/mouse events */
+        .reels-text-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        /* Fix for YouTube iframes to "cover" the container and remove black bars (Project 3) */
-        .reels-container iframe.reels-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            transform: translate(-50%, -50%) scale(2.2); /* 2.2x is the mathematical minimum to cover 4:5 with 16:9 */
-            transform-origin: center;
-            object-fit: cover;
+        .reels-text-card li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            gap: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
-        /* Fix for YouTube iframes to fill the horizontal container correctly (Project 2) */
-        .reels-container-horizontal iframe.reels-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100.5%; /* Slightly larger to hide potential 1px borders */
-            height: 100.5%;
-            transform: translate(-50%, -50%) scale(1.02); /* Subtle zoom to ensure full bleed */
-            display: block;
-            border: none;
+        .reels-text-card li span {
+            color: var(--cor1);
+            font-weight: bold;
         }
 
         .reels-overlay {
@@ -1074,6 +1085,29 @@
             height: 100%;
             z-index: 5;
             background: transparent;
+        }
+
+        .swipe-hint {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 10;
+            pointer-events: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .reels-text-card .swipe-hint {
+            position: static;
+            transform: none;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            color: #999;
+            text-align: center;
         }
 
         /* Dark Mode Toggle Switch */
@@ -1219,14 +1253,14 @@
             flex-direction: column;
             align-items: center;
             gap: 3rem;
-            max-width: 800px;
+            max-width: 100%; /* Allow full width */
             margin: 0 auto;
             padding-bottom: 5rem;
         }
 
         .project-reel-layout .project-image {
             width: 100%;
-            max-width: 400px;
+            max-width: 100%; /* Allow full width */
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border-radius: 12px;
             overflow: hidden;
@@ -1592,6 +1626,8 @@
         </div>
         <div class="copyright">
             &copy; 2026 <span style="color: var(--cor6); font-weight: 700;">Ingrid Sinkovitz</span>. Todos os direitos reservados.
+            <br>
+            <a href="/admin.html" style="font-size: 0.7rem; color: #666; text-decoration: none; margin-top: 10px; display: inline-block;">Painel Administrativo</a>
         </div>
     </footer>
     </div>
@@ -1609,53 +1645,51 @@
     </section>
 
     <section id="project-2" class="project-detail">
-        <div class="project-content project-reel-layout-horizontal">
+        <div class="project-content project-reel-layout">
             <div class="project-image">
-                <div class="reels-wrapper-horizontal">
-                    <div class="swiper reels-container-horizontal">
+                <div class="reels-wrapper">
+                    <div class="swiper reels-container">
                         <div class="swiper-wrapper">
                             <!-- 1. Aline_SoulSmile -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?autoplay=1&mute=1&loop=1&playlist=EltZN3-Dmk4&controls=1&modestbranding=1&rel=0&enablejsapi=1&origin=https://ais-dev-szwcx23kyn6f2kxa3ref5p-396813078922.us-west2.run.app" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/EltZN3-Dmk4?playlist=EltZN3-Dmk4&controls=1&modestbranding=1&rel=0&enablejsapi=1&playsinline=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="swipe-hint">Arraste para cima ↕</div>
                             </div>
                             <!-- 2. DJDre -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?autoplay=1&mute=1&loop=1&playlist=Y-6504ItqsA&controls=1&modestbranding=1&rel=0&enablejsapi=1&origin=https://ais-dev-szwcx23kyn6f2kxa3ref5p-396813078922.us-west2.run.app" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/Y-6504ItqsA?playlist=Y-6504ItqsA&controls=1&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="swipe-hint">Arraste para cima ↕</div>
                             </div>
                             <!-- 3. Lennon_BanhodeGato -->
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?autoplay=1&mute=1&loop=1&playlist=stTbzH8-9rM&controls=1&modestbranding=1&rel=0&enablejsapi=1&origin=https://ais-dev-szwcx23kyn6f2kxa3ref5p-396813078922.us-west2.run.app" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/stTbzH8-9rM?playlist=stTbzH8-9rM&controls=1&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <div class="swipe-hint">Arraste para cima ↕</div>
                             </div>
                             <!-- 4. Meu Papel -->
                             <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: flex-start; padding: 0; background: var(--white); position: relative;">
-                                    <img src="https://lh3.googleusercontent.com/d/1aFgSVw9tH0MIIkoJr6kWjBaPRM2MOZkR" style="width: 100%; height: 200px; object-fit: cover; display: block; opacity: 0.25; filter: grayscale(100%);" referrerPolicy="no-referrer">
-                                    <div style="padding: 2rem 1.5rem; text-align: center; width: 100%;">
-                                        <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Meu papel</h3>
-                                        <p style="font-size: 0.95rem; line-height: 1.6; color: #555; text-align: justify; text-justify: inter-word;">Atuei como produtora executiva, sendo responsável por fazer a interface entre agência e produtora, garantindo alinhamento estratégico e fluidez em todas as etapas do projeto. Acompanhei o processo de ponta a ponta, do planejamento à entrega final, assegurando cumprimento de prazos, qualidade do material e consistência com os objetivos do cliente.</p>
-                                    </div>
-                                    <div class="swipe-hint" style="margin-top: auto; padding-bottom: 1.5rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                <div class="reels-text-card">
+                                    <h3>Meu papel</h3>
+                                    <p>Atuei como produtora executiva, sendo responsável por fazer a interface entre agência e produtora, garantindo alinhamento estratégico e fluidez em todas as etapas do projeto.</p>
+                                    <p style="font-weight: 600;">Acompanhei o processo de ponta a ponta, do planejamento à entrega final, assegurando cumprimento de prazos e qualidade.</p>
+                                    <div class="swipe-hint">Arraste para cima ↕</div>
                                 </div>
                             </div>
                             <!-- 5. Resultados -->
                             <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: var(--white);">
-                                    <h3 style="font-size: 1rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Resultados</h3>
-                                    <div style="font-size: 0.6rem; line-height: 1.3; color: #555; text-align: left; width: 100%;">
-                                        <p style="margin-bottom: 0.3rem;">• Estruturação do projeto a partir do briefing, com planejamento de produção (cronograma, recursos e logística)</p>
-                                        <p style="margin-bottom: 0.3rem;">• Gestão de orçamento, cotações e contratação estratégica de equipe e fornecedores</p>
-                                        <p style="margin-bottom: 0.3rem;">• Organização e controle das etapas de produção, incluindo ordens de produção e documentação do projeto</p>
-                                        <p style="margin-bottom: 0.3rem;">• Acompanhamento de gravações e suporte à direção, garantindo fluidez e eficiência no set</p>
-                                        <p style="margin-bottom: 0.3rem;">• Interface entre cliente, equipe criativa e produção, assegurando alinhamento ao longo de todo o processo</p>
-                                        <p style="margin-bottom: 0.3rem;">• Supervisão da pós-produção até a entrega final, com foco em prazo, qualidade e consistência do material</p>
-                                    </div>
-                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 1rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                <div class="reels-text-card">
+                                    <h3>Resultados</h3>
+                                    <ul>
+                                        <li><span>•</span> Estruturação do projeto e planejamento de produção</li>
+                                        <li><span>•</span> Gestão de orçamento e contratação de equipe</li>
+                                        <li><span>•</span> Organização e controle das etapas de produção</li>
+                                        <li><span>•</span> Acompanhamento de gravações e suporte à direção</li>
+                                        <li><span>•</span> Interface entre cliente e equipe criativa</li>
+                                        <li><span>•</span> Supervisão da pós-produção até a entrega final</li>
+                                    </ul>
+                                    <div class="swipe-hint">Arraste para cima ↕</div>
                                 </div>
                             </div>
                         </div>
@@ -1674,12 +1708,12 @@
                             <!-- PENÍNSULA DE MARAÚ -->
                             <div class="swiper-slide reels-slide">
                                 <img src="https://lh3.googleusercontent.com/d/1RQ0LnCiu8TQQdSG4uhynJXmMoTtkqRsb" class="reels-media" referrerPolicy="no-referrer">
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                                <div class="swipe-hint">Arraste para cima ↕</div>
                             </div>
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/8MVfBdye-ug?autoplay=1&mute=1&loop=1&playlist=8MVfBdye-ug&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/8MVfBdye-ug?playlist=8MVfBdye-ug&controls=1&modestbranding=1&rel=0&enablejsapi=1&playsinline=1" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                                <div class="swipe-hint">Arraste para cima ↕</div>
                             </div>
                             <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1jxnQeH3lBBPkFyu35bW2QkB7Pfe7uVfy" class="reels-media" referrerPolicy="no-referrer"></div>
                             <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1SAYF-QlNCG6447ains3pqBzJtarwu3R7" class="reels-media" referrerPolicy="no-referrer"></div>
@@ -1694,12 +1728,12 @@
                             <!-- ROTA DO CACAU -->
                             <div class="swiper-slide reels-slide">
                                 <img src="https://lh3.googleusercontent.com/d/1KfNLPY1xmkePqJqbF8pVmvay0YS0EMLk" class="reels-media" referrerPolicy="no-referrer">
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                                <div class="swipe-hint">Arraste para cima ↕</div>
                             </div>
                             <div class="swiper-slide reels-slide">
                                 <div class="reels-overlay"></div>
-                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/GvVJ_SIEaWg?autoplay=1&mute=1&loop=1&playlist=GvVJ_SIEaWg&controls=0&modestbranding=1&rel=0&enablejsapi=1" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <div class="swipe-hint" style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10;">Arraste para cima ↕</div>
+                                <iframe class="reels-video reels-media" data-src="https://www.youtube.com/embed/GvVJ_SIEaWg?playlist=GvVJ_SIEaWg&controls=1&modestbranding=1&rel=0&enablejsapi=1&playsinline=1" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                                <div class="swipe-hint">Arraste para cima ↕</div>
                             </div>
                             <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1NEjbNlDfEkeKQgDkYJ7zrV_kVzA1d9jp" class="reels-media" referrerPolicy="no-referrer"></div>
                             <div class="swiper-slide reels-slide"><img src="https://lh3.googleusercontent.com/d/1PK6hi4E1OIAHdt3L8DRfIA4k4xo23MFh" class="reels-media" referrerPolicy="no-referrer"></div>
@@ -1734,52 +1768,48 @@
                             <!-- TEXT CARDS -->
                             <!-- Card 1: Introdução -->
                             <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: var(--white); text-align: center;">
-                                    <h3 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; line-height: 1.4;">Estratégia de Conteúdo e Presença Digital | ELO Bike & Trips</h3>
-                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #555; margin-bottom: 1rem;">Projeto de estruturação e gestão da presença digital da ELO Bike & Trips, agência de cicloturismo.</p>
-                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #555; font-weight: 600;">Objetivo de consolidar o Instagram como principal canal de comunicação e conversão, com crescimento orgânico e fortalecimento da marca.</p>
-                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 2rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                <div class="reels-text-card">
+                                    <h3>Estratégia de Conteúdo e Presença Digital | ELO Bike & Trips</h3>
+                                    <p>Projeto de estruturação e gestão da presença digital da ELO Bike & Trips, agência de cicloturismo.</p>
+                                    <p style="font-weight: 600;">Objetivo de consolidar o Instagram como principal canal de comunicação e conversão, com crescimento orgânico e fortalecimento da marca.</p>
+                                    <div class="swipe-hint">Arraste para cima ↕</div>
                                 </div>
                             </div>
 
                             <!-- Card 2: Escopo -->
                             <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: flex-start; padding: 2.5rem 1.5rem; background: var(--white);">
-                                    <h3 style="font-size: 1rem; margin-bottom: 1.5rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--cor2); display: inline-block; padding-bottom: 5px;">Escopo de atuação</h3>
-                                    <ul style="font-size: 0.85rem; line-height: 1.5; color: #555; text-align: left; list-style: none; padding: 0;">
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Planejamento e condução da estratégia de conteúdo para redes sociais</li>
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Desenvolvimento de narrativa, tom de voz e linha editorial</li>
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Estruturação e gestão do calendário editorial</li>
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Criação de pautas, roteiros e briefings para produção de conteúdo</li>
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Organização de fluxos de trabalho e acompanhamento da produção</li>
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Interface direta com o cliente e alinhamento estratégico contínuo</li>
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Monitoramento de qualidade e consistência das entregas</li>
-                                        <li style="margin-bottom: 0.8rem; display: flex; gap: 10px;"><span>•</span> Análise de performance e otimização de conteúdos</li>
+                                <div class="reels-text-card">
+                                    <h3>Escopo de atuação</h3>
+                                    <ul>
+                                        <li><span>•</span> Planejamento e condução da estratégia de conteúdo para redes sociais</li>
+                                        <li><span>•</span> Desenvolvimento de narrativa, tom de voz e linha editorial</li>
+                                        <li><span>•</span> Estruturação e gestão do calendário editorial</li>
+                                        <li><span>•</span> Criação de pautas, roteiros e briefings para produção de conteúdo</li>
+                                        <li><span>•</span> Organização de fluxos de trabalho e acompanhamento da produção</li>
+                                        <li><span>•</span> Interface direta com o cliente e alinhamento estratégico contínuo</li>
+                                        <li><span>•</span> Monitoramento de qualidade e consistência das entregas</li>
+                                        <li><span>•</span> Análise de performance e otimização de conteúdos</li>
                                     </ul>
-                                    <div class="swipe-hint" style="margin-top: auto; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
+                                    <div class="swipe-hint">Arraste para cima ↕</div>
                                 </div>
                             </div>
 
                             <!-- Card 3: Entrega -->
                             <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: center; padding: 2rem 1.5rem; background: #f9f9f9; border: 1px solid #eee;">
-                                    <h3 style="font-size: 1rem; margin-bottom: 1.5rem; color: var(--text-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Entrega</h3>
+                                <div class="reels-text-card" style="background: #f9f9f9; border: 1px solid #eee;">
+                                    <h3>Entrega</h3>
                                     <div style="font-size: 0.95rem; line-height: 1.8; color: #444; text-align: center;">
                                         <p>• Estruturação da presença digital no Instagram</p>
                                         <p>• Conteúdos alinhados ao posicionamento da marca</p>
                                         <p>• Consistência na comunicação e frequência</p>
                                         <p>• Base estratégica para crescimento orgânico</p>
                                     </div>
-                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 2rem; opacity: 0.5; color: #555;">Arraste para cima ↕</div>
-                                </div>
-                            </div>
-
-                            <!-- Card 4: Foco Estratégico -->
+                                    <!-- Card 4: Foco Estratégico -->
                             <div class="swiper-slide reels-slide">
-                                <div class="reels-text-card" style="justify-content: center; padding: 2.5rem 1.5rem; background: var(--text-dark); color: white; text-align: center;">
-                                    <h3 style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--cor2); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Foco estratégico</h3>
+                                <div class="reels-text-card" style="background: var(--text-dark); color: white; text-align: center; justify-content: center;">
+                                    <h3 style="color: var(--cor2); align-self: center;">Foco estratégico</h3>
                                     <p style="font-size: 1.1rem; line-height: 1.6; font-style: italic; font-family: serif;">"Construção de uma comunicação autêntica e consistente, conectando experiência, estilo de vida e turismo, com foco em gerar identificação, engajamento e conversão."</p>
-                                    <div class="swipe-hint" style="margin-top: auto; padding-top: 2rem; opacity: 0.7; color: white;">Fim do Projeto ↕</div>
+                                    <div class="swipe-hint" style="color: white; opacity: 0.7;">Fim do Projeto ↕</div>
                                 </div>
                             </div>
                         </div>
@@ -1947,18 +1977,30 @@
 
         // Global function to stop all videos/iframes
         function stopAllMedia() {
-            document.querySelectorAll('.project-video, .reels-video, .project-iframe').forEach(el => {
-                if (el.tagName === 'VIDEO') {
-                    el.pause();
-                    el.currentTime = 0;
-                } else if (el.tagName === 'IFRAME') {
-                    el.src = '';
-                    // If it was a YT player, remove it from the map so it re-inits correctly later
-                    if (el.id && ytPlayers[el.id]) {
-                        delete ytPlayers[el.id];
-                    }
-                }
+            // 1. Stop native videos
+            document.querySelectorAll('video').forEach(v => {
+                v.pause();
+                v.muted = true;
             });
+
+            // 2. Stop all YouTube players via API
+            Object.values(ytPlayers).forEach(player => {
+                try {
+                    if (typeof player.pauseVideo === 'function') {
+                        player.pauseVideo();
+                        player.mute();
+                    }
+                } catch(e) {}
+            });
+
+            // 3. Fallback: Send pause/mute command to ALL iframes via postMessage
+            document.querySelectorAll('iframe.reels-video, .project-iframe').forEach(iframe => {
+                try {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                } catch(e) {}
+            });
+
             if (heroYTPlayer && heroYTPlayer.pauseVideo) {
                 heroYTPlayer.pauseVideo();
             }
@@ -1971,17 +2013,65 @@
         function unlockAudio() {
             if (audioUnlocked) return;
             
-            // Try to play a silent sound to unlock audio
             const silentAudio = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=");
             silentAudio.play().then(() => {
                 audioUnlocked = true;
                 console.log("Audio unlocked");
-                // Unmute any currently playing players
-                Object.values(ytPlayers).forEach(player => {
-                    if (player && player.unMute) player.unMute();
+                
+                // Unmute ONLY the currently active video across all swipers
+                document.querySelectorAll('.swiper-slide-active iframe.reels-video').forEach(iframe => {
+                    if (iframe.id && ytPlayers[iframe.id]) {
+                        const player = ytPlayers[iframe.id];
+                        if (typeof player.unMute === 'function') {
+                            player.unMute();
+                            player.setVolume(100);
+                        }
+                    }
+                });
+                document.querySelectorAll('.swiper-slide-active video').forEach(video => {
+                    video.muted = false;
+                    video.volume = 1;
                 });
             }).catch(e => console.log("Audio unlock failed:", e));
         }
+
+        // Visibility Observer to stop media when out of view
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    // Stop all media in this section
+                    const section = entry.target;
+                    section.querySelectorAll('video, iframe').forEach(el => {
+                        if (el.tagName === 'VIDEO') {
+                            el.pause();
+                        } else if (el.tagName === 'IFRAME' && el.id && ytPlayers[el.id]) {
+                            try {
+                                ytPlayers[el.id].pauseVideo();
+                                ytPlayers[el.id].mute();
+                            } catch(e) {}
+                        }
+                    });
+                } else {
+                    // When coming back into view, re-trigger the current slide's play logic
+                    const reelsContainer = entry.target.querySelector('.reels-container');
+                    if (reelsContainer && reelsContainer.swiper) {
+                        playCurrentVideo(reelsContainer.swiper);
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.project-detail').forEach(section => {
+                projectObserver.observe(section);
+            });
+            
+            const reelsWrappers = document.querySelectorAll('.reels-wrapper, .reels-wrapper-horizontal');
+            reelsWrappers.forEach(wrapper => {
+                wrapper.addEventListener('click', unlockAudio);
+                wrapper.addEventListener('touchstart', unlockAudio);
+            });
+        });
 
         document.addEventListener('click', unlockAudio, { once: true });
         document.addEventListener('touchstart', unlockAudio, { once: true });
@@ -1993,8 +2083,8 @@
             }
             
             projectSwipers[projectId] = new Swiper(containerSelector, {
-                direction: 'vertical',
-                loop: true,
+                direction: 'horizontal',
+                loop: false, // Disable loop to prevent cloned iframes from confusing the YouTube API
                 mousewheel: true,
                 grabCursor: true,
                 on: {
@@ -2015,17 +2105,18 @@
             // Stop ALL media first to prevent overlapping audio
             stopAllMedia();
 
-            // Small delay to ensure Swiper has updated classes
+            // Small delay to ensure Swiper has updated classes and previous audio is killed
             setTimeout(() => {
                 if (!swiper.el) return;
                 
                 // 1. Play Current
-                const activeSlide = swiper.el.querySelector('.swiper-slide-active');
-                if (activeSlide) {
-                    const video = activeSlide.querySelector('video');
-                    const iframe = activeSlide.querySelector('iframe');
+                const currentActiveSlide = swiper.el.querySelector('.swiper-slide-active');
+                if (currentActiveSlide) {
+                    const video = currentActiveSlide.querySelector('video');
+                    const iframe = currentActiveSlide.querySelector('iframe');
                     
                     if (video) {
+                        video.muted = !audioUnlocked;
                         video.currentTime = 0;
                         video.play().catch(e => console.log("Autoplay blocked"));
                     }
@@ -2034,7 +2125,7 @@
                     }
                 }
 
-                // 2. Preload Next and Previous for speed
+                // 2. Preload Next and Previous (but keep them paused/muted)
                 const nextSlide = swiper.el.querySelector('.swiper-slide-next');
                 const prevSlide = swiper.el.querySelector('.swiper-slide-prev');
                 
@@ -2046,58 +2137,84 @@
                     const prevIframe = prevSlide.querySelector('iframe');
                     if (prevIframe) loadAndPlayIframe(prevIframe, false);
                 }
-            }, 100);
+            }, 200);
         }
 
         function loadAndPlayIframe(iframe, shouldPlay) {
-            const dataSrc = iframe.getAttribute('data-src');
+            let dataSrc = iframe.getAttribute('data-src');
             if (!dataSrc) return;
+
+            // Ensure origin is present for API communication
+            const currentOrigin = window.location.origin;
+            let finalSrc = dataSrc;
+            if (!finalSrc.includes('origin=')) {
+                finalSrc += (finalSrc.includes('?') ? '&' : '?') + 'origin=' + encodeURIComponent(currentOrigin);
+            }
+            // Force enablejsapi
+            if (!finalSrc.includes('enablejsapi=1')) {
+                finalSrc += '&enablejsapi=1';
+            }
 
             if (!iframe.id) {
                 iframe.id = 'yt-player-' + Math.random().toString(36).substr(2, 9);
             }
             const id = iframe.id;
 
+            // Set src ONLY ONCE to avoid reloading and audio ghosts
+            if (!iframe.src || iframe.src === 'about:blank' || iframe.src === window.location.href) {
+                iframe.src = finalSrc;
+            }
+
             if (!ytPlayers[id]) {
-                iframe.src = dataSrc;
                 ytPlayers[id] = new YT.Player(id, {
                     events: {
                         'onReady': (event) => {
                             if (shouldPlay) {
+                                event.target.mute();
                                 event.target.playVideo();
-                                if (audioUnlocked) {
-                                    event.target.unMute();
-                                    event.target.setVolume(100);
-                                }
+                                
+                                // Unmute if audio is already unlocked
+                                setTimeout(() => {
+                                    if (audioUnlocked) {
+                                        event.target.unMute();
+                                        event.target.setVolume(100);
+                                    }
+                                }, 500);
                             } else {
-                                event.target.pauseVideo(); // Just loaded
+                                event.target.pauseVideo();
+                                event.target.mute();
+                            }
+                        },
+                        'onStateChange': (event) => {
+                            if (event.data === YT.PlayerState.ENDED) {
+                                const playerIframe = event.target.getIframe();
+                                const slide = playerIframe.closest('.swiper-slide');
+                                if (slide && slide.classList.contains('swiper-slide-active')) {
+                                    event.target.playVideo();
+                                }
                             }
                         }
                     }
                 });
             } else {
-                // Restore src if it was cleared by stopAllMedia
-                if (!iframe.src || iframe.src === 'about:blank' || iframe.src === window.location.href) {
-                    iframe.src = dataSrc;
-                }
-                
-                if (shouldPlay) {
-                    setTimeout(() => {
-                        if (ytPlayers[id] && ytPlayers[id].playVideo) {
-                            try {
-                                ytPlayers[id].playVideo();
-                                ytPlayers[id].seekTo(0);
-                                if (audioUnlocked) {
-                                    ytPlayers[id].unMute();
-                                    ytPlayers[id].setVolume(100);
-                                }
-                            } catch (e) {
-                                console.log("Error playing video, re-initializing player");
-                                delete ytPlayers[id];
-                                loadAndPlayIframe(iframe, true);
+                const player = ytPlayers[id];
+                if (player && typeof player.playVideo === 'function') {
+                    if (shouldPlay) {
+                        try {
+                            player.playVideo();
+                            if (audioUnlocked) {
+                                player.unMute();
+                                player.setVolume(100);
                             }
+                        } catch(e) {
+                            iframe.src = finalSrc; // Recovery
                         }
-                    }, 150);
+                    } else {
+                        try {
+                            player.pauseVideo();
+                            player.mute();
+                        } catch(e) {}
+                    }
                 }
             }
         }
@@ -2139,7 +2256,7 @@
             
             // Special init for Reels if it's project 2 or 3
             if (id === 2 || id === 3) {
-                const swiperEl = projectSection.querySelector('.reels-container, .reels-container-horizontal');
+                const swiperEl = projectSection.querySelector('.reels-container');
                 if (swiperEl) {
                     // Force restore src for all iframes in this project to prevent "missing" videos
                     swiperEl.querySelectorAll('iframe.reels-video').forEach(iframe => {
@@ -2363,7 +2480,14 @@
             }, { threshold: 0.5 });
             observer.observe(heroSection);
         }
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+            });
+        }
     </script>
+    <script type="module" src="/src/main.ts"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
