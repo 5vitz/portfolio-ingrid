@@ -122,13 +122,52 @@
             padding: 1rem;
             border-bottom: 1px solid #eee;
         }
-        .btn-delete {
-            background: #dc3545;
-            color: white;
+        .reels-links-container {
+            margin-top: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #fafafa;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .reels-link-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .reels-link-item input {
+            flex: 1;
+        }
+        .reels-actions {
+            display: flex;
+            gap: 5px;
+        }
+        .btn-icon {
+            padding: 5px;
+            background: #eee;
             border: none;
-            padding: 5px 10px;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .btn-icon:hover {
+            background: #ddd;
+        }
+        .btn-add-link {
+            background: var(--cor1);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
         }
         .hidden { display: none; }
     </style>
@@ -174,15 +213,28 @@
                         <option value="reels">Carrossel (Reels)</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>URL do Vídeo (ou IDs separados por vírgula para Reels)</label>
+                <div class="form-group" id="singleVideoGroup">
+                    <label>URL do Vídeo (YouTube/Drive)</label>
                     <input type="text" id="pUrl">
+                </div>
+                <div class="form-group hidden" id="reelsLinksGroup">
+                    <label>Links do Carrossel (Reels)</label>
+                    <div id="reelsLinksList" class="reels-links-container">
+                        <!-- Links will be added here dynamically -->
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button type="button" id="btnAddReelsLink" class="btn-add-link">+ Adicionar Link</button>
+                        <button type="button" id="btnClearReelsLinks" class="nav-btn" style="font-size: 0.9rem;">Limpar Lista</button>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Ordem</label>
                     <input type="number" id="pOrder" value="0">
                 </div>
-                <button type="submit" class="btn-save">Salvar Projeto</button>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn-save">Salvar Projeto</button>
+                    <button type="button" id="btnCancelProject" class="nav-btn">Cancelar</button>
+                </div>
             </form>
             <div id="listProjetos" class="data-list"></div>
         </section>

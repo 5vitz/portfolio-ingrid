@@ -6,6 +6,96 @@ const userEmailSpan = document.getElementById('userEmail');
 const btnLogin = document.getElementById('btnLogin');
 const btnLogout = document.getElementById('btnLogout');
 
+// Reels Links Management
+const pTypeSelect = document.getElementById('pType') as HTMLSelectElement;
+const singleVideoGroup = document.getElementById('singleVideoGroup');
+const reelsLinksGroup = document.getElementById('reelsLinksGroup');
+const reelsLinksList = document.getElementById('reelsLinksList');
+const btnAddReelsLink = document.getElementById('btnAddReelsLink');
+const btnClearReelsLinks = document.getElementById('btnClearReelsLinks');
+const btnCancelProject = document.getElementById('btnCancelProject');
+
+let currentReelsLinks: string[] = [];
+
+btnClearReelsLinks?.addEventListener('click', () => {
+    if (confirm('Deseja remover todos os links desta lista?')) {
+        currentReelsLinks = [];
+        renderReelsLinks();
+    }
+});
+
+btnCancelProject?.addEventListener('click', () => {
+    (document.getElementById('formProject') as HTMLFormElement).reset();
+    currentReelsLinks = [];
+    renderReelsLinks();
+    singleVideoGroup?.classList.remove('hidden');
+    reelsLinksGroup?.classList.add('hidden');
+});
+
+pTypeSelect?.addEventListener('change', () => {
+    if (pTypeSelect.value === 'reels') {
+        singleVideoGroup?.classList.add('hidden');
+        reelsLinksGroup?.classList.remove('hidden');
+    } else {
+        singleVideoGroup?.classList.remove('hidden');
+        reelsLinksGroup?.classList.add('hidden');
+    }
+});
+
+btnAddReelsLink?.addEventListener('click', () => {
+    currentReelsLinks.push('');
+    renderReelsLinks();
+});
+
+function renderReelsLinks() {
+    if (!reelsLinksList) return;
+    reelsLinksList.innerHTML = '';
+    
+    currentReelsLinks.forEach((link, index) => {
+        const item = document.createElement('div');
+        item.className = 'reels-link-item';
+        item.innerHTML = `
+            <span style="font-weight: bold; color: #666;">#${index + 1}</span>
+            <input type="text" value="${link}" placeholder="URL do Vídeo" data-index="${index}">
+            <div class="reels-actions">
+                <button type="button" class="btn-icon btn-up" title="Mover para cima">↑</button>
+                <button type="button" class="btn-icon btn-down" title="Mover para baixo">↓</button>
+                <button type="button" class="btn-icon btn-remove" style="color: red;" title="Remover">✕</button>
+            </div>
+        `;
+
+        const input = item.querySelector('input');
+        input?.addEventListener('input', (e) => {
+            currentReelsLinks[index] = (e.target as HTMLInputElement).value;
+        });
+
+        item.querySelector('.btn-up')?.addEventListener('click', () => moveLink(index, -1));
+        item.querySelector('.btn-down')?.addEventListener('click', () => moveLink(index, 1));
+        item.querySelector('.btn-remove')?.addEventListener('click', () => {
+            currentReelsLinks.splice(index, 1);
+            renderReelsLinks();
+        });
+
+        reelsLinksList.appendChild(item);
+    });
+}
+
+function moveLink(index: number, direction: number) {
+    const newIndex = index + direction;
+    if (newIndex >= 0 && newIndex < currentReelsLinks.length) {
+        const temp = currentReelsLinks[index];
+        currentReelsLinks[index] = currentReelsLinks[newIndex];
+        currentReelsLinks[newIndex] = temp;
+        renderReelsLinks();
+        
+        // Focus the moved input
+        setTimeout(() => {
+            const input = reelsLinksList?.querySelector(`input[data-index="${newIndex}"]`) as HTMLInputElement;
+            input?.focus();
+        }, 0);
+    }
+}
+
 // Auth State
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -58,8 +148,31 @@ function loadData() {
             item.className = 'data-item';
             item.innerHTML = `
                 <span>${p.title} (${p.type})</span>
-                <button class="btn-delete" data-id="${docSnap.id}">Excluir</button>
+                <div class="reels-actions">
+                    <button class="btn-icon btn-edit" data-id="${docSnap.id}">Editar</button>
+                    <button class="btn-delete" data-id="${docSnap.id}">Excluir</button>
+                </div>
             `;
+            
+            item.querySelector('.btn-edit')?.addEventListener('click', () => {
+                (document.getElementById('pTitle') as HTMLInputElement).value = p.title;
+                (document.getElementById('pType') as HTMLSelectElement).value = p.type;
+                (document.getElementById('pOrder') as HTMLInputElement).value = p.order;
+                
+                if (p.type === 'reels') {
+                    singleVideoGroup?.classList.add('hidden');
+                    reelsLinksGroup?.classList.remove('hidden');
+                    currentReelsLinks = p.mediaUrl ? p.mediaUrl.split(',') : [];
+                    renderReelsLinks();
+                } else {
+                    singleVideoGroup?.classList.remove('hidden');
+                    reelsLinksGroup?.classList.add('hidden');
+                    (document.getElementById('pUrl') as HTMLInputElement).value = p.mediaUrl || '';
+                }
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
             item.querySelector('.btn-delete')?.addEventListener('click', () => {
                 if (confirm('Tem certeza?')) deleteDoc(doc(db, 'projects', docSnap.id));
             });
@@ -128,10 +241,24 @@ document.getElementById('formProject')?.addEventListener('submit', async (e) => 
     const order = parseInt((document.getElementById('pOrder') as HTMLInputElement).value);
 
     const id = title.toLowerCase().replace(/\s+/g, '-');
-    await setDoc(doc(db, 'projects', id), {
-        title, type, mediaUrl: url, order
-    });
+    
+    const projectData: any = {
+        title, type, order
+    };
+
+    if (type === 'reels') {
+        // Filter out empty links
+        projectData.mediaUrl = currentReelsLinks.filter(l => l.trim() !== '').join(',');
+    } else {
+        projectData.mediaUrl = url;
+    }
+
+    await setDoc(doc(db, 'projects', id), projectData);
+    
     (e.target as HTMLFormElement).reset();
+    currentReelsLinks = [];
+    renderReelsLinks();
+    alert('Projeto salvo com sucesso!');
 });
 
 document.getElementById('formSettings')?.addEventListener('submit', async (e) => {

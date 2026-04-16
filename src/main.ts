@@ -74,8 +74,54 @@ function renderTestimonials() {
 }
 
 function updateProjectDetails() {
-    // This would dynamically create or update the <section class="project-detail"> elements
-    // For now, we'll keep the existing ones but we should ideally generate them
+    const container = document.getElementById('dynamicProjectsContainer');
+    if (!container) return;
+
+    // Filter projects that are not hardcoded (if any) or just render all
+    container.innerHTML = projects.map(p => {
+        if (p.type === 'reels') {
+            const links = p.mediaUrl ? p.mediaUrl.split(',') : [];
+            return `
+                <section id="project-${p.id}" class="project-detail">
+                    <div class="project-content project-reel-layout">
+                        <div class="project-image">
+                            <div class="reels-wrapper">
+                                <div class="swiper reels-container">
+                                    <div class="swiper-wrapper">
+                                        ${links.map(link => `
+                                            <div class="swiper-slide reels-slide">
+                                                <div class="reels-overlay"></div>
+                                                <iframe class="reels-video reels-media" data-src="${link}" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                <div class="swipe-hint">Arraste para cima ↕</div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-header">
+                        <button class="btn-close" onclick="hideProject()">✕ Fechar Projeto</button>
+                    </div>
+                </section>
+            `;
+        } else {
+            return `
+                <section id="project-${p.id}" class="project-detail">
+                    <div class="project-header">
+                        <h2>${p.title}</h2>
+                        <button class="btn-close" onclick="hideProject()">✕ Fechar Projeto</button>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-image">
+                            <iframe class="project-video" style="width:100%; aspect-ratio:16/9; border:none; border-radius:12px;" 
+                                src="${p.mediaUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+    }).join('');
 }
 
 // Start
@@ -83,7 +129,21 @@ initDynamicContent();
 
 // Expose to window for inline scripts
 (window as any).openQuickView = (id: string) => {
-    // Implement or call existing openQuickView
-    console.log("Opening quick view for:", id);
-    // For now, we'll let the existing inline script handle it if it's still there
+    const p = projects.find(proj => proj.id === id);
+    if (!p) return;
+
+    // Update the global projectsData used by the inline script
+    (window as any).projectsData = (window as any).projectsData || {};
+    (window as any).projectsData[id] = {
+        title: p.title,
+        desc: p.description || '',
+        image: p.thumbnail || 'https://picsum.photos/seed/' + p.id + '/800/400',
+        mediaUrl: p.mediaUrl,
+        type: p.type
+    };
+
+    // Call the original openQuickView if it exists
+    if (typeof (window as any).originalOpenQuickView === 'function') {
+        (window as any).originalOpenQuickView(id);
+    }
 };
